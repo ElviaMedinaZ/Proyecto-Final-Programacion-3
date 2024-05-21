@@ -14,40 +14,40 @@ import controlador.Controlador;
 
 public class Cambiar_contrasena {
 
-	private JPanel contraseña;
+	private JPanel contrasena;
 	private Controlador sistema;
 
 	public Cambiar_contrasena(Controlador sistema) {
 		this.sistema = sistema;//asignamos el controlador al atributo de la clase
-		contraseña = new JPanel();//creamos el panel de cambiar la contraseña
+		contrasena = new JPanel();//creamos el panel de cambiar la contraseña
 		inicializarComponentes();//añadimos sus componentes
 	}
 	
 	private void inicializarComponentes()//agregamos todos los componentea 
 	{
-		contraseña.setBackground(Color.decode("#F0F8FF")); 
+		contrasena.setBackground(Color.decode("#F0F8FF")); 
 		
 		JLabel lblTitle = new JLabel("Cambiar contraseña");
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		contraseña.add(lblTitle);
+		contrasena.add(lblTitle);
 		
-		JButton btnAceptar = new JButton("aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
+		JButton btnRegresar = new JButton("Regresar");//boton de regresar al login
+		btnRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sistema.mostrarPanel("login", (JFrame) contraseña.getTopLevelAncestor());//asegura que el Controlador reciba el JFrame correcto para el cambio de paneles
+				sistema.mostrarPanel("login", (JFrame) contrasena.getTopLevelAncestor());//asegura que el Controlador reciba el JFrame correcto para el cambio de paneles
 			}
 		});
-		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contraseña.add(btnAceptar);
+		btnRegresar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contrasena.add(btnRegresar);
 		
-		JButton btnIngresar = new JButton("cambiar");
-		btnIngresar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contraseña.add(btnIngresar);
+		JButton btnModificar = new JButton("Modificar");//voton de modificar la contraseña
+		btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contrasena.add(btnModificar);
 	}
 	
-	public JPanel vista_contraseña() //retorna el panel
+	public JPanel vista_contrasena() //retorna el panel
 	{
-		return contraseña;
+		return contrasena;
 	}
 
 }

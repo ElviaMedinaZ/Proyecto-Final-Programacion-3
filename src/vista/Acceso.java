@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,25 +35,45 @@ public class Acceso {
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 30));//tipo y tamaño de letra
 		acceso.add(lblTitulo);
 		
-		JButton btnRegistro = new JButton("Registro");//boton de registro
-		btnRegistro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sistema.mostrarPanel("registro", (JFrame) acceso.getTopLevelAncestor());
-			}
-		});
-		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		acceso.add(btnRegistro);
+		JLabel lblRegistro = new JLabel("¿No tienes cuenta? Registrate");//etiqueta para registrarse
+		lblRegistro.setFont(new Font("Tahoma", Font.PLAIN, 30));//tipo y tamaño de letra
+		lblRegistro.addMouseListener(new MouseAdapter() {//accion para que la etiqueta nos lleve a otro panel
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	sistema.mostrarPanel("registro", (JFrame) acceso.getTopLevelAncestor());//nos lleva al panel de registro
+            }
+        });
+		acceso.add(lblRegistro);
 		
-		JButton btnContraseña = new JButton("contraseña");//si el usuario olvido la contraseña te lleva al panel para cambiarla
-		btnContraseña.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sistema.mostrarPanel("contraseña", (JFrame) acceso.getTopLevelAncestor());//asegura que el Controlador reciba el JFrame correcto para el cambio de paneles
-			}
-		});
-		btnContraseña.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		acceso.add(btnContraseña);
+		JLabel lblContraseña = new JLabel("¿Olvidaste tu contraseña?");//etiqueta para registrarse
+		lblContraseña.setFont(new Font("Tahoma", Font.PLAIN, 30));//tipo y tamaño de letra
+		lblContraseña.addMouseListener(new MouseAdapter() {//accion para que la etiqueta nos lleve a otro panel
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	sistema.mostrarPanel("contrasena", (JFrame) acceso.getTopLevelAncestor());//asegura que el Controlador reciba el JFrame correcto para el cambio de paneles
+            }
+        });
+		acceso.add(lblContraseña);
 		
-		JButton btnIngresar = new JButton("Ingresar");//boton ingresar
+//		JButton btnRegistro = new JButton("Registro");//boton de registro
+//		btnRegistro.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				sistema.mostrarPanel("registro", (JFrame) acceso.getTopLevelAncestor());
+//			}
+//		});
+//		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 20));
+//		acceso.add(btnRegistro);
+		
+//		JButton btnContraseña = new JButton("contraseña");//si el usuario olvido la contraseña te lleva al panel para cambiarla
+//		btnContraseña.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				sistema.mostrarPanel("contraseña", (JFrame) acceso.getTopLevelAncestor());//asegura que el Controlador reciba el JFrame correcto para el cambio de paneles
+//			}
+//		});
+//		btnContraseña.setFont(new Font("Tahoma", Font.PLAIN, 20));
+//		acceso.add(btnContraseña);
+		
+		JButton btnIngresar = new JButton("Entrar");//boton ingresar
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sistema.mostrarPanel("principal", (JFrame) acceso.getTopLevelAncestor());
