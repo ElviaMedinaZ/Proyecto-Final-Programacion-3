@@ -1,17 +1,14 @@
 package main;
 
-import controlador.Controlador;
+import controlador.Controlador_Acceso;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Controlador_Acceso sistema = new Controlador_Acceso();
+		sistema.vista_Acceso();
 
-		//creamos el controlador
-		Controlador sistema = new Controlador();
-		//mandamos a llamar la ventana
-		sistema.iniciar();
-		
 	}
 
 }
