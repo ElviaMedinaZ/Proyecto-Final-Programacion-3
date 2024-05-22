@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class ConexionDB {
 	
-	private static final String URL = "jdbc:mysql://localhost:3306/?serverTimezone=UTC";
+	private static final String URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_trabajo?serverTimezone=UTC";
     private static final String USERNAME = "freedb_kris12";
     private static final String PASSWORD = "@hAh6K*Vk#Q*acS";
 	

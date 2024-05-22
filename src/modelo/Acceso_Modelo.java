@@ -19,12 +19,12 @@ public class Acceso_Modelo {
 		sistema = new ConexionDB();
 	}
 	
-	public boolean login(String usuario,String contrasena) {
+	public boolean get_validacion_acceso(String usuario,String contrasena) {
 		
 		try {
 			Connection com = sistema.getConexion();
 			Statement iniciar = com.createStatement() ;
-			ResultSet rs = iniciar.executeQuery("SELECT * FROM user WHERE nombre = '" + usuario + "' AND contraseña = '" + contrasena + "'");
+			ResultSet rs = iniciar.executeQuery("SELECT * FROM usuarios WHERE nombre = '" + usuario + "' AND contraseña = '" + contrasena + "'");
 			
 			if(rs.next()) {
 				com.close();
