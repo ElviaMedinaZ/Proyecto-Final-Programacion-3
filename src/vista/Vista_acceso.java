@@ -28,23 +28,23 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controlador.Controlador_Contrasena;
-import controlador.Controlador_Registro;
+import controlador.Controlador_contrasena;
+import controlador.Controlador_registro;
 import controlador.Controlador_inicio;
-import modelo.Acceso_Modelo;
+import modelo.Modelo_acceso;
 
-public class Vista_Acceso {
+public class Vista_acceso {
 
     private JFrame ventana;
-    private Controlador_Registro registro;
-    private Controlador_Contrasena cambiar;
-	private Acceso_Modelo sistema;
+    private Controlador_registro registro;
+    private Controlador_contrasena cambiar;
+	private Modelo_acceso sistema;
 	private Controlador_inicio inicio;
 	
     
-    public Vista_Acceso() {
+    public Vista_acceso() {
         // Constructor
-    	sistema = new Acceso_Modelo();
+    	sistema = new Modelo_acceso();
         ventana = new JFrame();
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
         ventana.setVisible(false);
@@ -116,7 +116,7 @@ public class Vista_Acceso {
 		lblRegistro.addMouseListener(new MouseAdapter() {//accion para que la etiqueta nos lleve a otro panel
            @Override
            public void mouseClicked(MouseEvent e) {
-        	   registro = new Controlador_Registro();
+        	   registro = new Controlador_registro();
                registro.vista_Registro();
                ventana.dispose();
            }
@@ -127,7 +127,7 @@ public class Vista_Acceso {
 		lblContrasena.addMouseListener(new MouseAdapter() {//accion para que la etiqueta nos lleve a otro panel
             @Override
             public void mouseClicked(MouseEvent e) {
-                cambiar = new Controlador_Contrasena();
+                cambiar = new Controlador_contrasena();
                 cambiar.vista_Cambiar();
                 ventana.dispose();
             }
@@ -135,10 +135,10 @@ public class Vista_Acceso {
         lblContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));//tipo y tamaño de letra
         
 		JLabel lbl_icono_perfil = new JLabel("");
-		lbl_icono_perfil.setIcon(new ImageIcon(Vista_Acceso.class.getResource("/img_accesos/img_perfil.png")));
+		lbl_icono_perfil.setIcon(new ImageIcon(Vista_acceso.class.getResource("/img_accesos/img_perfil.png")));
 		
 		JLabel lbl_icono_contraseña = new JLabel("");
-		lbl_icono_contraseña.setIcon(new ImageIcon(Vista_Acceso.class.getResource("/img_accesos/img_contraseña.png")));
+		lbl_icono_contraseña.setIcon(new ImageIcon(Vista_acceso.class.getResource("/img_accesos/img_contraseña.png")));
 		
 
 		ventana.addComponentListener(new ComponentAdapter() {

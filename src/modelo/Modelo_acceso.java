@@ -9,14 +9,14 @@ import java.sql.Statement;
 import com.mysql.cj.jdbc.Driver;
 
 
-public class Acceso_Modelo {
+public class Modelo_acceso {
 
-	private ConexionDB sistema;
+	private Conexion_db sistema;
 	
 	//aqui va la conexión a la base de datos
-	public Acceso_Modelo() {
+	public Modelo_acceso() {
 		// TODO Auto-generated constructor stub
-		sistema = new ConexionDB();
+		sistema = new Conexion_db();
 	}
 	
 	public boolean get_validacion_acceso(String usuario,String contrasena) {

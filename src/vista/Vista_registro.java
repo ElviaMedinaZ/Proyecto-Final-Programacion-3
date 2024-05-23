@@ -10,14 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controlador.Controlador_Acceso;
+import controlador.Controlador_acceso;
 
-public class Vista_Registro {
+public class Vista_registro {
 	
 	private JFrame ventana;	
-	private Controlador_Acceso acceso;
+	private Controlador_acceso acceso;
 
-	public Vista_Registro() {
+	public Vista_registro() {
 		// TODO Auto-generated constructor stub
 		ventana = new JFrame();
 		ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);//usa toda la pantalla 
@@ -39,8 +39,8 @@ public class Vista_Registro {
 		btnAcceder.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				acceso = new Controlador_Acceso();
-				acceso.vista_Acceso();
+				acceso = new Controlador_acceso();
+				acceso.vista_acceso();
 				ventana.dispose();
 			}
 		});

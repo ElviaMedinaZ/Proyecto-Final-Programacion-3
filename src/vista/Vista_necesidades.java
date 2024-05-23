@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controlador.Controlador_Acceso;
+import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
 import controlador.Controlador_entretenimiento;
 import controlador.Controlador_persona;
@@ -111,8 +111,8 @@ public class Vista_necesidades {
 		JButton btnCerrar_sesion = new JButton("Cerrar sesión");
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador_Acceso sistema = new Controlador_Acceso();
-				sistema.vista_Acceso();
+				Controlador_acceso sistema = new Controlador_acceso();
+				sistema.vista_acceso();
 				ventana.dispose();
 			}
 		});
