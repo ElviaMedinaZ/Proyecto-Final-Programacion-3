@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 
 import controlador.Controlador_Contrasena;
 import controlador.Controlador_Registro;
+import controlador.Controlador_inicio;
 import modelo.Acceso_Modelo;
 
 public class Vista_Acceso {
@@ -38,6 +39,7 @@ public class Vista_Acceso {
     private Controlador_Registro registro;
     private Controlador_Contrasena cambiar;
 	private Acceso_Modelo sistema;
+	private Controlador_inicio inicio;
 	
     
     public Vista_Acceso() {
@@ -90,7 +92,9 @@ public class Vista_Acceso {
 				if(sistema.get_validacion_acceso( text_Nombre.getText(),pass_contraseña.getText())){
 					
 					System.out.println("se inicio");
-					
+					inicio = new Controlador_inicio();
+					inicio.vista_inicio();
+					ventana.dispose();
 				}
 				else {
 					text_Nombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
@@ -98,7 +102,7 @@ public class Vista_Acceso {
 					
 					lbl_error.setText("<html><body>Usuario o contraseña incorrecto</body></html>");
 					lbl_error.setForeground(Color.red);
-					lbl_error.setFont(new Font("Tahoma", Font.PLAIN, 17));//tipo y tama�o de letra
+					lbl_error.setFont(new Font("Tahoma", Font.PLAIN, 17));//tipo y tamaño de letra
 					
 				}
 			}
@@ -117,7 +121,7 @@ public class Vista_Acceso {
                ventana.dispose();
            }
 	    });
-		lblRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));//tipo y tama�o de letra
+		lblRegistro.setFont(new Font("Tahoma", Font.PLAIN, 18));//tipo y tamaño de letra
 		
 		JLabel lblContrasena = new JLabel("<html><u>¿Olvidaste tu contraseña? </u></html>");//etiqueta para registrarse
 		lblContrasena.addMouseListener(new MouseAdapter() {//accion para que la etiqueta nos lleve a otro panel
@@ -128,7 +132,7 @@ public class Vista_Acceso {
                 ventana.dispose();
             }
 	    });
-        lblContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));//tipo y tama�o de letra
+        lblContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));//tipo y tamaño de letra
         
 		JLabel lbl_icono_perfil = new JLabel("");
 		lbl_icono_perfil.setIcon(new ImageIcon(Vista_Acceso.class.getResource("/img_accesos/img_perfil.png")));
@@ -188,8 +192,6 @@ public class Vista_Acceso {
 		
 		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
 		panel.add(horizontalStrut_2, BorderLayout.EAST);
-
-	
 		
 		Panel panel_1 = new Panel();
 		panel_acceso.add(panel_1, BorderLayout.CENTER);
@@ -214,12 +216,12 @@ public class Vista_Acceso {
 		
 	}
 	
-	public class ImganenFondo extends JPanel {
+	public class ImganenFondo extends JPanel {//mostramos la imagen al fondo del jpanel
 
 		
 		private BufferedImage image;
 
-		    public  ImganenFondo(String imagePath) {
+		    public  ImganenFondo(String imagePath) {//constructor que carga la imagen
 		        try {
 		            image = ImageIO.read(new File(imagePath));
 		        } catch (IOException ex) {
@@ -241,7 +243,6 @@ public class Vista_Acceso {
 		            return new Dimension(image.getWidth(), image.getHeight());
 		        }
 		        return super.getPreferredSize();
-		
 		    }
 		}
 }

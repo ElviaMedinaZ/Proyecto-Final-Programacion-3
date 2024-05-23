@@ -35,8 +35,8 @@ public class Vista_Registro {
 		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		registro.add(lblTitle);
 		
-		JButton btnLogin = new JButton("Acceder");
-		btnLogin.addActionListener(new ActionListener() {
+		JButton btnAcceder = new JButton("Acceder");
+		btnAcceder.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				acceso = new Controlador_Acceso();
@@ -44,8 +44,8 @@ public class Vista_Registro {
 				ventana.dispose();
 			}
 		});
-		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		registro.add(btnLogin);
+		btnAcceder.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		registro.add(btnAcceder);
 		
 		JButton btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.setFont(new Font("Tahoma", Font.PLAIN, 20));
