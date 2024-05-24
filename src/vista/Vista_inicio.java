@@ -145,7 +145,7 @@ public class Vista_inicio {
 		panel_regresar.add(btnRegresar, gbc);
 		panel_cerrar_sesion.add(btnCerrar_sesion,gbc);
 		
-		JPanel logo = new ImagenFondo("src/img_accesos/Imagen fondo.png");
+		JPanel logo = new ImagenFondo("imagenes/img_principal/Imagen fondo.png");
 		Panel_Principal.add(logo, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();

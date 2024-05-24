@@ -9,6 +9,7 @@ public class Main {
 		Controlador_acceso sistema = new Controlador_acceso();
 		sistema.vista_acceso();
 
+	
 	}
 
 }

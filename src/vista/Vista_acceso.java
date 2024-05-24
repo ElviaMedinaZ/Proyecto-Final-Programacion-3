@@ -41,6 +41,8 @@ public class Vista_acceso {
 	private Modelo_acceso sistema;
 	private Controlador_inicio inicio;
 	
+	
+	
     
     public Vista_acceso() {
         // Constructor
@@ -50,6 +52,8 @@ public class Vista_acceso {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
     }
 
     public void vista_Acceso(){
@@ -135,10 +139,10 @@ public class Vista_acceso {
         lblContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));//tipo y tamaño de letra
         
 		JLabel lbl_icono_perfil = new JLabel("");
-		lbl_icono_perfil.setIcon(new ImageIcon(Vista_acceso.class.getResource("/img_accesos/img_perfil.png")));
+		lbl_icono_perfil.setIcon(new ImageIcon("imagenes/imagenes_acceso/img_perfil.png"));
 		
 		JLabel lbl_icono_contraseña = new JLabel("");
-		lbl_icono_contraseña.setIcon(new ImageIcon(Vista_acceso.class.getResource("/img_accesos/img_contraseña.png")));
+		lbl_icono_contraseña.setIcon(new ImageIcon("imagenes/imagenes_acceso/img_contraseña.png"));
 		
 
 		ventana.addComponentListener(new ComponentAdapter() {
@@ -147,24 +151,30 @@ public class Vista_acceso {
 		    	
 		    	int tamBtnWidth = 190;
 		    	//conseguimos las dimensiones con las que terminara el panel
-		        Dimension panelSize = panel.getSize();
+		        Dimension panelSize = panel_2.getSize();
 		        //guardamos posiciones
 		        int panelWidth = panelSize.width;
 		        int panelHeight = panelSize.height;
 		        //logramos posicionar en el centro usando el tamaño de los botones ya definidos y las medidas conseguidas 
-		        int x = (panelWidth - tamBtnWidth) / 2;
 		        
-				lbl_title.setBounds(x, 10 , tamBtnWidth, 120);
-				lbl_Nombre.setBounds(x-60, 150 , tamBtnWidth+20, 40);
-				text_Nombre.setBounds(x-60, 190, tamBtnWidth+120, 30);
-				lbl_icono_perfil.setBounds(x-100, 190 , tamBtnWidth+120, 30);
-				lbl_contraseña.setBounds(x-60,230 , tamBtnWidth , 40);
-				pass_contraseña.setBounds(x-60,270, tamBtnWidth+120, 30);
-				lbl_error.setBounds(x-60,300, tamBtnWidth+120, 30);
-				lbl_icono_contraseña.setBounds(x-100,270, tamBtnWidth+120, 30);
-				btn_entrar.setBounds(x-60,370, tamBtnWidth+120, 40);
-				lblRegistro.setBounds(x-20, 460, tamBtnWidth+120, 40);
-				lblContrasena.setBounds(x, 490, tamBtnWidth+120, 40);
+		        
+		        
+		        int x = (panelWidth - tamBtnWidth) / 2;
+		        int y = panelHeight/2;
+		        
+		  
+		        
+				lbl_title.setBounds(x, y-310 , tamBtnWidth, 120);
+				lbl_Nombre.setBounds(x-60, y-180 , tamBtnWidth+20, 40);
+				text_Nombre.setBounds(x-60, y-140, tamBtnWidth+120, 30);
+				lbl_icono_perfil.setBounds(x-100, y-140 , tamBtnWidth+120, 30);
+				lbl_contraseña.setBounds(x-60, y-90 , tamBtnWidth , 40);
+				pass_contraseña.setBounds(x-60,y-50, tamBtnWidth+120, 30);
+				lbl_error.setBounds(x-60,y-20, tamBtnWidth+120, 30);
+				lbl_icono_contraseña.setBounds(x-100,y-50, tamBtnWidth+120, 30);
+				btn_entrar.setBounds(x-60,y+40, tamBtnWidth+120, 40);
+				lblRegistro.setBounds(x-20, y+100, tamBtnWidth+120, 40);
+				lblContrasena.setBounds(x, y+150, tamBtnWidth+120, 40);
 		      
 		    }
 		});
@@ -206,7 +216,7 @@ public class Vista_acceso {
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		panel_1.add(horizontalStrut, BorderLayout.EAST);
 		
-		JPanel panel_3 =new ImganenFondo("src/img_accesos/Acceso.png");
+		JPanel panel_3 =new ImganenFondo("imagenes/imagenes_acceso/fondo_acceso.png");
 		panel_1.add(panel_3, BorderLayout.CENTER);
 		
 		ventana.getContentPane().add(panel_acceso);
