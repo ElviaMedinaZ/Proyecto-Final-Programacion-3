@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -56,6 +57,7 @@ public class Vista_registro {
     }
 
   
+	@SuppressWarnings("static-access")
 	public void vista_Registro(){
 		JPanel panel_acceso = new JPanel();
 		panel_acceso.setLayout(new BorderLayout(0, 0));
@@ -75,24 +77,24 @@ public class Vista_registro {
 		panel.add(scroll, BorderLayout.CENTER);
 		panel_registro.setLayout(null);
 		
-		JLabel lbl_titulo = new JLabel("Registro");
+		JLabel lbl_titulo = new JLabel("REGISTRO");
 		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
 		
 		JLabel lbl_nombre = new JLabel("Nombre(s)");
 		lbl_nombre.setFont(new Font("Tahoma", Font.BOLD, 20));
-		
-		
 		JTextField text_nombre = new JTextField();
 		utilidades.applyLettersOnlyFilter(text_nombre);
+		utilidades.limitTextFieldLength(text_nombre, 40); // NOTA: Checar vista utilidades.
 		text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		text_nombre.requestFocus();
 		
 		
 		JLabel lbl_apellidos = new JLabel("Apellidos");
 		lbl_apellidos.setFont(new Font("Tahoma", Font.BOLD, 20));
-		
 		JTextField text_apellidos = new JTextField();
+		utilidades.limitTextFieldLength(text_apellidos, 40);
 		utilidades.applyLettersOnlyFilter(text_apellidos); //este metodo ayuda a no poder ingresar numeros en este campo 
+		
 		text_apellidos.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
 		JLabel lbl_fecha = new JLabel("Fecha de nacimiento");
@@ -129,24 +131,24 @@ public class Vista_registro {
         lbl_discapacidad.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JTextField text_discapacidad = new JTextField();
-		text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
-		
 		utilidades.limitTextFieldLength(text_discapacidad,40);
+		text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
 		JLabel lbl_correo = new JLabel("Correo electronico");
 		lbl_correo.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JTextField text_correo = new JTextField();
+		utilidades.limitTextFieldLength(text_correo, 30);
 		text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
-		JLabel lbl_Usuario = new JLabel("Usuarios");
+		JLabel lbl_Usuario = new JLabel("Usuario");
 		lbl_Usuario.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JTextField text_Usuario = new JTextField();
-		utilidades.limitTextFieldLength(text_Usuario, 15);
+		utilidades.limitTextFieldLength(text_Usuario, 40);
 		
-		if (text_Usuario.getText().length() >= 20) {
-            JOptionPane.showMessageDialog(null, "Longitud maxima (20) alcanzada");
+		if (text_Usuario.getText().length() >= 40) {
+            JOptionPane.showMessageDialog(null, "Longitud maxima (40) alcanzada");
         }
 		
 		text_Usuario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
@@ -187,63 +189,90 @@ public class Vista_registro {
             	     
             	     if (text_nombre.getText().isEmpty()) {
             	    	 text_nombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            	    }else {
+            	    	text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
             	    }
             	    
             	     if (text_apellidos.getText().isEmpty()) {
             	    	 text_apellidos.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-            	    }
+            	     }else {
+            	    	 text_apellidos.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+             	    }
             	    
             	     if (calendario.getDate() == null) {
             	    	 calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-            	    }
+            	     }else {
+            	    	 calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+             	    }
+            	     
             	    if (text_correo.getText().isEmpty()) {
             	    	text_correo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            	    }else {
+            	    	 text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
             	    }
+            	    
             	    if (text_Usuario.getText().isEmpty()) {
             	    	text_Usuario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            	    }else {
+            	    	text_Usuario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
             	    }
+            	    
             	    if (text_contraseña.getPassword().length == 0) {
             	    	text_contraseña.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            	    }else {
+            	    	text_contraseña.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
             	    }
+            	    
             	    if (text_discapacidad.getText().isEmpty()){
             	    	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            	    }else {
+            	    	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
             	    }
             	    
             	            return; // No permite el siguiente  si falta algun campo
             	 }
             	
-            	text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
-            	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
-                text_apellidos.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
-                text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+            	
+            	
+                
+               
                 text_Usuario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
                 text_contraseña.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
                 
                 // Obtiene la fecha de nacimiento que se selecciono
-                Date fechaNacimiento = calendario.getDate();
+                Date fecha_nacimiento = calendario.getDate();
+                Calendar fecha_min = Calendar.getInstance();
+                Calendar fecha_max = Calendar.getInstance();
                 
-                // Evita que se añadan fechas futuras
-                if (fechaNacimiento.after(new Date())) {
-                	calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-                    JOptionPane.showMessageDialog(null, "Fecha de nacimiento fuera del rango permitido", "Error", JOptionPane.ERROR_MESSAGE);
-                    return; 
-                }
-                
-                calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                if (fecha_nacimiento != null) {
+                   
+                    fecha_min.add(Calendar.YEAR, -7);
+                    fecha_max.add(Calendar.YEAR, -90);
 
-                Calendar calendar = Calendar.getInstance();
-                calendar.add(Calendar.YEAR, -7); //edad minima requerida
-                Date fechaMinima = calendar.getTime();
-                
-                // Verifica si el usuario tiene la edad minima
-                if (fechaNacimiento.after(fechaMinima)) {
-                	calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-                    JOptionPane.showMessageDialog(null, "Fecha de nacimiento invalida, debes tener al menos 7 años para registrarte", "Error", JOptionPane.ERROR_MESSAGE);
-               
-                    return; 
+                    if (fecha_nacimiento.after(fecha_min.getTime())) {
+                        JOptionPane.showMessageDialog(null, "Debe tener al menos 7 años para registrarse", "Error", JOptionPane.ERROR_MESSAGE);
+                        calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                        return;
+                    } else if (fecha_nacimiento.before(fecha_max.getTime())) {
+                        JOptionPane.showMessageDialog(null, "Rango de edad no permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                        calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                        return;
+                    }
                 }
                 
                 calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                
+                //Validacion para el correo electronico
+                String correo = text_correo.getText();
+                String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";//Valores aceptados para un correo e
+                
+                if (!Pattern.matches(emailPattern, correo)) {
+                    JOptionPane.showMessageDialog(null, "Correo electronico invalido", "Error", JOptionPane.ERROR_MESSAGE);
+                    text_correo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    return;
+                } else {
+                    text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                }
 
             }  
         });
