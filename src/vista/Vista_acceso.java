@@ -95,7 +95,6 @@ public class Vista_acceso {
 			public void actionPerformed(ActionEvent e) {
 				if(sistema.get_validacion_acceso( text_Nombre.getText(),pass_contraseña.getText())){
 					
-					System.out.println("se inicio");
 					inicio = new Controlador_inicio();
 					inicio.vista_inicio();
 					ventana.dispose();

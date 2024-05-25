@@ -27,9 +27,11 @@ import controlador.Controlador_persona;
 public class Vista_inicio {
 
 	private JFrame ventana;
+	private Vista_utilidades utilidades; 
 	
 	public Vista_inicio() {
 		// TODO Auto-generated constructor stub
+		utilidades = new Vista_utilidades();
 		ventana = new JFrame();
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
         ventana.setVisible(false);
@@ -63,13 +65,13 @@ public class Vista_inicio {
 		panel_regresar.setOpaque(false);
 		panel_cerrar_sesion.setOpaque(false);
 		
-		int tamWid = 400;
-		int tamHei = 100;
-		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
-		int fontSize = 17;
+		int tamWid = 300;
+		int tamHei = 90;
+		int iconWidth = (int) (tamHei * 0.7); // Aumentar un 70% el ancho del icono
+		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal =new JButton("Personal");
+		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				Controlador_persona persona = new Controlador_persona();
@@ -79,7 +81,7 @@ public class Vista_inicio {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento = new JButton("Entretenimiento");
+		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
@@ -91,7 +93,7 @@ public class Vista_inicio {
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnAprendizaje = new JButton("Aprendizaje");
+		JButton btnAprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
@@ -101,7 +103,7 @@ public class Vista_inicio {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = new JButton("Regresar ");
+		JButton btnRegresar =  utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar_gris_claro.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -111,7 +113,7 @@ public class Vista_inicio {
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion = new JButton("Cerrar sesión");
+		JButton btnCerrar_sesion =   utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_acceso sistema = new Controlador_acceso();

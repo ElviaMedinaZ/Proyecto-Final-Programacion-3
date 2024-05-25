@@ -1,6 +1,14 @@
 package vista;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
 import java.util.regex.Pattern;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -53,5 +61,41 @@ public class Vista_utilidades {
 	            }
 	        });
 	    }
+
+	    public JButton crearBotonesLaterales(String text, String imagen, int width, int height, int fontSize, int iconWidth) {
+	        JButton btn = new JButton();
+
+	        // Configurar el layout del botón
+	        btn.setLayout(new BorderLayout());
+
+	        // Cargar la imagen y redimensionarla al tamaño deseado
+	        ImageIcon originalIcon = new ImageIcon(imagen);
+	        Image originalImage = originalIcon.getImage();
+	        
+	        // Ajustar la imagen a ambas dimensiones del botón
+	        Image scaledImage = originalImage.getScaledInstance(iconWidth, height, Image.SCALE_SMOOTH);
+	        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+	        // Crear un JLabel para la imagen y otro para el texto
+	        JLabel imageLabel = new JLabel(scaledIcon);
+	        JLabel textLabel = new JLabel(text);
+
+	        // Centrar el texto vertical y horizontalmente
+	        textLabel.setHorizontalAlignment(JLabel.CENTER);
+	        textLabel.setVerticalAlignment(JLabel.CENTER);
+
+	        // Establecer el tamaño de la fuente del texto
+	        textLabel.setFont(textLabel.getFont().deriveFont(Font.BOLD, fontSize));
+
+	        // Añadir los componentes al botón
+	        btn.add(imageLabel, BorderLayout.WEST);
+	        btn.add(textLabel, BorderLayout.CENTER);
+
+	        // Establecer el tamaño preferido del botón
+	        btn.setPreferredSize(new Dimension(width, height));
+
+	        return btn;
+	    }
+
 
 }
