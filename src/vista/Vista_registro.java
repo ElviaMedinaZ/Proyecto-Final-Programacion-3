@@ -23,6 +23,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -53,6 +54,8 @@ public class Vista_registro {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ventana.setIconImage(icon.getImage());
 
     }
 
@@ -83,17 +86,16 @@ public class Vista_registro {
 		JLabel lbl_nombre = new JLabel("Nombre(s)");
 		lbl_nombre.setFont(new Font("Tahoma", Font.BOLD, 20));
 		JTextField text_nombre = new JTextField();
-		utilidades.applyLettersOnlyFilter(text_nombre);
-		utilidades.limitTextFieldLength(text_nombre, 40); // NOTA: Checar vista utilidades.
+		utilidades.limitar_textfield(text_nombre, 30); // NOTA: revicion completada
 		text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
-		text_nombre.requestFocus();
+
 		
 		
 		JLabel lbl_apellidos = new JLabel("Apellidos");
 		lbl_apellidos.setFont(new Font("Tahoma", Font.BOLD, 20));
 		JTextField text_apellidos = new JTextField();
-		utilidades.limitTextFieldLength(text_apellidos, 40);
-		utilidades.applyLettersOnlyFilter(text_apellidos); //este metodo ayuda a no poder ingresar numeros en este campo 
+		utilidades.limitar_textfield(text_apellidos, 40);
+		
 		
 		text_apellidos.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
@@ -138,7 +140,7 @@ public class Vista_registro {
 		lbl_correo.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JTextField text_correo = new JTextField();
-		utilidades.limitTextFieldLength(text_correo, 30);
+		utilidades.limitTextFieldLength(text_correo, 40);
 		text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
 		JLabel lbl_Usuario = new JLabel("Usuario");
@@ -304,7 +306,7 @@ public class Vista_registro {
 				panel_registro.revalidate();
 		   
 		  
-				lbl_titulo.setBounds(x, y-310 , tamBtn_ancho, 120);
+				lbl_titulo.setBounds(x-10, y-310 , tamBtn_ancho+120, 120);
 				lbl_nombre.setBounds(x-60, y-170 , tamBtn_ancho+20, 40);
 				text_nombre.setBounds(x-60, y-130, tamBtn_ancho+120, 30);
 				lbl_apellidos.setBounds(x-60, y-90 , tamBtn_ancho , 40);
@@ -392,9 +394,8 @@ public class Vista_registro {
 		
 	}
 	
-	public class ImganenFondo extends JPanel {//mostramos la imagen al fondo del jpanel
+	public class ImganenFondo extends JPanel {
 
-		
 		private BufferedImage imagen;
 
 		    public  ImganenFondo(String imagePath) {//constructor que carga la imagen

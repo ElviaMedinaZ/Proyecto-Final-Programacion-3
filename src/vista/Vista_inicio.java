@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,6 +38,8 @@ public class Vista_inicio {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ventana.setIconImage(icon.getImage());
 	}
 	
 	public void vista_inicio() {

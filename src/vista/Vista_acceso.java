@@ -52,6 +52,8 @@ public class Vista_acceso {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ventana.setIconImage(icon.getImage());
 
 
     }

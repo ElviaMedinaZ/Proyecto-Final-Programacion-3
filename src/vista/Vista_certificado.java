@@ -11,6 +11,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,6 +35,8 @@ public class Vista_certificado {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ventana.setIconImage(icon.getImage());
 	}
 	
 	public void vista_certificado() {
