@@ -5,10 +5,15 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -23,13 +28,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
 public class Vista_utilidades {
-
+	
     public Vista_utilidades() {
     }
 
@@ -109,53 +115,87 @@ public class Vista_utilidades {
     }
     
 	public JButton crearBotones(String text,String imagen,int width,int heigth,int fontSize, int iconWidth) {
-		JButton btn = new JButton(text);
-		btn.setForeground(new Color(255, 255, 255));
-		btn.setOpaque(false);
-		btn.setContentAreaFilled(false);
-		btn.setFocusPainted(false);
-		btn.setBorderPainted(false);
+		 @SuppressWarnings("serial")
+		JButton btn = new JButton() {
+	            @Override
+	            protected void paintComponent(Graphics g) {
+	                super.paintComponent(g);
+	                Graphics2D g2d = (Graphics2D) g.create();
+
+	                // Apply anti-aliasing for better text quality
+	                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+	                // Draw text outline
+	                FontMetrics fm = g2d.getFontMetrics();
+	                int textWidth = fm.stringWidth(text);
+
+	                int x = (getWidth() - textWidth) / 2;
+	                int y = getHeight() - fm.getDescent() - 5;
+
+	                // Draw outline text
+	                g2d.setColor(Color.BLACK);
+	                g2d.setFont(getFont());
+	                g2d.drawString(text, x - 1, y - 1);
+	                g2d.drawString(text, x - 1, y + 1);
+	                g2d.drawString(text, x + 1, y - 1);
+	                g2d.drawString(text, x + 1, y + 1);
+	                // Draw foreground text
+	                g2d.setColor(getForeground());
+	                g2d.drawString(text, x, y);
+
+	                g2d.dispose();
+	            }
+	        };
 		
-		ImageIcon icon = new ImageIcon(imagen); 
-		Image img = icon.getImage();			
-		Image scaledImg = img.getScaledInstance(width-20, heigth-20, Image.SCALE_SMOOTH); //tamaños de los botoes para definir el tamaño de la imagen
-        ImageIcon scaledIcon = new ImageIcon(scaledImg);
-        
+		
+		btn.setForeground(Color.decode("#FFFFFF"));
+		btn.setBackground(Color.decode("#90C3D3"));
+
+
+	    ImageIcon originalIcon = new ImageIcon(imagen);
+	    Image originalImage = originalIcon.getImage();
+
+	    // Calcular el factor de escala para ajustar la imagen al tamaño máximo sin estirarla
+	    double scaleX = (double) iconWidth / originalIcon.getIconWidth();
+	    double scaleY = (double) heigth / originalIcon.getIconHeight();
+	    double scale = Math.min(scaleX, scaleY);
+
+	    // Redimensionar la imagen al tamaño máximo
+	    int scaledWidth = (int) (originalIcon.getIconWidth() * scale);
+	    int scaledHeight = (int) (originalIcon.getIconHeight() * scale);
+	    Image scaledImage = originalImage.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
+	    ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+	    // Establecer el icono redimensionado en el botón
+	    btn.setIcon(scaledIcon);
         //se agrega la imagen al boton despues de hacerla a la medida 
         btn.setIcon(scaledIcon);
         btn.setVerticalTextPosition(SwingConstants.BOTTOM); // Coloca el texto debajo de la imagen
         btn.setHorizontalTextPosition(SwingConstants.CENTER); // Centra el texto horizontalmente
-        btn.setMargin(new Insets(10, 20, 10, 20)); // Ajusta el margen interno para dar espacio a la imagen
-        btn.setFont(new Font(btn.getName(), Font.BOLD, 16)); // Cambia el tamaño de fuente a 16 puntos
-        //SE le da el efecto de tamaño 
-        btn.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btn.setSize(width, heigth);
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btn.setSize(width+15, heigth+15);
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
+        btn.setMargin(new Insets(5, 20, 10, 20)); // Ajusta el margen interno para dar espacio a la imagen
+        btn.setFont(new Font(btn.getFont().getName(), Font.BOLD, fontSize));
+       
 
+     // Guardar la escala original del botón
+        btn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	 // Al pasar el mouse sobre el botón, aumentar el tamaño de la imagen
+                double newWidth = scaledWidth * 1.05;
+                double newHeight = scaledHeight * 1.05;
+                Image newImage = originalImage.getScaledInstance((int) newWidth, (int) newHeight, Image.SCALE_SMOOTH);
+                ImageIcon newIcon = new ImageIcon(newImage);
+                btn.setIcon(newIcon);
+            }
 
-		});
-        
-        
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	  // Al salir del botón, restaurar el tamaño original de la imagen
+                btn.setIcon(scaledIcon);
+            }
+        });
+
+       
 		return btn;
 	}
 	
@@ -189,7 +229,5 @@ public class Vista_utilidades {
 	    }
 
 	}
-
-  
 
 }

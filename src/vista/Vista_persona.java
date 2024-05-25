@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -13,7 +14,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador_acceso;
@@ -27,9 +30,11 @@ public class Vista_persona {
 	private  JFrame ventana;
 	private JPanel Panel_Principal;
 	private Controlador_persona sistema;
+	private Vista_utilidades utilidades;
 
 	public Vista_persona() {
 		// TODO Auto-generated constructor stub
+		utilidades = new Vista_utilidades();
 		sistema = new Controlador_persona();
         ventana = new JFrame();
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
@@ -66,13 +71,13 @@ public class Vista_persona {
 		panel_regresar.setOpaque(false);
 		panel_cerrar_sesion.setOpaque(false);
 		
-		int tamWid = 400;
-		int tamHei = 100;
-		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
-		int fontSize = 17;
+		int tamWid = 300;
+		int tamHei = 90;
+		int iconWidth = (int) (tamHei * 0.7); // Aumentar un 70% el ancho del icono
+		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal =new JButton("Personal");
+		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
@@ -81,7 +86,7 @@ public class Vista_persona {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento = new JButton("Entretenimiento");
+		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);;
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
@@ -92,7 +97,7 @@ public class Vista_persona {
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnAprendizaje = new JButton("Aprendizaje");
+		JButton btnAprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -103,7 +108,7 @@ public class Vista_persona {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = new JButton("Regresar ");
+		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -117,7 +122,7 @@ public class Vista_persona {
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion = new JButton("Cerrar sesión");
+		JButton btnCerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -158,65 +163,137 @@ public class Vista_persona {
 	
 	public void panel_central() {
 		
-		JPanel panelPersonal = new JPanel();
-		panelPersonal.setLayout(new GridLayout(3, 3, 100, 50));//3 columnas, 3 filas, espacios entre el centro de los botones
-		panelPersonal.setBorder(new EmptyBorder(80, 30, 70, 20));//espacio entre los botones (arriba,izquierda,abajo,derecha)
+		JPanel vista =  new JPanel();
+		vista.setLayout(new BorderLayout(0, 0));
+		vista.setBackground(Color.decode("#00758E"));
 		
-		JButton btnNecesidades = new JButton("Necesidades");//boton de necesidades
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		vista.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		
+		JLabel lblNewLabel = new JLabel("PERSONAL");
+		lblNewLabel.setForeground(Color.decode("#00172C"));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Coloca el cursor sobre la actividad a realizar.");
+		lblNewLabel_1.setForeground(Color.decode("#00172C"));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		panel.add(lblNewLabel_1);
+		
+		JPanel panel_1 = new JPanel();
+		vista.add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new GridLayout(3, 3, 0, 0));
+	
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setForeground(new Color(255, 255, 255));
+		JPanel panel_4 = new JPanel();
+		JPanel panel_2 = new JPanel();		
+		JPanel panel_5 = new JPanel();
+		JPanel panel_6 = new JPanel();
+		JPanel panel_7 = new JPanel();
+		
+		//esto se agrega para darle tamaños a los botones 
+        int tamWid = 250;
+        int tamHei = 160;
+		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
+		int fontSize = 19;
+		                         //usando el utilidades le pasamos los parametros texto y todo
+		JButton btnNecesidades = utilidades.crearBotones("Necesidades", "imagenes/img_necesidades/necesidades/icono necesidades.png", tamWid, tamHei,fontSize,iconWidth);
 		btnNecesidades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_necesidades();
 				ventana.dispose();
 			}
 		});
-		panelPersonal.add(btnNecesidades);
+		btnNecesidades.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnAgenda = new JButton("Agenda");//boton de agenda
+		JButton btnAgenda =   utilidades.crearBotones("Agenda", "imagenes/img_necesidades/icono agenda.png", tamWid, tamHei,fontSize,iconWidth);
 		btnAgenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_agenda();
 				ventana.dispose();
 			}
 		});
-		panelPersonal.add(btnAgenda);
+		btnAgenda.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnCertificado = new JButton("Certificado");//boton de certificado
+		JButton btnCertificado=   utilidades.crearBotones("Certificado", "imagenes/img_necesidades/icono certificado.png", tamWid, tamHei,fontSize,iconWidth);
 		btnCertificado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_certificado();
 				ventana.dispose();
 			}
 		});
-		panelPersonal.add(btnCertificado);
+		btnCertificado.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnContactos = new JButton("Contactos");//boton de contactos
+		JButton btnContactos=   utilidades.crearBotones("Contactos", "imagenes/img_necesidades/icono contacto.png", tamWid, tamHei,fontSize,iconWidth);
 		btnContactos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_contactos();
 				ventana.dispose();
 			}
 		});
-		panelPersonal.add(btnContactos );
+		btnContactos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnEditarPerfil = new JButton("Editar perfil");//boton de editar perfil
-		btnEditarPerfil.addActionListener(new ActionListener() {
+		JButton btnEditar =   utilidades.crearBotones("Editar perfil", "imagenes/img_necesidades/editar.png", tamWid, tamHei,fontSize,iconWidth);
+		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_editar();
 				ventana.dispose();
 			}
 		});
-		panelPersonal.add(btnEditarPerfil);
+		btnEditar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnDispositivos = new JButton("Dispositivos");//boton de dispositivos vinculados
-		btnDispositivos.addActionListener(new ActionListener() {
+		JButton btnDispositivaos =  utilidades.crearBotones("Dispositivos", "imagenes/img_necesidades/dispositivos/icono dispositivos.png", tamWid, tamHei,fontSize,iconWidth);
+		btnDispositivaos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sistema.vista_dispositivos();
+				
+				sistema.vista_necesidades();
 				ventana.dispose();
 			}
 		});
-		panelPersonal.add(btnDispositivos);
+		btnDispositivaos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		Panel_Principal.add(panelPersonal, BorderLayout.CENTER);
+		
+		//ocupamos agregarlos a paneles para que puedan tener su vista y poder trabajar mejor en ellos 
+		
+		panel_3.add(btnNecesidades);	
+		panel_4.add(btnAgenda);
+		panel_2.add(btnCertificado);
+		panel_5.add(btnContactos);
+		panel_6.add(btnEditar);
+		panel_7.add(btnDispositivaos);
+		
+        panel_1.setOpaque(false);
+        panel_2.setOpaque(false);
+        panel_3.setOpaque(false);
+        panel_4.setOpaque(false);
+        panel_5.setOpaque(false);
+        panel_6.setOpaque(false);
+        panel_7.setOpaque(false);
+        
+
+		
+		panel_1.add(panel_3);
+		panel_1.add(panel_4);
+		panel_1.add(panel_2);
+		panel_1.add(panel_5);
+		panel_1.add(panel_6);
+		panel_1.add(panel_7);
+		
+		vista.setBackground(Color.decode("#F1F1F1"));
+		
+		Panel_Principal.add(vista, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();
