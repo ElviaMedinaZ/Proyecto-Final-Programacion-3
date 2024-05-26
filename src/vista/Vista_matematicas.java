@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -13,7 +14,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador_acceso;
@@ -25,9 +28,11 @@ public class Vista_matematicas {
 	
 	public JFrame ventana;
 	public JPanel Panel_Principal;
+	private Vista_utilidades utilidades;
 
 	public Vista_matematicas() {
 		// TODO Auto-generated constructor stub
+		utilidades = new Vista_utilidades();
 		ventana = new JFrame();
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
         ventana.setVisible(false);
@@ -64,13 +69,13 @@ public class Vista_matematicas {
 		panel_regresar.setOpaque(false);
 		panel_cerrar_sesion.setOpaque(false);
 		
-		int tamWid = 400;
-		int tamHei = 100;
-		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
-		int fontSize = 17;
+		int tamWid = 300;
+		int tamHei = 90;
+		int iconWidth = (int) (tamHei * 0.7); // Aumentar un 70% el ancho del icono
+		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal =new JButton("Personal");
+		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_persona persona = new Controlador_persona();
@@ -80,7 +85,7 @@ public class Vista_matematicas {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento = new JButton("Entretenimiento");
+		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
@@ -89,8 +94,8 @@ public class Vista_matematicas {
 			}
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
-		
-		JButton btnAprendizaje = new JButton("Aprendizaje");
+		 
+		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
@@ -100,7 +105,7 @@ public class Vista_matematicas {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = new JButton("Regresar ");
+		JButton btnRegresar =utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -111,7 +116,7 @@ public class Vista_matematicas {
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion = new JButton("Cerrar sesión");
+		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_acceso sistema = new Controlador_acceso();
@@ -150,40 +155,131 @@ public class Vista_matematicas {
 	
 	public void panel_central() {
 		
-		JPanel panelMatematicas = new JPanel();
+		JPanel vista =  new JPanel();
+		vista.setLayout(new BorderLayout(0, 0));
+		vista.setBackground(Color.decode("#00758E"));
+		
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		vista.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		
+		JLabel lbl_espanol = new JLabel("MATEMATICAS");
+		lbl_espanol.setForeground(Color.decode("#00172C"));
+		lbl_espanol.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_espanol.setFont(new Font("Tahoma", Font.BOLD, 40));
+		panel.add(lbl_espanol);
+		
+		JLabel lbl_mensaje = new JLabel("¿Preparado para ejercitar tu mente? ");
+		lbl_mensaje.setForeground(Color.decode("#00172C"));
+		lbl_mensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_mensaje.setFont(new Font("Tahoma", Font.BOLD, 20));
+		panel.add(lbl_mensaje);
+		
+		JPanel panel_central = new JPanel();
+		vista.add(panel_central, BorderLayout.CENTER);
+		panel_central.setLayout(new GridLayout(3, 3, 0, 0));
 	
-		panelMatematicas.setLayout(new GridLayout(3, 3, 100, 50));//3 columnas, 3 filas, espacios entre el centro de los botones
-		panelMatematicas.setBorder(new EmptyBorder(80, 30, 70, 20));//espacio entre los botones (arriba,izquierda,abajo,derecha)
 		
-		JButton btnCalculadora = new JButton("Calculadora");//boton de calculadora
-		btnCalculadora.addActionListener(new ActionListener() {
+		JPanel panel_3 = new JPanel();
+		panel_3.setForeground(new Color(255, 255, 255));
+		JPanel panel_4 = new JPanel();
+		JPanel panel_2 = new JPanel();		
+		JPanel panel_5 = new JPanel();
+		JPanel panel_6 = new JPanel();
+		JPanel panel_7 = new JPanel();
+		
+		//esto se agrega para darle tamaños a los botones 
+        int tamWid = 250;
+        int tamHei = 160;
+		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
+		int fontSize = 19;
+		                         //usando el utilidades le pasamos los parametros texto y todo
+		JButton btn_calculadora = utilidades.crearBotones("Calculadora", "imagenes/img_aprendizaje/mate/icono calculadora.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_calculadora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+	
 			}
 		});
-		panelMatematicas.add(btnCalculadora);
+		btn_calculadora.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnMultiplicacion = new JButton("Multiplicaciones");//boton de multiplicaciones
-		btnMultiplicacion.addActionListener(new ActionListener() {
+		JButton btn_Multiplicaciones =   utilidades.crearBotones("Multiplicaciones", "imagenes/img_aprendizaje/mate/icono multiplicacion.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_Multiplicaciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+
 			}
 		});
-		panelMatematicas.add(btnMultiplicacion);
+		btn_Multiplicaciones.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnDivision = new JButton("Divisiones");//boton de divisiones
-		panelMatematicas.add(btnDivision);
+		JButton btn_Divisiones = utilidades.crearBotones("Divisiones", "imagenes/img_aprendizaje/mate/icono division.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_Divisiones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+	
+			}
+		});
+		btn_Divisiones.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnSuma = new JButton("Suma");//boton de suma
-		panelMatematicas.add(btnSuma);
+		JButton btn_Suma=   utilidades.crearBotones("Suma", "imagenes/img_aprendizaje/mate/icono suma.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_Suma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 		
-		JButton btnResta = new JButton("Resta");//boton de resta
-		panelMatematicas.add(btnResta);
+			}
+		});
+		btn_Suma.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnCuestionario = new JButton("Cuestionario");//boton de cuestionario
-		panelMatematicas.add(btnCuestionario);
+		JButton btn_Resta = utilidades.crearBotones("Resta", "imagenes/img_aprendizaje/mate/icono resta.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_Resta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+			}
+		});
+		btn_Resta.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		Panel_Principal.add(panelMatematicas, BorderLayout.CENTER);
+		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/mate/matematicas.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_Cuestionario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+	
+			}
+		});
+		btn_Cuestionario.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
+		
+		
+		//ocupamos agregarlos a paneles para que puedan tener su vista y poder trabajar mejor en ellos 
+		
+		panel_3.add(btn_calculadora);	
+		panel_4.add(btn_Multiplicaciones);
+		panel_2.add(btn_Divisiones);
+		panel_5.add(btn_Suma);
+		panel_6.add(btn_Resta);
+		panel_7.add(btn_Cuestionario);
+		
+		panel_central.setOpaque(false);
+        panel_2.setOpaque(false);
+        panel_3.setOpaque(false);
+        panel_4.setOpaque(false);
+        panel_5.setOpaque(false);
+        panel_6.setOpaque(false);
+        panel_7.setOpaque(false);
+        
+
+		
+        panel_central.add(panel_3);
+        panel_central.add(panel_4);
+		panel_central.add(panel_2);
+		panel_central.add(panel_5);
+		panel_central.add(panel_6);
+		panel_central.add(panel_7);
+		
+		vista.setBackground(Color.decode("#F1F1F1"));
+		
+		Panel_Principal.add(vista, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();
