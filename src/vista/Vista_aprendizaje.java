@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -13,7 +14,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador_acceso;
@@ -24,12 +27,14 @@ import controlador.Controlador_persona;
 
 public class Vista_aprendizaje {
 	
-	public JFrame ventana;
-	public JPanel Panel_Principal;
-	public Controlador_aprendizaje sistema;
+	private  JFrame ventana;
+	private JPanel Panel_Principal;
+	private Controlador_aprendizaje sistema;
+	private Vista_utilidades utilidades;
 
 	public Vista_aprendizaje() {
 		// TODO Auto-generated constructor stub
+		utilidades = new Vista_utilidades();
 		sistema = new Controlador_aprendizaje();
         ventana = new JFrame();
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
@@ -41,7 +46,6 @@ public class Vista_aprendizaje {
 	}
 	
 	public void vista_aprendizaje() {
-		
 		Panel_Principal = new JPanel();
 		
 		Panel_Principal.setBackground(Color.decode("#00758E"));
@@ -53,7 +57,7 @@ public class Vista_aprendizaje {
 		panel.setOpaque(false);
 		Panel_Principal.add(panel, BorderLayout.WEST);
 		panel.setLayout(new GridLayout(0, 1, 20, 10));
-			
+		
 		// Crear paneles con GridBagLayout para centrar los botones
 		JPanel panel_personal = new JPanel(new GridBagLayout());
 		JPanel panel_entretener = new JPanel(new GridBagLayout());
@@ -67,58 +71,65 @@ public class Vista_aprendizaje {
 		panel_regresar.setOpaque(false);
 		panel_cerrar_sesion.setOpaque(false);
 		
-		int tamWid = 400;
-		int tamHei = 100;
-		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
-		int fontSize = 17;
+		int tamWid = 300;
+		int tamHei = 90;
+		int iconWidth = (int) (tamHei * 0.7); // Aumentar un 70% el ancho del icono
+		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal =new JButton("Personal");
+		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador_persona persona = new Controlador_persona();
-				persona.vista_persona();
-				ventana.dispose();
+		
+				
 			}
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento = new JButton("Entretenimiento");
+		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);;
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
-				ventana.dispose();				
+				ventana.dispose();
+				
 			}
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnAprendizaje = new JButton("Aprendizaje");
+		JButton btnAprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
+				sistema.vista_aprendizaje();
+				ventana.dispose();
 			}
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = new JButton("Regresar ");
+		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				Controlador_inicio  sistema = new Controlador_inicio();
 				sistema.vista_inicio();
 				ventana.dispose();
+		
 			}
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion = new JButton("Cerrar sesión");
+		JButton btnCerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
+		
 			}
 		});
 		btnCerrar_sesion.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
@@ -147,75 +158,146 @@ public class Vista_aprendizaje {
 		panel_regresar.add(btnRegresar, gbc);
 		panel_cerrar_sesion.add(btnCerrar_sesion,gbc);
 		
-		panel_central();
+		panel_central();		
 	}
-
+	
 	public void panel_central() {
 		
-		JPanel panelAprendizaje = new JPanel();
-	
-		panelAprendizaje.setLayout(new GridLayout(3, 3, 100, 50));//3 columnas, 3 filas, espacios entre el centro de los botones
-		panelAprendizaje.setBorder(new EmptyBorder(80, 30, 70, 20));//espacio entre los botones (arriba,izquierda,abajo,derecha)
+		JPanel vista =  new JPanel();
+		vista.setLayout(new BorderLayout(0, 0));
+		vista.setBackground(Color.decode("#00758E"));
 		
-		JButton btnEspanol = new JButton("Español");//boton de español
-		btnEspanol.addActionListener(new ActionListener() {
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		vista.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		
+		JLabel lblNewLabel = new JLabel("APRENDIZAJE");
+		lblNewLabel.setForeground(Color.decode("#00172C"));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Coloca el cursor sobre la materia que deseas consultar.");
+		lblNewLabel_1.setForeground(Color.decode("#00172C"));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		panel.add(lblNewLabel_1);
+		
+		JPanel panel_1 = new JPanel();
+		vista.add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new GridLayout(3, 3, 0, 0));
+	
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setForeground(new Color(255, 255, 255));
+		JPanel panel_4 = new JPanel();
+		JPanel panel_2 = new JPanel();		
+		JPanel panel_5 = new JPanel();
+		JPanel panel_6 = new JPanel();
+		JPanel panel_7 = new JPanel();
+		
+		//esto se agrega para darle tamaños a los botones 
+        int tamWid = 250;
+        int tamHei = 160;
+		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
+		int fontSize = 19;
+		                         //usando el utilidades le pasamos los parametros texto y todo
+		JButton btnNecesidades = utilidades.crearBotones("Español", "imagenes/img_aprendizaje/espanol/icono espanol.png", tamWid, tamHei,fontSize,iconWidth);
+		btnNecesidades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_espanol();
 				ventana.dispose();
 			}
 		});
-		panelAprendizaje.add(btnEspanol);
+		btnNecesidades.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnMatematicas = new JButton("Matematicas");//boton de matematicas
-		btnMatematicas.addActionListener(new ActionListener() {
+		JButton btnAgenda =   utilidades.crearBotones("Matemáticas", "imagenes/img_aprendizaje/mate/matematicas.png", tamWid, tamHei,fontSize,iconWidth);
+		btnAgenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_matematicas();
 				ventana.dispose();
 			}
 		});
-		panelAprendizaje.add(btnMatematicas);
+		btnAgenda.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnGeografia = new JButton("Geografia");//boton de geografia
-		btnGeografia.addActionListener(new ActionListener() {
+		JButton btnCertificado=   utilidades.crearBotones("Geografía", "imagenes/img_aprendizaje/geografia/icono geografia.png", tamWid, tamHei,fontSize,iconWidth);
+		btnCertificado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_geografia();
 				ventana.dispose();
 			}
 		});
-		panelAprendizaje.add(btnGeografia);
+		btnCertificado.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnHistoria = new JButton("Historia");//boton de historia
-		btnHistoria.addActionListener(new ActionListener() {
+		JButton btnContactos=   utilidades.crearBotones("Historia", "imagenes/img_aprendizaje/historia/icono history.png", tamWid, tamHei,fontSize,iconWidth);
+		btnContactos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_historia();
 				ventana.dispose();
 			}
 		});
-		panelAprendizaje.add(btnHistoria);
+		btnContactos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnCiencias = new JButton("Ciencias naturales");//boton de ciencias naturales
-		btnCiencias.addActionListener(new ActionListener() {
+		JButton btnEditar =   utilidades.crearBotones("Ciencias Naturales", "imagenes/img_aprendizaje/naturales/icono Naturales.png", tamWid, tamHei,fontSize,iconWidth);
+		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				sistema.vista_naturales();
 				ventana.dispose();
 			}
 		});
-		panelAprendizaje.add(btnCiencias);
+		btnEditar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnFilosofia = new JButton("Filosofia");//boton de filosofia
-		btnFilosofia.addActionListener(new ActionListener() {
+		JButton btnDispositivaos =  utilidades.crearBotones("Filosofía", "imagenes/img_aprendizaje/filosofia/icono filosofia.png", tamWid, tamHei,fontSize,iconWidth);
+		btnDispositivaos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sistema.vista_filosofia();
+				
+				sistema.vista_filosofia();;
 				ventana.dispose();
 			}
 		});
-		panelAprendizaje.add(btnFilosofia);
-	
-		Panel_Principal.add(panelAprendizaje, BorderLayout.CENTER);
+		btnDispositivaos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
+		
+		
+		//ocupamos agregarlos a paneles para que puedan tener su vista y poder trabajar mejor en ellos 
+		
+		panel_3.add(btnNecesidades);	
+		panel_4.add(btnAgenda);
+		panel_2.add(btnCertificado);
+		panel_5.add(btnContactos);
+		panel_6.add(btnEditar);
+		panel_7.add(btnDispositivaos);
+		
+        panel_1.setOpaque(false);
+        panel_2.setOpaque(false);
+        panel_3.setOpaque(false);
+        panel_4.setOpaque(false);
+        panel_5.setOpaque(false);
+        panel_6.setOpaque(false);
+        panel_7.setOpaque(false);
+        
+
+		
+		panel_1.add(panel_3);
+		panel_1.add(panel_4);
+		panel_1.add(panel_2);
+		panel_1.add(panel_5);
+		panel_1.add(panel_6);
+		panel_1.add(panel_7);
+		
+		vista.setBackground(Color.decode("#F1F1F1"));
+		
+		Panel_Principal.add(vista, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();
-	
+		
 	}
 
 }
