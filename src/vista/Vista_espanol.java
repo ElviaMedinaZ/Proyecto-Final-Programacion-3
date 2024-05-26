@@ -242,7 +242,7 @@ public class Vista_espanol {
 		});
 		btn_Novela.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/espanol/icono espanol.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/espanol/icono cuestionario espanol.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
