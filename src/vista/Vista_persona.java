@@ -97,8 +97,8 @@ public class Vista_persona {
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnAprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
-		btnAprendizaje.addActionListener(new ActionListener() {
+		JButton btn_aprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
+		btn_aprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
@@ -106,10 +106,10 @@ public class Vista_persona {
 				ventana.dispose();
 			}
 		});
-		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
+		btn_aprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar.png", iconWidth, tamHei, fontSize, iconWidth);
-		btnRegresar.addActionListener(new ActionListener() {
+		JButton btn_regresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar.png", iconWidth, tamHei, fontSize, iconWidth);
+		btn_regresar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -120,10 +120,10 @@ public class Vista_persona {
 		
 			}
 		});
-		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
+		btn_regresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
-		btnCerrar_sesion.addActionListener(new ActionListener() {
+		JButton btn_cerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
+		btn_cerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Controlador_acceso sistema = new Controlador_acceso();
@@ -132,7 +132,7 @@ public class Vista_persona {
 		
 			}
 		});
-		btnCerrar_sesion.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
+		btn_cerrar_sesion.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
 		//paneles para los botones
 		panel.add(panel_personal);
@@ -154,9 +154,9 @@ public class Vista_persona {
 		// Añadir los botones a los paneles centrados
 		panel_personal.add(btnPersonal, gbc);
 		panel_entretener.add(btnEntretenimento, gbc);
-		panel_aprender.add(btnAprendizaje, gbc);
-		panel_regresar.add(btnRegresar, gbc);
-		panel_cerrar_sesion.add(btnCerrar_sesion,gbc);
+		panel_aprender.add(btn_aprendizaje, gbc);
+		panel_regresar.add(btn_regresar, gbc);
+		panel_cerrar_sesion.add(btn_cerrar_sesion,gbc);
 		
 		panel_central();		
 	}
@@ -204,75 +204,75 @@ public class Vista_persona {
 		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
 		int fontSize = 19;
 		                         //usando el utilidades le pasamos los parametros texto y todo
-		JButton btnNecesidades = utilidades.crearBotones("Necesidades", "imagenes/img_necesidades/necesidades/icono necesidades.png", tamWid, tamHei,fontSize,iconWidth);
-		btnNecesidades.addActionListener(new ActionListener() {
+		JButton btn_necesidades = utilidades.crearBotones("Necesidades", "imagenes/img_necesidades/necesidades/icono necesidades.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_necesidades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				sistema.vista_necesidades();
 				ventana.dispose();
 			}
 		});
-		btnNecesidades.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
+		btn_necesidades.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnAgenda =   utilidades.crearBotones("Agenda", "imagenes/img_necesidades/icono agenda.png", tamWid, tamHei,fontSize,iconWidth);
-		btnAgenda.addActionListener(new ActionListener() {
+		JButton btn_agenda =   utilidades.crearBotones("Agenda", "imagenes/img_necesidades/icono agenda.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_agenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				sistema.vista_agenda();
 				ventana.dispose();
 			}
 		});
-		btnAgenda.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
+		btn_agenda.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnCertificado=   utilidades.crearBotones("Certificado", "imagenes/img_necesidades/icono certificado.png", tamWid, tamHei,fontSize,iconWidth);
-		btnCertificado.addActionListener(new ActionListener() {
+		JButton btn_certificado=   utilidades.crearBotones("Certificado", "imagenes/img_necesidades/icono certificado.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_certificado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				sistema.vista_certificado();
 				ventana.dispose();
 			}
 		});
-		btnCertificado.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
+		btn_certificado.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnContactos=   utilidades.crearBotones("Contactos", "imagenes/img_necesidades/icono contacto.png", tamWid, tamHei,fontSize,iconWidth);
-		btnContactos.addActionListener(new ActionListener() {
+		JButton btn_contactos=   utilidades.crearBotones("Contactos", "imagenes/img_necesidades/icono contacto.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_contactos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				sistema.vista_contactos();
 				ventana.dispose();
 			}
 		});
-		btnContactos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
+		btn_contactos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnEditar =   utilidades.crearBotones("Editar perfil", "imagenes/img_necesidades/editar.png", tamWid, tamHei,fontSize,iconWidth);
-		btnEditar.addActionListener(new ActionListener() {
+		JButton btn_editar =   utilidades.crearBotones("Editar perfil", "imagenes/img_necesidades/editar.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				sistema.vista_editar();
 				ventana.dispose();
 			}
 		});
-		btnEditar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
+		btn_editar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btnDispositivaos =  utilidades.crearBotones("Dispositivos", "imagenes/img_necesidades/dispositivos/icono dispositivos.png", tamWid, tamHei,fontSize,iconWidth);
-		btnDispositivaos.addActionListener(new ActionListener() {
+		JButton btn_dispositivos =  utilidades.crearBotones("Dispositivos", "imagenes/img_necesidades/dispositivos/icono dispositivos.png", tamWid, tamHei,fontSize,iconWidth);
+		btn_dispositivos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				sistema.vista_necesidades();
 				ventana.dispose();
 			}
 		});
-		btnDispositivaos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
+		btn_dispositivos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
 		
 		//ocupamos agregarlos a paneles para que puedan tener su vista y poder trabajar mejor en ellos 
 		
-		panel_3.add(btnNecesidades);	
-		panel_4.add(btnAgenda);
-		panel_2.add(btnCertificado);
-		panel_5.add(btnContactos);
-		panel_6.add(btnEditar);
-		panel_7.add(btnDispositivaos);
+		panel_3.add(btn_necesidades);	
+		panel_4.add(btn_agenda);
+		panel_2.add(btn_certificado);
+		panel_5.add(btn_contactos);
+		panel_6.add(btn_editar);
+		panel_7.add(btn_dispositivos);
 		
         panel_1.setOpaque(false);
         panel_2.setOpaque(false);
