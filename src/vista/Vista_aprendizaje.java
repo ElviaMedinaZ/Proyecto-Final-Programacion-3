@@ -86,7 +86,7 @@ public class Vista_aprendizaje {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);;
+		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
@@ -179,7 +179,7 @@ public class Vista_aprendizaje {
 		lbl_aprendizaje.setFont(new Font("Tahoma", Font.BOLD, 40));
 		panel.add(lbl_aprendizaje);
 		
-		JLabel lbl_mensaje = new JLabel("Coloca el cursor sobre la materia que deseas consultar.");
+		JLabel lbl_mensaje = new JLabel("Da clic a una sección y aprende cosas interesantes dia a dia.");
 		lbl_mensaje.setForeground(Color.decode("#00172C"));
 		lbl_mensaje.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_mensaje.setFont(new Font("Tahoma", Font.BOLD, 20));
