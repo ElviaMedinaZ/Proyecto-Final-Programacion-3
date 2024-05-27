@@ -179,7 +179,7 @@ public class Vista_entretenimiento {
 		lbl_aprendizaje.setFont(new Font("Tahoma", Font.BOLD, 40));
 		panel.add(lbl_aprendizaje);
 		
-		JLabel lbl_mensaje = new JLabel("Da clic a una sección y aprende cosas interesantes dia a dia.");
+		JLabel lbl_mensaje = new JLabel("¿Estas aburrido? Diviértete con las opciones que tenemos para ti.");
 		lbl_mensaje.setForeground(Color.decode("#00172C"));
 		lbl_mensaje.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_mensaje.setFont(new Font("Tahoma", Font.BOLD, 20));
