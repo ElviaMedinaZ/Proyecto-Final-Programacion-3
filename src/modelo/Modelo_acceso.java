@@ -19,6 +19,7 @@ public class Modelo_acceso {
 		sistema = new Conexion_db();
 	}
 	
+	@SuppressWarnings("static-access")
 	public boolean get_validacion_acceso(String usuario,String contrasena) {
 		
 		try {
