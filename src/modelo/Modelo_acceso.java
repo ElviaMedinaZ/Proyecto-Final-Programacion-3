@@ -25,7 +25,7 @@ public class Modelo_acceso {
 		try {
 			Connection com = sistema.getConexion();
 			Statement iniciar = com.createStatement() ;
-			ResultSet rs = iniciar.executeQuery("SELECT * FROM usuarios WHERE nombre = '" + usuario + "' AND contraseña = '" + contrasena + "'");
+			ResultSet rs = iniciar.executeQuery("SELECT * FROM usuarios WHERE usuario = '" + usuario + "' AND contrasena = '" + contrasena + "'");
 			
 			if(rs.next()) {
 				com.close();
