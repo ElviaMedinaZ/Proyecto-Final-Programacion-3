@@ -258,7 +258,7 @@ public class Vista_persona {
 		btn_dispositivos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				sistema.vista_necesidades();
+				sistema.vista_dispositivos();
 				ventana.dispose();
 			}
 		});
