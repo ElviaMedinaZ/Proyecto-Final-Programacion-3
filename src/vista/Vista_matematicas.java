@@ -78,6 +78,7 @@ public class Vista_matematicas {
 		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona();
 				ventana.dispose();
@@ -88,6 +89,7 @@ public class Vista_matematicas {
 		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();				
@@ -98,6 +100,7 @@ public class Vista_matematicas {
 		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -109,6 +112,7 @@ public class Vista_matematicas {
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -119,6 +123,7 @@ public class Vista_matematicas {
 		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -199,7 +204,7 @@ public class Vista_matematicas {
 		JButton btn_calculadora = utilidades.crearBotones("Calculadora", "imagenes/img_aprendizaje/mate/icono calculadora.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_calculadora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 	
 			}
 		});
@@ -209,7 +214,7 @@ public class Vista_matematicas {
 		btn_Multiplicaciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Multiplicaciones.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -227,7 +232,7 @@ public class Vista_matematicas {
 		btn_Suma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-		
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Suma.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -236,7 +241,7 @@ public class Vista_matematicas {
 		btn_Resta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Resta.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -245,7 +250,7 @@ public class Vista_matematicas {
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-	
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Cuestionario.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón

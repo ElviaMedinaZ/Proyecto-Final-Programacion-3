@@ -79,7 +79,7 @@ public class Vista_historia {
 		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona();
 				ventana.dispose();
@@ -91,6 +91,7 @@ public class Vista_historia {
 		JButton btnEntretenimento =utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();				
@@ -101,7 +102,7 @@ public class Vista_historia {
 		JButton btnAprendizaje = utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -114,7 +115,7 @@ public class Vista_historia {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -125,6 +126,7 @@ public class Vista_historia {
 		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -208,7 +210,7 @@ public class Vista_historia {
 		btn_revolucion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-	
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_revolucion.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -217,7 +219,7 @@ public class Vista_historia {
 		btn_independencia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_independencia.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -226,7 +228,7 @@ public class Vista_historia {
 		btn_puebla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-	
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_puebla.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -235,7 +237,7 @@ public class Vista_historia {
 		btn_Tenochtitlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-		
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Tenochtitlan.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -243,7 +245,7 @@ public class Vista_historia {
 		JButton btn_pasteles = utilidades.crearBotones("Guerra de los Pasteles", "imagenes/img_aprendizaje/historia/icono guerra pasteles.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_pasteles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 
 			}
 		});
@@ -253,7 +255,7 @@ public class Vista_historia {
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-	
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Cuestionario.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón

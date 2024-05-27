@@ -80,7 +80,7 @@ public class Vista_aprendizaje {
 		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona sistema = new Controlador_persona();
 				sistema.vista_persona();
 				ventana.dispose();
@@ -91,6 +91,7 @@ public class Vista_aprendizaje {
 		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();
@@ -102,7 +103,7 @@ public class Vista_aprendizaje {
 		JButton btnAprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -115,7 +116,7 @@ public class Vista_aprendizaje {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_inicio  sistema = new Controlador_inicio();
 				sistema.vista_inicio();
 				ventana.dispose();
@@ -127,7 +128,7 @@ public class Vista_aprendizaje {
 		JButton btnCerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -208,7 +209,7 @@ public class Vista_aprendizaje {
 		JButton btn_espanol = utilidades.crearBotones("Español", "imagenes/img_aprendizaje/espanol/icono espanol.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_espanol.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_espanol();
 				ventana.dispose();
 			}
@@ -218,7 +219,7 @@ public class Vista_aprendizaje {
 		JButton btn_matematicas =   utilidades.crearBotones("Matemáticas", "imagenes/img_aprendizaje/mate/matematicas.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_matematicas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_matematicas();
 				ventana.dispose();
 			}
@@ -228,7 +229,7 @@ public class Vista_aprendizaje {
 		JButton btn_geografia = utilidades.crearBotones("Geografía", "imagenes/img_aprendizaje/geografia/icono geografia.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_geografia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_geografia();
 				ventana.dispose();
 			}
@@ -238,7 +239,7 @@ public class Vista_aprendizaje {
 		JButton btn_historia=   utilidades.crearBotones("Historia", "imagenes/img_aprendizaje/historia/icono history.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_historia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_historia();
 				ventana.dispose();
 			}
@@ -248,7 +249,7 @@ public class Vista_aprendizaje {
 		JButton btn_ciencias_naturales = utilidades.crearBotones("Ciencias Naturales", "imagenes/img_aprendizaje/naturales/icono Naturales.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_ciencias_naturales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_naturales();
 				ventana.dispose();
 			}
@@ -258,7 +259,7 @@ public class Vista_aprendizaje {
 		JButton btn_filosofia =  utilidades.crearBotones("Filosofía", "imagenes/img_aprendizaje/filosofia/icono filosofia.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_filosofia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_filosofia();;
 				ventana.dispose();
 			}

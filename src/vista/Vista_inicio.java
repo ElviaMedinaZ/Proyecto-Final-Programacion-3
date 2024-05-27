@@ -78,6 +78,7 @@ public class Vista_inicio {
 		btnPersonal.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				Controlador_persona persona = new Controlador_persona();
+				utilidades.playSound("sonidos/btn_generico.wav");
 				persona.vista_persona();
 				ventana.dispose();
 			}
@@ -87,7 +88,7 @@ public class Vista_inicio {
 		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();
@@ -98,7 +99,8 @@ public class Vista_inicio {
 		
 		JButton btnAprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
+			public void actionPerformed(ActionEvent e) {	
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();		
@@ -119,6 +121,7 @@ public class Vista_inicio {
 		JButton btnCerrar_sesion =   utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();

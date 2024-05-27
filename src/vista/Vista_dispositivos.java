@@ -77,6 +77,7 @@ public class Vista_dispositivos {
 		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona();
 				ventana.dispose();
@@ -87,6 +88,7 @@ public class Vista_dispositivos {
 		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();				
@@ -97,6 +99,7 @@ public class Vista_dispositivos {
 		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -108,6 +111,7 @@ public class Vista_dispositivos {
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona();
 				ventana.dispose();
@@ -118,6 +122,7 @@ public class Vista_dispositivos {
 		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar seson", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -207,7 +212,7 @@ public class Vista_dispositivos {
 		JButton btn_foco =   utilidades.crearBotones("Foco", "imagenes/img_necesidades/dispositivos/foco.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_foco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 
 			}
 		});
@@ -216,7 +221,7 @@ public class Vista_dispositivos {
 		JButton btn_enchufe = utilidades.crearBotones("Enchufe", "imagenes/img_necesidades/dispositivos/conector.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_enchufe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 	
 			}
 		});
@@ -234,7 +239,7 @@ public class Vista_dispositivos {
 		JButton btn_aspiradora = utilidades.crearBotones("Aspiradora", "imagenes/img_necesidades/dispositivos/aspiradora.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_aspiradora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 
 			}
 		});
@@ -243,7 +248,7 @@ public class Vista_dispositivos {
 		JButton btn_termostato =  utilidades.crearBotones("Termostato", "imagenes/img_necesidades/dispositivos/termostato.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_termostato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 	
 			}
 		});

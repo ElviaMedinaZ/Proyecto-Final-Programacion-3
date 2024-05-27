@@ -79,6 +79,7 @@ public class Vista_geografia {
 		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona();
 				ventana.dispose();
@@ -89,6 +90,7 @@ public class Vista_geografia {
 		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();				
@@ -99,6 +101,7 @@ public class Vista_geografia {
 		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -110,6 +113,7 @@ public class Vista_geografia {
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -120,6 +124,7 @@ public class Vista_geografia {
 		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -201,7 +206,7 @@ public class Vista_geografia {
 		JButton btn_paises= utilidades.crearBotones("Canción de los paises", "imagenes/img_aprendizaje/geografia/icono paises.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_paises.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 	
 			}
 		});
@@ -211,7 +216,7 @@ public class Vista_geografia {
 		btn_Continentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Continentes.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -220,7 +225,7 @@ public class Vista_geografia {
 		btn_placas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-	
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_placas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -228,7 +233,7 @@ public class Vista_geografia {
 		JButton btn_terrestres=   utilidades.crearBotones("Capas terrestres", "imagenes/img_aprendizaje/geografia/icono capas terrestres.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_terrestres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 		
 			}
 		});
@@ -237,7 +242,7 @@ public class Vista_geografia {
 		JButton btn_Invernadero = utilidades.crearBotones("Efecto Invernadero", "imagenes/img_aprendizaje/geografia/efecto invernadero.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Invernadero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 
 			}
 		});
@@ -246,7 +251,7 @@ public class Vista_geografia {
 		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/geografia/icono cuestionario geo.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 	
 			}
 		});

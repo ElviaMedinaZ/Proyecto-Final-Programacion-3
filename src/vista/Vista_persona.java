@@ -89,6 +89,7 @@ public class Vista_persona {
 		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);;
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();
@@ -100,7 +101,7 @@ public class Vista_persona {
 		JButton btn_aprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btn_aprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -113,7 +114,7 @@ public class Vista_persona {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_inicio  sistema = new Controlador_inicio();
 				sistema.vista_inicio();
 				ventana.dispose();
@@ -125,7 +126,7 @@ public class Vista_persona {
 		JButton btn_cerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btn_cerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -207,7 +208,7 @@ public class Vista_persona {
 		JButton btn_necesidades = utilidades.crearBotones("Necesidades", "imagenes/img_necesidades/necesidades/icono necesidades.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_necesidades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_necesidades();
 				ventana.dispose();
 			}
@@ -217,7 +218,7 @@ public class Vista_persona {
 		JButton btn_agenda =   utilidades.crearBotones("Agenda", "imagenes/img_necesidades/icono agenda.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_agenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_agenda();
 				ventana.dispose();
 			}
@@ -227,7 +228,7 @@ public class Vista_persona {
 		JButton btn_certificado=   utilidades.crearBotones("Certificado", "imagenes/img_necesidades/icono certificado.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_certificado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_certificado();
 				ventana.dispose();
 			}
@@ -237,7 +238,7 @@ public class Vista_persona {
 		JButton btn_contactos=   utilidades.crearBotones("Contactos", "imagenes/img_necesidades/icono contacto.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_contactos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_contactos();
 				ventana.dispose();
 			}
@@ -247,7 +248,7 @@ public class Vista_persona {
 		JButton btn_editar =   utilidades.crearBotones("Editar perfil", "imagenes/img_necesidades/editar.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_editar();
 				ventana.dispose();
 			}
@@ -257,7 +258,7 @@ public class Vista_persona {
 		JButton btn_dispositivos =  utilidades.crearBotones("Dispositivos", "imagenes/img_necesidades/dispositivos/icono dispositivos.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_dispositivos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				sistema.vista_dispositivos();
 				ventana.dispose();
 			}

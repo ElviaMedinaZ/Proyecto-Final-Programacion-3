@@ -80,6 +80,7 @@ public class Vista_entretenimiento {
 		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona sistema = new Controlador_persona();
 				sistema.vista_persona();
 				ventana.dispose();
@@ -91,9 +92,7 @@ public class Vista_entretenimiento {
 		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
-				sistema.vista_entretenimiento();
-				ventana.dispose();
+
 				
 			}
 		});
@@ -102,7 +101,7 @@ public class Vista_entretenimiento {
 		JButton btnAprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -115,7 +114,7 @@ public class Vista_entretenimiento {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_inicio  sistema = new Controlador_inicio();
 				sistema.vista_inicio();
 				ventana.dispose();
@@ -127,7 +126,7 @@ public class Vista_entretenimiento {
 		JButton btnCerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -209,7 +208,7 @@ public class Vista_entretenimiento {
 		JButton btn_peliculas = utilidades.crearBotones("Películas", "imagenes/img_entretenimiento/peliculas.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_peliculas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_peliculas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -217,7 +216,7 @@ public class Vista_entretenimiento {
 		JButton btn_youtube =   utilidades.crearBotones("YouTube", "imagenes/img_entretenimiento/videos.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_youtube.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_youtube.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -225,7 +224,7 @@ public class Vista_entretenimiento {
 		JButton btn_tic_tac_toe = utilidades.crearBotones("Tic Tac Toe", "imagenes/img_entretenimiento/tic tac toe.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_tic_tac_toe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_tic_tac_toe.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -233,7 +232,7 @@ public class Vista_entretenimiento {
 		JButton btn_busca_minas=   utilidades.crearBotones("Busca Minas", "imagenes/img_entretenimiento/busca minas.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_busca_minas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_busca_minas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -241,7 +240,7 @@ public class Vista_entretenimiento {
 		JButton btn_rompecabezas = utilidades.crearBotones("Rompecabezas númerico", "imagenes/img_entretenimiento/rompecabezas numerico.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_rompecabezas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_rompecabezas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -249,7 +248,7 @@ public class Vista_entretenimiento {
 		JButton btn_spotify =  utilidades.crearBotones("Spotify", "imagenes/img_entretenimiento/spotify.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_spotify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_spotify.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón

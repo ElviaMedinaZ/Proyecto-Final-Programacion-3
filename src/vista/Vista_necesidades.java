@@ -80,7 +80,7 @@ public class Vista_necesidades {
 		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona sistema = new Controlador_persona();
 				sistema.vista_persona();
 				ventana.dispose();
@@ -92,6 +92,7 @@ public class Vista_necesidades {
 		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();
@@ -103,7 +104,7 @@ public class Vista_necesidades {
 		JButton btnAprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -116,7 +117,7 @@ public class Vista_necesidades {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona sistema = new Controlador_persona();
 				sistema.vista_persona();
 				ventana.dispose();
@@ -128,7 +129,7 @@ public class Vista_necesidades {
 		JButton btnCerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -208,7 +209,7 @@ public class Vista_necesidades {
 		JButton btn_llamar_cuidador = utilidades.crearBotones("LLamar cuidador", "imagenes/img_necesidades/necesidades/icono llamar Cuidador.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_llamar_cuidador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/panel_personal/Atencion.wav");
 			}
 		});
 		btn_llamar_cuidador.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -216,7 +217,7 @@ public class Vista_necesidades {
 		JButton btn_hambre =   utilidades.crearBotones("Tengo hambre", "imagenes/img_necesidades/necesidades/icono Hambre.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_hambre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/panel_personal/hambre.wav");
 			}
 		});
 		btn_hambre.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -224,7 +225,7 @@ public class Vista_necesidades {
 		JButton btn_comezon = utilidades.crearBotones("Comezón ","imagenes/img_necesidades/necesidades/icono comezon.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_comezon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/panel_personal/comezon.wav");
 			}
 		});
 		btn_comezon.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -232,7 +233,7 @@ public class Vista_necesidades {
 		JButton btn_sueno=   utilidades.crearBotones("Sueño", "imagenes/img_necesidades/necesidades/icono sueñito.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_sueno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/panel_personal/A mimir.wav");
 			}
 		});
 		btn_sueno.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -240,7 +241,7 @@ public class Vista_necesidades {
 		JButton btn_bano = utilidades.crearBotones("Baño", "imagenes/img_necesidades/necesidades/icono baño 2.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_bano.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/panel_personal/baño.wav");
 			}
 		});
 		btn_bano.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -248,7 +249,7 @@ public class Vista_necesidades {
 		JButton btn_enfermo =  utilidades.crearBotones("Me siento mal", "imagenes/img_necesidades/necesidades/icono Enfermo.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_enfermo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				utilidades.playSound("sonidos/panel_personal/enfermo.wav");
 			}
 		});
 		btn_enfermo.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón

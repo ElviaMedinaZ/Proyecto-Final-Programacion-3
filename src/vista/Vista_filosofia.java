@@ -78,6 +78,7 @@ public class Vista_filosofia {
 		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona();
 				ventana.dispose();
@@ -88,6 +89,7 @@ public class Vista_filosofia {
 		JButton btnEntretenimento =utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();				
@@ -98,6 +100,7 @@ public class Vista_filosofia {
 		JButton btnAprendizaje = utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -109,6 +112,7 @@ public class Vista_filosofia {
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -119,6 +123,7 @@ public class Vista_filosofia {
 		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -201,7 +206,7 @@ public class Vista_filosofia {
 		btn_Platon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-	
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Platon.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -210,7 +215,7 @@ public class Vista_filosofia {
 		btn_Socrates.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Socrates.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -218,7 +223,7 @@ public class Vista_filosofia {
 		JButton btn_Aristoteles = utilidades.crearBotones("Aristóteles", "imagenes/img_aprendizaje/filosofia/icono aristoteles.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Aristoteles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 	
 			}
 		});
@@ -227,7 +232,7 @@ public class Vista_filosofia {
 		JButton btn_etica=   utilidades.crearBotones("Ética", "imagenes/img_aprendizaje/filosofia/etica.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_etica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 		
 			}
 		});
@@ -236,7 +241,7 @@ public class Vista_filosofia {
 		JButton btn_Moral= utilidades.crearBotones("Moral", "imagenes/img_aprendizaje/filosofia/moral.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Moral.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 
 			}
 		});
@@ -246,7 +251,7 @@ public class Vista_filosofia {
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-	
+				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
 		btn_Cuestionario.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
