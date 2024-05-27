@@ -80,7 +80,9 @@ public class Vista_entretenimiento {
 		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+				Controlador_persona sistema = new Controlador_persona();
+				sistema.vista_persona();
+				ventana.dispose();
 				
 			}
 		});
@@ -108,7 +110,7 @@ public class Vista_entretenimiento {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			
 			@Override

@@ -81,7 +81,9 @@ public class Vista_aprendizaje {
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
-				
+				Controlador_persona sistema = new Controlador_persona();
+				sistema.vista_persona();
+				ventana.dispose();
 			}
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
@@ -108,7 +110,7 @@ public class Vista_aprendizaje {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -191,7 +193,6 @@ public class Vista_aprendizaje {
 	
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setForeground(new Color(255, 255, 255));
 		JPanel panel_4 = new JPanel();
 		JPanel panel_2 = new JPanel();		
 		JPanel panel_5 = new JPanel();

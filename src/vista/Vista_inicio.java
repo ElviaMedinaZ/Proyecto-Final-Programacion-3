@@ -106,7 +106,7 @@ public class Vista_inicio {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar =  utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/regresar_gris_claro.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnRegresar =  utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar_gris.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			
 			@Override
