@@ -39,15 +39,17 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import controlador.Controlador_acceso;
+import modelo.Modelo_registro;
 
 
 public class Vista_registro {
 	
 	private JFrame ventana;	
 	private Vista_utilidades utilidades;
+	private Modelo_registro sistema;
 	
 	public Vista_registro() {
-
+		sistema = new Modelo_registro();
 		utilidades = new Vista_utilidades();
         ventana = new JFrame();
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
@@ -182,6 +184,8 @@ public class Vista_registro {
         btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
+
+            	
             	if (text_nombre.getText().isEmpty() || text_apellidos.getText().isEmpty() || calendario.getDate() == null 
             		|| text_correo.getText().isEmpty() || text_Usuario.getText().isEmpty() || text_contraseña.getPassword().length == 0) {
             		
@@ -234,10 +238,10 @@ public class Vista_registro {
             	            return; // No permite el siguiente  si falta algun campo
             	 }
             	
-            	
-            	
-                
-               
+            	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+            	text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+            	text_apellidos.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+            	text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
                 text_Usuario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
                 text_contraseña.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
                 
@@ -275,7 +279,52 @@ public class Vista_registro {
                 } else {
                     text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
                 }
+                //preguntamos para verificar si quiere registrarse 
+            	int response =JOptionPane.showConfirmDialog(
+                        null, 
+                        "¿Deseas confirmar la operación?", 
+                        "", 
+                        JOptionPane.YES_NO_OPTION, 
+                        JOptionPane.WARNING_MESSAGE
+                );
 
+                if (response == JOptionPane.YES_OPTION) {
+                	 
+                	//base de datos
+                    String usuario = text_Usuario.getText();
+                    boolean usuarioExistente = sistema.verificarUsuarioExistente(usuario);
+
+                    if (usuarioExistente) {
+                        JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                        return; // Detener el proceso de registro
+                    }
+                    
+                    // Si el usuario no existe, entonces continuar con el proceso de registro
+                    // Guardar la información en la base de datos aquí...
+                    boolean registroExitoso = sistema.guardarRegistro(text_nombre.getText(), text_apellidos.getText(), calendario.getDate(), 
+                                                                     btnRad_masculino.isSelected() ? "Masculino" : "Femenino", 
+                                                                     text_discapacidad.getText(), text_correo.getText(), usuario, 
+                                                                     new String(text_contraseña.getPassword()));
+
+                    if (registroExitoso) {
+                        JOptionPane.showMessageDialog(null, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        Controlador_acceso sistema = new Controlador_acceso();
+                        sistema.vista_acceso();
+                        ventana.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al registrar", "Error", JOptionPane.ERROR_MESSAGE);
+                        text_Usuario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    }
+                    
+                	
+
+                } else if (response == JOptionPane.NO_OPTION) {
+                    return;
+                } else {
+                    return;
+                }
+               
+                
             }  
         });
         

@@ -21,21 +21,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controlador.Controlador_acceso;
+import modelo.Modelo_cambiar;
 
 
 
 public class Vista_cambio_contrasena {
 
 	private JFrame ventana;
-
+	private Modelo_cambiar sistema;
 	
 	public Vista_cambio_contrasena() {
-		// TODO Auto-generated constructor stub
+		sistema = new Modelo_cambiar();
 		ventana = new JFrame();
 		ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);//usa toda la pantalla 
 		ventana.setVisible(false);
@@ -109,8 +111,91 @@ public class Vista_cambio_contrasena {
 		btn_modificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(text_Nombre.getText().isEmpty() || pass_combiar_contrasena.getText().isEmpty() ||  pass_contrasena.getText().isEmpty()) {
+				
+					JOptionPane.showMessageDialog(null, "Favor de llenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+					
+					if(text_Nombre.getText().isEmpty()) {
+						text_Nombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+					}
+					else {
+						text_Nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+					}
+					if(pass_combiar_contrasena.getText().isEmpty()) {
+						pass_combiar_contrasena.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+					}
+					else {
+						pass_combiar_contrasena.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+					}
+					if(pass_contrasena.getText().isEmpty()) {
+						pass_contrasena.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+						
+					}
+					else {
+						pass_contrasena.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+
+					}
+					
+					return;
+				}
+				
+				text_Nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+				pass_combiar_contrasena.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+				pass_contrasena.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+							
+				
+				if(!pass_contrasena.getText().equals(pass_combiar_contrasena.getText())) {
+					JOptionPane.showMessageDialog(null, "La contraseñas no son iguales", "Error", JOptionPane.ERROR_MESSAGE);
+					pass_combiar_contrasena.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+					pass_contrasena.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+					
+					return;
+				}
+				
+	           	int response =JOptionPane.showConfirmDialog(
+                        null, 
+                        "¿Deseas confirmar la operación?", 
+                        "", 
+                        JOptionPane.YES_NO_OPTION, 
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                if (response == JOptionPane.YES_OPTION) {
+                	 
+    				boolean usuario = sistema.verificarUsuarioExistente(text_Nombre.getText());
+    				if (!usuario) {
+    					JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+    					text_Nombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+    					return;
+    				}	
+    				
+    				boolean cambio_valido = false;
+					
+    				try {
+						cambio_valido = sistema.cambiarContrasena(text_Nombre.getText(),pass_contrasena.getText());
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+                    if (cambio_valido) {
+                        JOptionPane.showMessageDialog(null, "Cambio exitoso...", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        Controlador_acceso sistema = new Controlador_acceso();
+                        sistema.vista_acceso();
+                        ventana.dispose();
+                    } 
+                               
+                } else if (response == JOptionPane.NO_OPTION) {
+                    return;
+                } else {
+                    return;
+                }
+               
+     
+				
 			}
 		});
+		
 		btn_modificar.setFocusable(false);
 		btn_modificar.setBackground(Color.decode("#00758E"));
 		btn_modificar.setForeground(new Color(255, 255, 255));
