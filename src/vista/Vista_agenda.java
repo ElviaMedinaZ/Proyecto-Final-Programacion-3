@@ -41,7 +41,7 @@ public class Vista_agenda {
         ventana.setIconImage(icon.getImage());
 	}
 	
-public void vista_agenda() {
+	public void vista_agenda() {
 		
 		Panel_Principal = new JPanel();
 		
