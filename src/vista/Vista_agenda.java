@@ -27,9 +27,11 @@ public class Vista_agenda {
 	
 	public JFrame ventana;
 	public JPanel Panel_Principal;
+	private Vista_utilidades utilidades;
 
 	public Vista_agenda() {
 		// TODO Auto-generated constructor stub
+		utilidades = new Vista_utilidades();
 		ventana = new JFrame();
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
         ventana.setVisible(false);
@@ -39,7 +41,7 @@ public class Vista_agenda {
         ventana.setIconImage(icon.getImage());
 	}
 	
-	public void vista_agenda() {
+public void vista_agenda() {
 		
 		Panel_Principal = new JPanel();
 		
@@ -66,37 +68,38 @@ public class Vista_agenda {
 		panel_regresar.setOpaque(false);
 		panel_cerrar_sesion.setOpaque(false);
 		
-		int tamWid = 400;
-		int tamHei = 100;
-		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
-		int fontSize = 17;
+		int tamWid = 300;
+		int tamHei = 90;
+		int iconWidth = (int) (tamHei * 0.7); // Aumentar un 70% el ancho del icono
+		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal =new JButton("Personal");
+		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona();
 				ventana.dispose();
-				
 			}
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento = new JButton("Entretenimiento");
+		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento();
 				ventana.dispose();				
 			}
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
-		
-		JButton btnAprendizaje = new JButton("Aprendizaje");
+		 
+		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje();
 				ventana.dispose();
@@ -104,20 +107,22 @@ public class Vista_agenda {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = new JButton("Regresar ");
+		JButton btnRegresar =utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Controlador_persona sistema = new Controlador_persona();
-				sistema.vista_persona();
+				utilidades.playSound("sonidos/btn_generico.wav");
+				Controlador_persona persona = new Controlador_persona();
+				persona.vista_persona();
 				ventana.dispose();
 			}
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion = new JButton("Cerrar sesión");
+		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar seson", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -131,7 +136,6 @@ public class Vista_agenda {
 		panel.add(panel_aprender);
 		panel.add(panel_regresar);
 		panel.add(panel_cerrar_sesion);
-		
 		
 		// Configurar GridBagConstraints para centrar los botones verticalmente
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -152,7 +156,7 @@ public class Vista_agenda {
 		
 		panel_central();
 	}
-	
+
 	public void panel_central() {
 		
 		JPanel logo = new JPanel();
