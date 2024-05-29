@@ -209,6 +209,7 @@ public class Vista_entretenimiento {
 		btn_peliculas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://www1.pelisforte.se/portal002");
 			}
 		});
 		btn_peliculas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -217,6 +218,7 @@ public class Vista_entretenimiento {
 		btn_youtube.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://www.youtube.com/");
 			}
 		});
 		btn_youtube.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -225,6 +227,7 @@ public class Vista_entretenimiento {
 		btn_tic_tac_toe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://playtictactoe.org/");
 			}
 		});
 		btn_tic_tac_toe.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -233,6 +236,7 @@ public class Vista_entretenimiento {
 		btn_busca_minas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://buscaminas-pro.com/");
 			}
 		});
 		btn_busca_minas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -241,6 +245,8 @@ public class Vista_entretenimiento {
 		btn_rompecabezas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://es.y8.com/games/15_puzzle");
+				
 			}
 		});
 		btn_rompecabezas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -249,6 +255,7 @@ public class Vista_entretenimiento {
 		btn_spotify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://open.spotify.com/intl-es");
 			}
 		});
 		btn_spotify.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
