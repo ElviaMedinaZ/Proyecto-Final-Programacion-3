@@ -206,6 +206,7 @@ public class Vista_espanol {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://www.youtube.com/watch?v=RxhqtuOo2pw");
 			}
 		});
 		btn_fabula.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -215,6 +216,7 @@ public class Vista_espanol {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://youtu.be/50LpU-ZgxMg?si=JYzKY33O11J1G6X");
 			}
 		});
 		btn_Cuento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -224,6 +226,7 @@ public class Vista_espanol {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://humanidades.com/noticia/");
 			}
 		});
 		btn_Noticia.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -232,7 +235,7 @@ public class Vista_espanol {
 		btn_Leyenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-		
+				utilidades.openWebPage("https://humanidades.com/leyenda/");
 			}
 		});
 		btn_Leyenda.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -241,6 +244,7 @@ public class Vista_espanol {
 		btn_Novela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://www.youtube.com/watch?v=EyQBDISVCDo");
 
 			}
 		});
@@ -250,7 +254,7 @@ public class Vista_espanol {
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-	
+				utilidades.openWebPage("https://wordwall.net/play/73314/383/282");
 			}
 		});
 		btn_Cuestionario.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón

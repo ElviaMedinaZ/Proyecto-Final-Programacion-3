@@ -209,8 +209,8 @@ public class Vista_historia {
 		JButton btn_revolucion = utilidades.crearBotones("Revolución", "imagenes/img_aprendizaje/historia/icono revolucion.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_revolucion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://youtu.be/XSP9gFHGFCI?si=aNzF3SCkrXxdY3Pv");
 			}
 		});
 		btn_revolucion.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -218,7 +218,7 @@ public class Vista_historia {
 		JButton btn_independencia =   utilidades.crearBotones("Independencia", "imagenes/img_aprendizaje/historia/icono independencia.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_independencia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.openWebPage("https://youtu.be/TX0lO-7zoCM?si=JAYFIG7d10eOFi9C");
 				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
@@ -227,7 +227,7 @@ public class Vista_historia {
 		JButton btn_puebla = utilidades.crearBotones("Batalla de Puebla", "imagenes/img_aprendizaje/historia/icono batalla puebla.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_puebla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.openWebPage("https://www.elsoldemexico.com.mx/cultura/5-de-mayo-la-venganza-de-francia-a-puebla-que-provoco-el-bloqueo-de-la-ciudad-11857304.html");
 				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
@@ -236,7 +236,7 @@ public class Vista_historia {
 		JButton btn_Tenochtitlan=   utilidades.crearBotones("Caída de Tenochtitlan", "imagenes/img_aprendizaje/historia/icono tenochtitlan.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Tenochtitlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.openWebPage("https://www.worldhistory.org/trans/es/2-2028/la-caida-de-tenochtitlan/");
 				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
@@ -246,7 +246,7 @@ public class Vista_historia {
 		btn_pasteles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-
+				utilidades.openWebPage("https://www.admagazine.com/cultura/guerra-de-los-pasteles-historia-20201112-7660-articulos");
 			}
 		});
 		btn_pasteles.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -254,7 +254,7 @@ public class Vista_historia {
 		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/historia/cuestionario historia.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.openWebPage("https://wordwall.net/play/63664/840/329");
 				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});

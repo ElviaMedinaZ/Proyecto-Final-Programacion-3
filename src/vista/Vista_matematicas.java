@@ -215,6 +215,7 @@ public class Vista_matematicas {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://wordwall.net/play/73232/123/411");
 			}
 		});
 		btn_Multiplicaciones.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -223,6 +224,8 @@ public class Vista_matematicas {
 		btn_Divisiones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://wordwall.net/play/73226/392/457");
 	
 			}
 		});
@@ -233,6 +236,7 @@ public class Vista_matematicas {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://wordwall.net/play/73227/723/945");
 			}
 		});
 		btn_Suma.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -242,6 +246,7 @@ public class Vista_matematicas {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://wordwall.net/play/73228/083/672");
 			}
 		});
 		btn_Resta.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -251,6 +256,7 @@ public class Vista_matematicas {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://wordwall.net/play/63551/643/946");
 			}
 		});
 		btn_Cuestionario.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón

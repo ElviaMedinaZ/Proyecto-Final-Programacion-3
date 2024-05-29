@@ -207,6 +207,7 @@ public class Vista_filosofia {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://www.youtube.com/watch?v=bU5hyn9bFNU");
 			}
 		});
 		btn_Platon.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -216,6 +217,7 @@ public class Vista_filosofia {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://www.youtube.com/watch?v=YduLzweRXjk");
 			}
 		});
 		btn_Socrates.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -224,7 +226,7 @@ public class Vista_filosofia {
 		btn_Aristoteles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-	
+				utilidades.openWebPage("https://www.worldhistory.org/trans/es/1-355/aristoteles/");
 			}
 		});
 		btn_Aristoteles.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -233,7 +235,7 @@ public class Vista_filosofia {
 		btn_etica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-		
+				utilidades.openWebPage("https://concepto.de/etica/");
 			}
 		});
 		btn_etica.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -242,6 +244,7 @@ public class Vista_filosofia {
 		btn_Moral.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://concepto.de/moral/");
 
 			}
 		});
@@ -250,7 +253,7 @@ public class Vista_filosofia {
 		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/filosofia/icono cuestionario filo.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.openWebPage("https://wordwall.net/play/73333/147/821");
 				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});

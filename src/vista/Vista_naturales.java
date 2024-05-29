@@ -210,7 +210,7 @@ public class Vista_naturales {
 		btn_Evolucion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-	
+				utilidades.openWebPage("https://youtu.be/FYMo8ajD9Ow?si=SH12wK3VUbU7t3Ho");
 			}
 		});
 		btn_Evolucion.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -219,7 +219,7 @@ public class Vista_naturales {
 		btn_Genetica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-
+				utilidades.openWebPage("https://youtu.be/LXXK2l1pdv8?si=b8EsBuwchJlU_OlR");
 			}
 		});
 		btn_Genetica.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -228,7 +228,7 @@ public class Vista_naturales {
 		btn_Biomas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-	
+				utilidades.openWebPage("https://humanidades.com/biomas/");
 			}
 		});
 		btn_Biomas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -237,7 +237,7 @@ public class Vista_naturales {
 		btn_Fotosintesis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-		
+				utilidades.openWebPage("https://concepto.de/fotosintesis/");
 			}
 		});
 		btn_Fotosintesis.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -246,6 +246,7 @@ public class Vista_naturales {
 		btn_Humano.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https: //es.khanacademy.org/science/biology/principles-of-physiology/body-structure-and-homeostasis/a/tissues-organs-organ-systems");
 
 			}
 		});
@@ -255,7 +256,7 @@ public class Vista_naturales {
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-	
+				utilidades.openWebPage("https://wordwall.net/play/73317/384/677");
 			}
 		});
 		btn_Cuestionario.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón

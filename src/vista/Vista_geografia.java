@@ -207,7 +207,7 @@ public class Vista_geografia {
 		btn_paises.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-	
+				utilidades.openWebPage("https://youtu.be/FEw-0KmzhZ4?si=ciRIayE-JLldMY6a");
 			}
 		});
 		btn_paises.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -215,7 +215,7 @@ public class Vista_geografia {
 		JButton btn_Continentes =   utilidades.crearBotones("Continentes", "imagenes/img_aprendizaje/geografia/icono continentes.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Continentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.openWebPage("https://youtu.be/8kUWWEhLZQg?si=-BPK0deFUpoQZ79t");
 				utilidades.playSound("sonidos/btn_generico.wav");
 			}
 		});
@@ -226,6 +226,7 @@ public class Vista_geografia {
 			public void actionPerformed(ActionEvent e) {
 				
 				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.openWebPage("https://www.significados.com/placas-tectonicas/");
 			}
 		});
 		btn_placas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -234,7 +235,7 @@ public class Vista_geografia {
 		btn_terrestres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-		
+				utilidades.openWebPage("https://humanidades.com/capas-de-la-tierra/");
 			}
 		});
 		btn_terrestres.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -243,7 +244,7 @@ public class Vista_geografia {
 		btn_Invernadero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-
+				utilidades.openWebPage("https://humanidades.com/efecto-invernadero/");
 			}
 		});
 		btn_Invernadero.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
@@ -252,7 +253,7 @@ public class Vista_geografia {
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-	
+				utilidades.openWebPage("https://wordwall.net/play/63666/553/408");
 			}
 		});
 		btn_Cuestionario.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
