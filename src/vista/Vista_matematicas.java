@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
+
 import controlador.Controlador_entretenimiento;
 import controlador.Controlador_persona;
 
@@ -205,7 +206,8 @@ public class Vista_matematicas {
 		btn_calculadora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-	
+				Vista_calculadora sistema = new Vista_calculadora();
+				sistema.setVisible(true);
 			}
 		});
 		btn_calculadora.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
