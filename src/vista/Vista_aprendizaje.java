@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
@@ -33,7 +32,6 @@ public class Vista_aprendizaje {
 	private Vista_utilidades utilidades;
 
 	public Vista_aprendizaje() {
-		// TODO Auto-generated constructor stub
 		utilidades = new Vista_utilidades();
 		sistema = new Controlador_aprendizaje();
         ventana = new JFrame();

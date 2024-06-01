@@ -62,7 +62,7 @@ public class Vista_registro {
     }
 
   
-	@SuppressWarnings("static-access")
+
 	public void vista_Registro(){
 		JPanel panel_acceso = new JPanel();
 		panel_acceso.setLayout(new BorderLayout(0, 0));
@@ -443,6 +443,7 @@ public class Vista_registro {
 		
 	}
 	
+	@SuppressWarnings("serial")
 	public class ImganenFondo extends JPanel {
 
 		private BufferedImage imagen;

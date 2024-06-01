@@ -109,6 +109,7 @@ public class Vista_cambio_contrasena {
 		
 		JButton btn_modificar = new JButton("MODIFICAR");
 		btn_modificar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				
 				if(text_Nombre.getText().isEmpty() || pass_combiar_contrasena.getText().isEmpty() ||  pass_contrasena.getText().isEmpty()) {
@@ -296,6 +297,7 @@ public class Vista_cambio_contrasena {
 		
 	}
 	
+	@SuppressWarnings("serial")
 	public class ImganenFondo extends JPanel {
 
 		

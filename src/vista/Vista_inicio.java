@@ -161,6 +161,7 @@ public class Vista_inicio {
 		
 	}
 	
+	@SuppressWarnings("serial")
 	public class ImagenFondo extends JPanel {
 		
 		private BufferedImage image;

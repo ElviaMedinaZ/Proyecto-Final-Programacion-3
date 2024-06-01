@@ -17,7 +17,8 @@ public class Modelo_registro {
 	
 	 // Método para verificar si un usuario ya existe en la base de datos
     public boolean verificarUsuarioExistente(String usuario) {
-        try (Connection con = sistema.getConexion();
+        try (@SuppressWarnings("static-access")
+		Connection con = sistema.getConexion();
              PreparedStatement stmt = con.prepareStatement("SELECT COUNT(*) FROM usuarios WHERE usuario = ?")) {
             stmt.setString(1, usuario);
             ResultSet rs = stmt.executeQuery();
@@ -34,7 +35,8 @@ public class Modelo_registro {
     // Método para guardar un nuevo registro de usuario en la base de datos
     public boolean guardarRegistro(String nombre, String apellidos, Date fechaNacimiento, String sexo,
                                     String discapacidad, String correo, String usuario, String contrasena) {
-        try (Connection con = sistema.getConexion();
+        try (@SuppressWarnings("static-access")
+		Connection con = sistema.getConexion();
              PreparedStatement stmt = con.prepareStatement("INSERT INTO usuarios (nombre, apellidos, fecha_nacimiento, sexo, discapacidad, correo, usuario, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
             stmt.setString(1, nombre);
             stmt.setString(2, apellidos);

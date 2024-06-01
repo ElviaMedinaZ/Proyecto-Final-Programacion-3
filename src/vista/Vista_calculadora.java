@@ -5,6 +5,7 @@ import java.awt.Color;
 /**
 	 * @author WollderSleep
 	 */
+	@SuppressWarnings("serial")
 	public class Vista_calculadora extends javax.swing.JFrame {
 
 	    public float primerNumero;

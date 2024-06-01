@@ -17,11 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
-import controlador.Controlador_entretenimiento;
 import controlador.Controlador_inicio;
 import controlador.Controlador_persona;
 
@@ -29,13 +26,10 @@ public class Vista_entretenimiento {
 	
 	private  JFrame ventana;
 	private JPanel Panel_Principal;
-	private Controlador_aprendizaje sistema;
 	private Vista_utilidades utilidades;
 
 	public Vista_entretenimiento() {
-		// TODO Auto-generated constructor stub
 		utilidades = new Vista_utilidades();
-		sistema = new Controlador_aprendizaje();
         ventana = new JFrame();
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
         ventana.setVisible(false);

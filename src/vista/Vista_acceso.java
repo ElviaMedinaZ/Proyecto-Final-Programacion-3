@@ -94,6 +94,8 @@ public class Vista_acceso {
 		
 		JButton btn_entrar = new JButton("ENTRAR");
 		btn_entrar.addActionListener(new ActionListener() {
+	
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if(sistema.get_validacion_acceso( text_Nombre.getText(),pass_contraseña.getText())){
 					
@@ -227,6 +229,7 @@ public class Vista_acceso {
 		
 	}
 	
+	@SuppressWarnings("serial")
 	public class ImganenFondo extends JPanel {//mostramos la imagen al fondo del jpanel
 
 		

@@ -16,7 +16,8 @@ public class Modelo_cambiar {
 	
 	 // Método para verificar si un usuario ya existe en la base de datos
     public boolean verificarUsuarioExistente(String usuario) {
-        try (Connection con = sistema.getConexion();
+        try (@SuppressWarnings("static-access")
+		Connection con = sistema.getConexion();
              PreparedStatement stmt = con.prepareStatement("SELECT COUNT(*) FROM usuarios WHERE usuario = ?")) {
             stmt.setString(1, usuario);
             ResultSet rs = stmt.executeQuery();
@@ -34,7 +35,8 @@ public class Modelo_cambiar {
     public boolean cambiarContrasena(String usuario, String nuevaContrasena) throws ClassNotFoundException {
         String sql = "UPDATE usuarios SET contrasena = ? WHERE usuario = ?";
         try {
-            PreparedStatement stmt = sistema.getConexion().prepareStatement(sql);
+            @SuppressWarnings("static-access")
+			PreparedStatement stmt = sistema.getConexion().prepareStatement(sql);
             stmt.setString(1, nuevaContrasena);
             stmt.setString(2, usuario);
             int filasAfectadas = stmt.executeUpdate();
