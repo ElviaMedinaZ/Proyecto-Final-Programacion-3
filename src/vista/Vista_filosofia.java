@@ -33,7 +33,7 @@ public class Vista_filosofia {
 		// TODO Auto-generated constructor stub
 		 ventana = new JFrame();
 		 utilidades = new Vista_utilidades();
-	     ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
+		 ventana.setBounds(10, 10, 1280, 720);
 	     ventana.setVisible(false);
 	     ventana.setTitle("Headway Assist");
 	     ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

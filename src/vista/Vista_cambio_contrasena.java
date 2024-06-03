@@ -39,7 +39,7 @@ public class Vista_cambio_contrasena {
 	public Vista_cambio_contrasena() {
 		sistema = new Modelo_cambiar();
 		ventana = new JFrame();
-		ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);//usa toda la pantalla 
+		ventana.setBounds(10, 10, 1280, 720);
 		ventana.setVisible(false);
 		ventana.setTitle("Headway Assist");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

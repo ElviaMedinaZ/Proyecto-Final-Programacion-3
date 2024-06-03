@@ -37,7 +37,7 @@ public class Vista_persona {
 		utilidades = new Vista_utilidades();
 		sistema = new Controlador_persona();
         ventana = new JFrame();
-        ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
+        ventana.setBounds(10, 10, 1280, 720);
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

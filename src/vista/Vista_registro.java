@@ -52,7 +52,7 @@ public class Vista_registro {
 		sistema = new Modelo_registro();
 		utilidades = new Vista_utilidades();
         ventana = new JFrame();
-        ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
+        ventana.setBounds(10, 10, 1280, 720);
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

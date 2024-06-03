@@ -48,7 +48,7 @@ public class Vista_acceso {
         // Constructor
     	sistema = new Modelo_acceso();
         ventana = new JFrame();
-        ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); // Usa toda la pantalla
+        ventana.setBounds(10, 10, 1280, 720);
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +65,7 @@ public class Vista_acceso {
 
 		
 		Panel panel = new Panel();
-		panel.setPreferredSize(new Dimension(700, ventana.getHeight())); 
+		panel.setPreferredSize(new Dimension(ventana.getWidth()/2, ventana.getHeight())); 
         
 		panel_acceso.add(panel, BorderLayout.WEST);
 		panel.setLayout(new BorderLayout(0, 0));
@@ -155,6 +155,7 @@ public class Vista_acceso {
 		    	int tamBtnWidth = 190;
 		    	//conseguimos las dimensiones con las que terminara el panel
 		        Dimension panelSize = panel_2.getSize();
+		        System.err.println(panelSize);
 		        //guardamos posiciones
 		        int panelWidth = panelSize.width;
 		        int panelHeight = panelSize.height;
