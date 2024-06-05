@@ -11,7 +11,7 @@ public class Main {
 		//sistema.vista_acceso();
 
 		Controlador_persona sistema  = new Controlador_persona();
-		sistema.vista_contactos();
+		sistema.vista_agenda();
 	}
 
 }

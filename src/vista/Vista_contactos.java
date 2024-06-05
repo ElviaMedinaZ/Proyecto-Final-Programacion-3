@@ -169,7 +169,7 @@ public class Vista_contactos {
 		panel_contacto.setBackground(Color.decode("#F1F1F1"));
 		panel_contacto.setLayout(null);
 		
-		JLabel lbl_titulo = new JLabel("EDITAR PERFIL");
+		JLabel lbl_titulo = new JLabel("CONTACTOS");
 		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
 		
 		JLabel lbl_nombre = new JLabel("Nombre");
@@ -222,11 +222,8 @@ public class Vista_contactos {
         JButton btn_editar = new JButton("EDITAR");
         btn_editar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
-            	Controlador_acceso sistema = new Controlador_acceso();
-            	sistema.vista_acceso();
-            	ventana.dispose();
 
+            	
             }
         });
         btn_editar.setFocusable(false);

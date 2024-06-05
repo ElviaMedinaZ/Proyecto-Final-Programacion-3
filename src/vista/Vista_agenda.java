@@ -10,13 +10,27 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
+import com.toedter.calendar.JDateChooser;
 
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
@@ -157,30 +171,166 @@ public class Vista_agenda {
 		panel_central();
 	}
 
+	@SuppressWarnings("static-access")
 	public void panel_central() {
 		
-		JPanel logo = new JPanel();
+		JPanel panel_contacto = new JPanel();
+		panel_contacto.setBackground(Color.decode("#F1F1F1"));
+		panel_contacto.setLayout(null);
+		
+		JLabel lbl_titulo = new JLabel("AGENDA");
+		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
+		
+		JLabel lbl_evento = new JLabel("Evento");
+		lbl_evento.setFont(new Font("Tahoma", Font.BOLD, 20));
+		JTextField text_evento = new JTextField();
+		utilidades.limitar_textfield(text_evento, 30); // NOTA: revicion completada
+		text_evento.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 
-		Panel_Principal.add(logo, BorderLayout.CENTER);
-	
-		logo.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblAgenda = new JLabel("Agenda");
-		lblAgenda.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblAgenda.setHorizontalAlignment(SwingConstants.CENTER);
-		logo.add(lblAgenda, BorderLayout.NORTH);
 		
-		JPanel panel = new JPanel();
-		logo.add(panel, BorderLayout.CENTER);
-		 
-		JButton btnCrear = new JButton("Crear");
-		panel.add(btnCrear);
+		JLabel lbl_numero = new JLabel("Fecha");
+		lbl_numero.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
-		JButton btnEditar = new JButton("editar");
-		panel.add(btnEditar);
 		
-		JButton btnEliminar = new JButton("eliminar");
-		panel.add(btnEliminar);
+		
+        JLabel lbl_relacion = new JLabel("Hora");
+        lbl_relacion.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+        // Crear un Spinner para la hora
+        SpinnerDateModel spinnerModel = new SpinnerDateModel();
+        JSpinner timeSpinner = new JSpinner(spinnerModel);
+        JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "hh:mm");
+        timeSpinner.setEditor(timeEditor);
+        timeSpinner.setValue(Calendar.getInstance().getTime());
+        timeSpinner.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+		
+		JDateChooser calendario = new JDateChooser();
+		SimpleDateFormat formato_datos = new SimpleDateFormat("dd-MM-YYYY"); // Ejemplo de formato
+		calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+		calendario.setDateFormatString(formato_datos.toPattern());
+        JFormattedTextField formattedTextField = ((JFormattedTextField) calendario.getDateEditor().getUiComponent());
+        calendario.setDateFormatString(formato_datos.toPattern());
+
+        // Obtener el campo de texto interno del JDateChooser
+        JFormattedTextField text_calendario = (JFormattedTextField) ((JTextField) calendario.getDateEditor().getUiComponent());
+        text_calendario.setEditable(false);// evitar poder manipularlo 
+        formattedTextField.setText("DD / MM / YYYY");
+        
+		//creacion de tabla 
+		Object[][] datos = {};
+		// Nombre de las columnas
+        String[] columnNames = {"Evento", "Fecha", "Hora"};
+        // Crear el modelo de la tabla con los datos y nombres de las columnas
+        DefaultTableModel model = new DefaultTableModel(datos, columnNames);
+        // Crear la tabla
+        JTable table = new JTable(model);
+        // Crear un JScrollPane para la tabla
+        JScrollPane scrollPane = new JScrollPane(table);
+		
+		
+		
+        JButton btn_crear = new JButton("CREAR");
+        btn_crear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+
+            }
+        });
+        btn_crear.setFocusable(false);
+        btn_crear.setBackground(Color.decode("#00758E"));
+        btn_crear.setForeground(Color.decode("#FFFFFF"));
+        btn_crear.setFont(new Font("Tahoma", Font.BOLD, 18));
+        
+        JButton btn_editar = new JButton("EDITAR");
+        btn_editar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            	
+            }
+        });
+        btn_editar.setFocusable(false);
+        btn_editar.setBackground(Color.decode("#686D6F"));
+        btn_editar.setForeground(Color.decode("#FFFFFF"));
+        btn_editar.setFont(new Font("Tahoma", Font.BOLD, 18));
+		
+        JButton btn_eliminar = new JButton("ELIMINAR");
+        
+        btn_eliminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+            }  
+        });
+        
+        
+        btn_eliminar.setFocusable(false);
+        btn_eliminar.setBackground(Color.decode("#9E0000"));
+        btn_eliminar.setForeground(Color.decode("#FFFFFF"));
+        btn_eliminar.setFont(new Font("Tahoma", Font.BOLD, 18));
+
+		ventana.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentShown(ComponentEvent e) {
+		    	
+		    	int tamBtn_ancho = 190;
+		    	//conseguimos las dimensiones con las que terminara el panel
+		       
+		    	Dimension panelSize = panel_contacto.getSize();
+		       
+		        //guardamos posiciones
+		        int panel_ancho = panelSize.width;
+		        int panel_alto = panelSize.height;     
+		        
+		        //logramos posicionar en el centro usando el tamaño de los botones ya definidos y las medidas conseguidas 
+		        int x = (panel_ancho - tamBtn_ancho) / 2;
+		        int y = panel_alto/2;
+		        
+
+		    	// Establecer un tamaño preferido para el panel_2
+		        panel_contacto.setPreferredSize(new Dimension(0, panel_alto + y)); 
+		        panel_contacto.revalidate();
+		   
+				lbl_titulo.setBounds(x, y-310 , tamBtn_ancho+120, 120);
+				
+				lbl_evento.setBounds(x/3, y-170 , tamBtn_ancho+20, 40);
+				text_evento.setBounds(x/3, y-130, tamBtn_ancho, 30);
+				
+				lbl_numero.setBounds(x-20, y-170 , tamBtn_ancho+100, 40);
+				calendario.setBounds(x-20, y-130, tamBtn_ancho, 30);
+				
+				lbl_relacion.setBounds(x+200, y-170 , tamBtn_ancho , 40);
+				timeSpinner.setBounds(x+200,y-130, tamBtn_ancho-80, 30);
+			
+				scrollPane.setBounds(x/3, y-70, tamBtn_ancho+450, 180);
+				
+				
+				btn_crear.setBounds(x/3, y+250,tamBtn_ancho-40 , 50);
+				btn_editar.setBounds(x-10, y+250,tamBtn_ancho-40 , 50);
+				btn_eliminar.setBounds(x+220, y+250,tamBtn_ancho-40 , 50);
+		      
+			
+				// Establecer un tamaño preferido para el panel_2
+				panel_contacto.setPreferredSize(new Dimension(0, panel_ancho + y)); 
+				panel_contacto.revalidate();
+		      
+		    }
+		});
+		
+		panel_contacto.add(lbl_relacion);
+		panel_contacto.add(lbl_numero);
+		panel_contacto.add(btn_crear);
+		panel_contacto.add(btn_eliminar);
+		panel_contacto.add(btn_editar);
+		panel_contacto.add(timeSpinner);
+		panel_contacto.add(text_evento);
+		panel_contacto.add(lbl_evento);
+		panel_contacto.add(lbl_titulo);
+		panel_contacto.add(scrollPane);
+		panel_contacto.add(calendario);
+
+		
+		
+		Panel_Principal.add(panel_contacto, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();
