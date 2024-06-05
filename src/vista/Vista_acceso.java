@@ -155,7 +155,6 @@ public class Vista_acceso {
 		    	int tamBtnWidth = 190;
 		    	//conseguimos las dimensiones con las que terminara el panel
 		        Dimension panelSize = panel_2.getSize();
-		        System.err.println(panelSize);
 		        //guardamos posiciones
 		        int panelWidth = panelSize.width;
 		        int panelHeight = panelSize.height;

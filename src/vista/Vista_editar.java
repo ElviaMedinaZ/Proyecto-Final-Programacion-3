@@ -8,15 +8,32 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Pattern;
 
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import com.toedter.calendar.JDateChooser;
 
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
@@ -159,25 +176,181 @@ public class Vista_editar {
 	
 	public void panel_central() {
 		
-		JPanel panelEditar = new JPanel();
+		JPanel panel_registro = new JPanel();
+		panel_registro.setBackground(Color.decode("#F1F1F1"));
+		panel_registro.setLayout(null);
+		
+		JLabel lbl_titulo = new JLabel("EDITAR PERFIL");
+		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
+		
+		JLabel lbl_nombre = new JLabel("Nombre(s)");
+		lbl_nombre.setFont(new Font("Tahoma", Font.BOLD, 20));
+		JTextField text_nombre = new JTextField();
+		utilidades.limitar_textfield(text_nombre, 30); // NOTA: revicion completada
+		text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 
-		Panel_Principal.add(panelEditar, BorderLayout.CENTER);
-	
-		panelEditar.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblEditar = new JLabel("Editar perfil");
-		lblEditar.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblEditar.setHorizontalAlignment(SwingConstants.CENTER);
-		panelEditar.add(lblEditar, BorderLayout.NORTH);
 		
-		JPanel panel = new JPanel();
-		panelEditar.add(panel, BorderLayout.CENTER);
+		JLabel lbl_apellidos = new JLabel("Apellidos");
+		lbl_apellidos.setFont(new Font("Tahoma", Font.BOLD, 20));
+		JTextField text_apellidos = new JTextField();
+		utilidades.limitar_textfield(text_apellidos, 40);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		panel.add(btnCancelar);
 		
-		JButton btnGuardar = new JButton("Guardar");
-		panel.add(btnGuardar);
+		text_apellidos.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+		
+		JLabel lbl_fecha = new JLabel("Fecha de nacimiento");
+		lbl_fecha.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+		JDateChooser calendario = new JDateChooser();
+		SimpleDateFormat formato_datos = new SimpleDateFormat("dd-MM-YYYY"); // Ejemplo de formato
+		calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+		calendario.setDateFormatString(formato_datos.toPattern());
+        JFormattedTextField formattedTextField = ((JFormattedTextField) calendario.getDateEditor().getUiComponent());
+        calendario.setDateFormatString(formato_datos.toPattern());
+
+        // Obtener el campo de texto interno del JDateChooser
+        JFormattedTextField text_calendario = (JFormattedTextField) ((JTextField) calendario.getDateEditor().getUiComponent());
+        text_calendario.setEditable(false);// evitar poder manipularlo 
+        formattedTextField.setText("DD / MM / YYYY");
+		
+		JLabel lbl_sexo = new JLabel("Sexo");
+		lbl_sexo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+
+        JRadioButton btnRad_masculino = new JRadioButton("Masculino");
+        btnRad_masculino.setFont(new Font("Tahoma", Font.BOLD, 17));
+        
+        JRadioButton btnRad_femenino = new JRadioButton("Femenino");
+        btnRad_femenino.setFont(new Font("Tahoma", Font.BOLD, 17));
+        
+        //Para permitir que se seleccione solo 1
+        ButtonGroup grupoGenero = new ButtonGroup();
+        grupoGenero.add(btnRad_masculino);
+        grupoGenero.add(btnRad_femenino);
+        
+        JLabel lbl_discapacidad = new JLabel("Discapacidad o trastorno");
+        lbl_discapacidad.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+		JTextField text_discapacidad = new JTextField();
+		utilidades.limitTextFieldLength(text_discapacidad,40);
+		text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+		
+		JLabel lbl_correo = new JLabel("Correo electronico");
+		lbl_correo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+		JTextField text_correo = new JTextField();
+		utilidades.limitTextFieldLength(text_correo, 40);
+		text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+		
+        JButton btn_cancelar = new JButton("CANCELAR");
+        btn_cancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+            	Controlador_acceso sistema = new Controlador_acceso();
+            	sistema.vista_acceso();
+            	ventana.dispose();
+
+            }
+        });
+        btn_cancelar.setFocusable(false);
+        btn_cancelar.setBackground(Color.decode("#686D6F"));
+        btn_cancelar.setForeground(Color.decode("#FFFFFF"));
+        btn_cancelar.setFont(new Font("Tahoma", Font.BOLD, 18));
+		
+        JButton btn_guardar = new JButton("REGISTRAR");
+        
+        btn_guardar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+            }  
+        });
+        
+        
+        btn_guardar.setFocusable(false);
+        btn_guardar.setBackground(Color.decode("#00758E"));
+        btn_guardar.setForeground(Color.decode("#FFFFFF"));
+        btn_guardar.setFont(new Font("Tahoma", Font.BOLD, 18));
+
+		ventana.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentShown(ComponentEvent e) {
+		    	
+		    	int tamBtn_ancho = 190;
+		    	//conseguimos las dimensiones con las que terminara el panel
+		       
+		    	Dimension panelSize = panel_registro.getSize();
+		       
+		        //guardamos posiciones
+		        int panel_ancho = panelSize.width;
+		        int panel_alto = panelSize.height;     
+		        
+		        //logramos posicionar en el centro usando el tamaño de los botones ya definidos y las medidas conseguidas 
+		        int x = (panel_ancho - tamBtn_ancho) / 2;
+		        int y = panel_alto/2;
+		        
+
+		    	// Establecer un tamaño preferido para el panel_2
+		        panel_registro.setPreferredSize(new Dimension(0, panel_alto + y)); 
+				panel_registro.revalidate();
+		   
+		  
+				lbl_titulo.setBounds(x-70, y-310 , tamBtn_ancho+140, 120);
+				
+				lbl_nombre.setBounds(x/3, y-170 , tamBtn_ancho+20, 40);
+				text_nombre.setBounds(x/3, y-130, tamBtn_ancho+120, 30);
+				
+				lbl_discapacidad.setBounds(x+100, y-170 , tamBtn_ancho+100, 40);
+				text_discapacidad.setBounds(x+100, y-130, tamBtn_ancho+120, 30);
+				
+				lbl_apellidos.setBounds(x/3, y-90 , tamBtn_ancho , 40);
+				text_apellidos.setBounds(x/3,y-50, tamBtn_ancho+120, 30);
+			
+				lbl_correo.setBounds(x+100, y-90 , tamBtn_ancho+100, 40);
+				text_correo.setBounds(x+100, y-50, tamBtn_ancho+120, 30);
+				
+				lbl_fecha.setBounds(x/3,y, tamBtn_ancho+120, 30);
+				calendario.setBounds(x/3,y+40, tamBtn_ancho-40, 30);
+				
+				
+				lbl_sexo.setBounds(x/3, y+90, tamBtn_ancho+20, 40);
+				btnRad_masculino.setBounds(x/3, y+150, tamBtn_ancho-50, 20);
+				btnRad_femenino.setBounds(x-100, y+150, tamBtn_ancho-50, 20);
+				
+
+				
+				
+				btn_cancelar.setBounds(x+20, y+250,tamBtn_ancho-40 , 50);
+				btn_guardar.setBounds(x+240, y+250,tamBtn_ancho-40 , 50);
+		      
+				
+				// Establecer un tamaño preferido para el panel_2
+				panel_registro.setPreferredSize(new Dimension(0, panel_ancho + y)); 
+				panel_registro.revalidate();
+		      
+		    }
+		});
+		
+		panel_registro.add(lbl_fecha);
+		panel_registro.add(lbl_sexo);
+		panel_registro.add(btn_cancelar);
+		panel_registro.add(btn_guardar);
+		panel_registro.add(text_apellidos);
+		panel_registro.add(lbl_apellidos);
+		panel_registro.add(text_nombre);
+		panel_registro.add(lbl_nombre);
+		panel_registro.add(lbl_titulo);
+		panel_registro.add(calendario);
+		panel_registro.add(btnRad_masculino);
+		panel_registro.add(btnRad_femenino);
+		panel_registro.add(lbl_discapacidad);
+		panel_registro.add(text_discapacidad);
+		panel_registro.add(lbl_correo);
+		panel_registro.add(text_correo);
+
+		
+		
+		Panel_Principal.add(panel_registro, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();
