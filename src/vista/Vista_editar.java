@@ -8,16 +8,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.regex.Pattern;
-
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -25,16 +20,10 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
 import com.toedter.calendar.JDateChooser;
-
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
 import controlador.Controlador_entretenimiento;
@@ -176,9 +165,9 @@ public class Vista_editar {
 	
 	public void panel_central() {
 		
-		JPanel panel_registro = new JPanel();
-		panel_registro.setBackground(Color.decode("#F1F1F1"));
-		panel_registro.setLayout(null);
+		JPanel panel_editar = new JPanel();
+		panel_editar.setBackground(Color.decode("#F1F1F1"));
+		panel_editar.setLayout(null);
 		
 		JLabel lbl_titulo = new JLabel("EDITAR PERFIL");
 		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
@@ -279,7 +268,7 @@ public class Vista_editar {
 		    	int tamBtn_ancho = 190;
 		    	//conseguimos las dimensiones con las que terminara el panel
 		       
-		    	Dimension panelSize = panel_registro.getSize();
+		    	Dimension panelSize = panel_editar.getSize();
 		       
 		        //guardamos posiciones
 		        int panel_ancho = panelSize.width;
@@ -291,8 +280,8 @@ public class Vista_editar {
 		        
 
 		    	// Establecer un tamaño preferido para el panel_2
-		        panel_registro.setPreferredSize(new Dimension(0, panel_alto + y)); 
-				panel_registro.revalidate();
+		        panel_editar.setPreferredSize(new Dimension(0, panel_alto + y)); 
+		        panel_editar.revalidate();
 		   
 		  
 				lbl_titulo.setBounds(x-70, y-310 , tamBtn_ancho+140, 120);
@@ -325,32 +314,32 @@ public class Vista_editar {
 		      
 				
 				// Establecer un tamaño preferido para el panel_2
-				panel_registro.setPreferredSize(new Dimension(0, panel_ancho + y)); 
-				panel_registro.revalidate();
+				panel_editar.setPreferredSize(new Dimension(0, panel_ancho + y)); 
+				panel_editar.revalidate();
 		      
 		    }
 		});
 		
-		panel_registro.add(lbl_fecha);
-		panel_registro.add(lbl_sexo);
-		panel_registro.add(btn_cancelar);
-		panel_registro.add(btn_guardar);
-		panel_registro.add(text_apellidos);
-		panel_registro.add(lbl_apellidos);
-		panel_registro.add(text_nombre);
-		panel_registro.add(lbl_nombre);
-		panel_registro.add(lbl_titulo);
-		panel_registro.add(calendario);
-		panel_registro.add(btnRad_masculino);
-		panel_registro.add(btnRad_femenino);
-		panel_registro.add(lbl_discapacidad);
-		panel_registro.add(text_discapacidad);
-		panel_registro.add(lbl_correo);
-		panel_registro.add(text_correo);
+		panel_editar.add(lbl_fecha);
+		panel_editar.add(lbl_sexo);
+		panel_editar.add(btn_cancelar);
+		panel_editar.add(btn_guardar);
+		panel_editar.add(text_apellidos);
+		panel_editar.add(lbl_apellidos);
+		panel_editar.add(text_nombre);
+		panel_editar.add(lbl_nombre);
+		panel_editar.add(lbl_titulo);
+		panel_editar.add(calendario);
+		panel_editar.add(btnRad_masculino);
+		panel_editar.add(btnRad_femenino);
+		panel_editar.add(lbl_discapacidad);
+		panel_editar.add(text_discapacidad);
+		panel_editar.add(lbl_correo);
+		panel_editar.add(text_correo);
 
 		
 		
-		Panel_Principal.add(panel_registro, BorderLayout.CENTER);
+		Panel_Principal.add(panel_editar, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();

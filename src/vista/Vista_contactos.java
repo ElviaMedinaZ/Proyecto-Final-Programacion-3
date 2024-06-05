@@ -10,13 +10,18 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
@@ -157,30 +162,155 @@ public class Vista_contactos {
 		panel_central();
 	}
 	
+	@SuppressWarnings("static-access")
 	public void panel_central() {
 		
-		JPanel panelContactos = new JPanel();
+		JPanel panel_contacto = new JPanel();
+		panel_contacto.setBackground(Color.decode("#F1F1F1"));
+		panel_contacto.setLayout(null);
 		
-		Panel_Principal.add(panelContactos, BorderLayout.CENTER);
-	
-		panelContactos.setLayout(new BorderLayout(0, 0));
+		JLabel lbl_titulo = new JLabel("EDITAR PERFIL");
+		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
 		
-		JLabel lblNewLabel = new JLabel("Contactos");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panelContactos.add(lblNewLabel, BorderLayout.NORTH);
+		JLabel lbl_nombre = new JLabel("Nombre");
+		lbl_nombre.setFont(new Font("Tahoma", Font.BOLD, 20));
+		JTextField text_nombre = new JTextField();
+		utilidades.limitar_textfield(text_nombre, 30); // NOTA: revicion completada
+		text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+
 		
-		JPanel panel = new JPanel();
-		panelContactos.add(panel, BorderLayout.CENTER);
 		
-		JButton btnCrear = new JButton("Crear");
-		panel.add(btnCrear);
+		JLabel lbl_numero = new JLabel("Número");
+		lbl_numero.setFont(new Font("Tahoma", Font.BOLD, 20));
+		JTextField text_numero = new JTextField();
+		utilidades.limitar_numeros(text_numero, 10);
+		text_numero.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
-		JButton btnEditar = new JButton("editar");
-		panel.add(btnEditar);
 		
-		JButton btnEliminar = new JButton("eliminar");
-		panel.add(btnEliminar);
+        JLabel lbl_relacion = new JLabel("Relacion");
+        lbl_relacion.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+		JTextField text_relacion = new JTextField();
+		utilidades.limitar_textfield(text_relacion, 30); 
+		text_relacion.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+		
+		//creacion de tabla 
+		Object[][] datos = {};
+		// Nombre de las columnas
+        String[] columnNames = {"Nombre", "Número", "Relación"};
+        // Crear el modelo de la tabla con los datos y nombres de las columnas
+        DefaultTableModel model = new DefaultTableModel(datos, columnNames);
+        // Crear la tabla
+        JTable table = new JTable(model);
+        // Crear un JScrollPane para la tabla
+        JScrollPane scrollPane = new JScrollPane(table);
+		
+		
+		
+        JButton btn_crear = new JButton("CREAR");
+        btn_crear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+
+            }
+        });
+        btn_crear.setFocusable(false);
+        btn_crear.setBackground(Color.decode("#00758E"));
+        btn_crear.setForeground(Color.decode("#FFFFFF"));
+        btn_crear.setFont(new Font("Tahoma", Font.BOLD, 18));
+        
+        JButton btn_editar = new JButton("EDITAR");
+        btn_editar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+            	Controlador_acceso sistema = new Controlador_acceso();
+            	sistema.vista_acceso();
+            	ventana.dispose();
+
+            }
+        });
+        btn_editar.setFocusable(false);
+        btn_editar.setBackground(Color.decode("#686D6F"));
+        btn_editar.setForeground(Color.decode("#FFFFFF"));
+        btn_editar.setFont(new Font("Tahoma", Font.BOLD, 18));
+		
+        JButton btn_eliminar = new JButton("ELIMINAR");
+        
+        btn_eliminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+            }  
+        });
+        
+        
+        btn_eliminar.setFocusable(false);
+        btn_eliminar.setBackground(Color.decode("#9E0000"));
+        btn_eliminar.setForeground(Color.decode("#FFFFFF"));
+        btn_eliminar.setFont(new Font("Tahoma", Font.BOLD, 18));
+
+		ventana.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentShown(ComponentEvent e) {
+		    	
+		    	int tamBtn_ancho = 190;
+		    	//conseguimos las dimensiones con las que terminara el panel
+		       
+		    	Dimension panelSize = panel_contacto.getSize();
+		       
+		        //guardamos posiciones
+		        int panel_ancho = panelSize.width;
+		        int panel_alto = panelSize.height;     
+		        
+		        //logramos posicionar en el centro usando el tamaño de los botones ya definidos y las medidas conseguidas 
+		        int x = (panel_ancho - tamBtn_ancho) / 2;
+		        int y = panel_alto/2;
+		        
+
+		    	// Establecer un tamaño preferido para el panel_2
+		        panel_contacto.setPreferredSize(new Dimension(0, panel_alto + y)); 
+		        panel_contacto.revalidate();
+		   
+				lbl_titulo.setBounds(x-70, y-310 , tamBtn_ancho+140, 120);
+				
+				lbl_nombre.setBounds(x/3, y-170 , tamBtn_ancho+20, 40);
+				text_nombre.setBounds(x/3, y-130, tamBtn_ancho, 30);
+				
+				lbl_numero.setBounds(x-20, y-170 , tamBtn_ancho+100, 40);
+				text_numero.setBounds(x-20, y-130, tamBtn_ancho, 30);
+				
+				lbl_relacion.setBounds(x+200, y-170 , tamBtn_ancho , 40);
+				text_relacion.setBounds(x+200,y-130, tamBtn_ancho, 30);
+			
+				scrollPane.setBounds(x/3, y-70, tamBtn_ancho+450, 180);
+				
+				
+				btn_crear.setBounds(x/3, y+250,tamBtn_ancho-40 , 50);
+				btn_editar.setBounds(x-10, y+250,tamBtn_ancho-40 , 50);
+				btn_eliminar.setBounds(x+220, y+250,tamBtn_ancho-40 , 50);
+		      
+			
+				// Establecer un tamaño preferido para el panel_2
+				panel_contacto.setPreferredSize(new Dimension(0, panel_ancho + y)); 
+				panel_contacto.revalidate();
+		      
+		    }
+		});
+		
+		panel_contacto.add(lbl_relacion);
+		panel_contacto.add(lbl_numero);
+		panel_contacto.add(btn_crear);
+		panel_contacto.add(btn_eliminar);
+		panel_contacto.add(btn_editar);
+		panel_contacto.add(text_relacion);
+		panel_contacto.add(text_numero);
+		panel_contacto.add(text_nombre);
+		panel_contacto.add(lbl_nombre);
+		panel_contacto.add(lbl_titulo);
+		panel_contacto.add(scrollPane);
+
+		
+		
+		Panel_Principal.add(panel_contacto, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();

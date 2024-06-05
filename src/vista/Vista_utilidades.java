@@ -75,6 +75,33 @@ public class Vista_utilidades {
         });
     }   
         
+    public static void limitar_numeros(JTextField textField, int maxLength) {
+        ((AbstractDocument) textField.getDocument()).setDocumentFilter(new DocumentFilter() {
+            private final Pattern pattern = Pattern.compile("\\d*"); // Expresión regular que solo acepta dígitos
+
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                if (text == null) return;
+
+                String newValue = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+                if (pattern.matcher(newValue).matches() && newValue.length() <= maxLength) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text == null) return;
+
+                String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
+                String newValue = currentText.substring(0, offset) + text + currentText.substring(offset + length);
+                if (pattern.matcher(newValue).matches() && newValue.length() <= maxLength) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+    }
+    
     public JButton crearBotonesLaterales(String text, String imagen, int width, int height, int fontSize, int iconWidth) {
         JButton btn = new JButton();
 
