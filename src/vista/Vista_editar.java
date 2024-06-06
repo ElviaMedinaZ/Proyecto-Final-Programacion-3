@@ -285,9 +285,9 @@ public class Vista_editar {
         
         btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
-            	if (text_nombre.getText().isEmpty() || text_apellidos.getText().isEmpty() || calendario.getDate() == null 
-                		|| text_correo.getText().isEmpty() ) {
+            	System.out.println(text_apellidos.getText());
+            	if (text_nombre.getText().equals("") || text_apellidos.getText().equals("") || calendario.getDate() == null 
+            			 || text_discapacidad.getText().equals("") || text_correo.getText().equals("") ) {
                 		
                 	     //validacion para no tener campos vacios
                 		
@@ -323,7 +323,7 @@ public class Vista_editar {
                 	    	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
                 	    }
                 	    
-                	            return; // No permite el siguiente  si falta algun campo
+                	    return; // No permite el siguiente  si falta algun campo
                 	 }
                 	
                 	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
@@ -395,22 +395,14 @@ public class Vista_editar {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-
-                        
-                        
-                    	
-
+             
                     } else if (response == JOptionPane.NO_OPTION) {
                         return;
                     } else {
                         return;
-                    }
-                   
-                    	
-                
+                    }                
             }  
         });
-        
         
         btn_guardar.setFocusable(false);
         btn_guardar.setBackground(Color.decode("#00758E"));
@@ -434,12 +426,10 @@ public class Vista_editar {
 		        int x = (panel_ancho - tamBtn_ancho) / 2;
 		        int y = panel_alto/2;
 		        
-
 		    	// Establecer un tamaño preferido para el panel_2
 		        panel_editar.setPreferredSize(new Dimension(0, panel_alto + y)); 
 		        panel_editar.revalidate();
 		   
-		  
 				lbl_titulo.setBounds(x-70, y-310 , tamBtn_ancho+140, 120);
 				
 				lbl_nombre.setBounds(x/3, y-170 , tamBtn_ancho+20, 40);
@@ -457,18 +447,13 @@ public class Vista_editar {
 				lbl_fecha.setBounds(x/3,y, tamBtn_ancho+120, 30);
 				calendario.setBounds(x/3,y+40, tamBtn_ancho-40, 30);
 				
-				
 				lbl_sexo.setBounds(x/3, y+90, tamBtn_ancho+20, 40);
 				btnRad_masculino.setBounds(x/3, y+150, tamBtn_ancho-50, 20);
 				btnRad_femenino.setBounds(x-100, y+150, tamBtn_ancho-50, 20);
 				
-
-				
-				
 				btn_cancelar.setBounds(x+20, y+250,tamBtn_ancho-40 , 50);
 				btn_guardar.setBounds(x+240, y+250,tamBtn_ancho-40 , 50);
 		      
-				
 				// Establecer un tamaño preferido para el panel_2
 				panel_editar.setPreferredSize(new Dimension(0, panel_ancho + y)); 
 				panel_editar.revalidate();

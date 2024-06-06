@@ -2,8 +2,10 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -12,30 +14,42 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
 import controlador.Controlador_entretenimiento;
 import controlador.Controlador_persona;
+import modelo.Modelo_contactos;
 
 public class Vista_contactos {
 	
 	public JFrame ventana;
 	public JPanel Panel_Principal;
 	private Vista_utilidades utilidades;
+	private Modelo_contactos sistema;
 
 	public Vista_contactos() {
 		// TODO Auto-generated constructor stub
+		sistema = new Modelo_contactos();
 		utilidades = new Vista_utilidades();
 		ventana = new JFrame();
 		ventana.setBounds(10, 10, 1280, 720);
@@ -159,11 +173,11 @@ public class Vista_contactos {
 		panel_regresar.add(btnRegresar, gbc);
 		panel_cerrar_sesion.add(btnCerrar_sesion,gbc);
 		
-		panel_central();
+		panel_central(usuario);
 	}
 	
 	@SuppressWarnings("static-access")
-	public void panel_central() {
+	public void panel_central(String usuario) {
 		
 		JPanel panel_contacto = new JPanel();
 		panel_contacto.setBackground(Color.decode("#F1F1F1"));
@@ -194,15 +208,35 @@ public class Vista_contactos {
 		utilidades.limitar_textfield(text_relacion, 30); 
 		text_relacion.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
-		//creacion de tabla 
-		Object[][] datos = {};
+		List<Object[]> contactos;
+        Object[][] datos = null;
+        try {
+			contactos = sistema.obtenerContactos(usuario);
+	        // Convertir la lista a un arreglo de Object[][]
+			datos = new Object[contactos.size()][4];
+	        for (int i = 0; i < contactos.size(); i++) {
+	            datos[i] = contactos.get(i);
+	        }
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// Nombre de las columnas
-        String[] columnNames = {"Nombre", "Número", "Relación"};
+        
+     
+        String[] columnNames = {"id","nombre", "numero", "relacion"};
         // Crear el modelo de la tabla con los datos y nombres de las columnas
-        DefaultTableModel model = new DefaultTableModel(datos, columnNames);
-        // Crear la tabla
+        EditableTableModel model = new EditableTableModel(datos, columnNames);
         JTable table = new JTable(model);
+        
+
+        // Configurar el ancho de la columna "id" a 0
+        table.getColumnModel().getColumn(0).setMinWidth(0);
+        table.getColumnModel().getColumn(0).setMaxWidth(0);
+        table.getColumnModel().getColumn(0).setPreferredWidth(0);
         // Crear un JScrollPane para la tabla
+    
+        
         JScrollPane scrollPane = new JScrollPane(table);
 		
 		
@@ -211,8 +245,76 @@ public class Vista_contactos {
         btn_crear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
+            	if (text_nombre.getText().isEmpty() || text_numero.getText().isEmpty() || text_relacion.getText().isEmpty()) {
+            	          
+            		
+            		
+            		if(text_nombre.getText().isEmpty()) {
+            			text_nombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            		}
+            		else {
+            			text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+					}
+            		if(text_numero.getText().isEmpty()){
+            			text_numero.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            		}
+            		else {
+            			text_numero.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+            		}
+            		if(text_relacion.getText().isEmpty()) {
+            			text_relacion.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            		}
+            		else {
+            			text_relacion.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+            		}
+            		
+            		return ;
+            		
+            	}
+            	                
+               	int response =JOptionPane.showConfirmDialog(
+                        null, 
+                        "¿Deseas confirmar la operación?", 
+                        "Eliminacion", 
+                        JOptionPane.YES_NO_OPTION, 
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                if (response == JOptionPane.YES_OPTION) {
+                	 
+                	 String nombre = text_nombre.getText();
+                     String numero = text_numero.getText();
+                     String relacion = text_relacion.getText();
+
+                     try {
+                         // Llamar al método para agregar el contacto a la base de datos
+                         if (sistema.contactoExiste(usuario, nombre, numero, relacion)) {
+                             JOptionPane.showMessageDialog(null, "El contacto ya existe.");
+                             return ;
+                         } else if (sistema.agregarContacto(usuario, nombre, numero, relacion)) {
+                             JOptionPane.showMessageDialog(null, "Contacto agregado exitosamente.");
+                             
+                         } else {
+                             JOptionPane.showMessageDialog(null, "Error al agregar el contacto.");
+                             return;
+                         }
+                     } catch (ClassNotFoundException | SQLException ex) {
+                         ex.printStackTrace();
+                         JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
+                     }
+                 	
+                } else if (response == JOptionPane.NO_OPTION) {
+                    return;
+                } else {
+                    return;
+                }
+            	
+                Controlador_persona sistema = new Controlador_persona();
+                sistema.vista_contactos(usuario);
+                ventana.dispose();
 
             }
+            
         });
         btn_crear.setFocusable(false);
         btn_crear.setBackground(Color.decode("#00758E"));
@@ -220,10 +322,63 @@ public class Vista_contactos {
         btn_crear.setFont(new Font("Tahoma", Font.BOLD, 18));
         
         JButton btn_editar = new JButton("EDITAR");
+        // Añadir un ListSelectionListener al modelo de selección de la tabla
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) { // Esta verificación evita múltiples eventos
+                    if (table.getSelectedRow() != -1) {
+                        // Cambiar el color del botón cuando se selecciona una fila
+                        btn_editar.setBackground(Color.decode("#00758E"));
+                    } else {
+                        // Revertir al color original si no hay ninguna fila seleccionada
+                        btn_editar.setBackground(Color.decode("#686D6F"));
+                    }
+                }
+            }
+        });
+        
+        JButton btn_eliminar = new JButton("ELIMINAR");
+        
+        
         btn_editar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	  int selectedRow = table.getSelectedRow();
+                  if (selectedRow != -1) {
+                      if (btn_editar.getText().equals("EDITAR")) {
+                          model.setEditable(true);
+                          table.editCellAt(selectedRow, 1); // Ejemplo, editar la segunda columna
+                          table.getEditorComponent().requestFocusInWindow();
+                          btn_editar.setText("GUARDAR");
+                          btn_eliminar.setEnabled(false); // Desactivar el botón de eliminar mientras se edita
+                      } else if (btn_editar.getText().equals("GUARDAR")) {
+                          table.getCellEditor().stopCellEditing(); // Finaliza la edición y actualiza el modelo
+                          model.setEditable(false);
 
-            	
+                          // Obtener los valores editados
+                          String nombre = model.getValueAt(selectedRow, 1).toString();
+                          String numero = model.getValueAt(selectedRow, 2).toString();
+                          String relacion = model.getValueAt(selectedRow, 3).toString();
+
+                          int id = (int) model.getValueAt(selectedRow, 0);
+
+                          // Aquí llamarías al método para actualizar el contacto en la base de datos
+                          try {
+                              if (sistema.actualizarContacto(id, nombre, numero, relacion)) {
+                                  JOptionPane.showMessageDialog(null, "Contacto actualizado exitosamente.");
+                              } else {
+                                  JOptionPane.showMessageDialog(null, "Error al actualizar el contacto.");
+                              }
+                          } catch (ClassNotFoundException | SQLException ex) {
+                              ex.printStackTrace();
+                              JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
+                          }
+
+                          btn_editar.setText("EDITAR");
+                          btn_editar.setBackground(Color.decode("#686D6F"));
+                          btn_eliminar.setEnabled(true); // Reactivar el botón de eliminar
+                      }
+                  }
             }
         });
         btn_editar.setFocusable(false);
@@ -231,11 +386,49 @@ public class Vista_contactos {
         btn_editar.setForeground(Color.decode("#FFFFFF"));
         btn_editar.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
-        JButton btn_eliminar = new JButton("ELIMINAR");
         
         btn_eliminar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                //preguntamos para verificar si quiere eliminar
+            	int response =JOptionPane.showConfirmDialog(
+                        null, 
+                        "¿Deseas confirmar la operación?", 
+                        "Eliminacion", 
+                        JOptionPane.YES_NO_OPTION, 
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                if (response == JOptionPane.YES_OPTION) {
+                	 
+                    int selectedRow = table.getSelectedRow();
+                    if (selectedRow >= 0) {
+                        // Obtener el id del contacto seleccionado
+                        int id = (int) table.getValueAt(selectedRow, 0);
+                        try {
+                            // Llamar al método para borrar el contacto de la base de datos
+                            if (sistema.borrarContactoPorId(id)) {
+                                JOptionPane.showMessageDialog(null, "Contacto eliminado exitosamente.");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error al eliminar el contacto.");
+                            }
+                        } catch (ClassNotFoundException | SQLException ex) {
+                            ex.printStackTrace();
+                            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Selecciona un contacto para eliminar.");
+                    }
+                	
+
+                } else if (response == JOptionPane.NO_OPTION) {
+                    return;
+                } else {
+                    return;
+                }
+            	
+                Controlador_persona sistema = new Controlador_persona();
+                sistema.vista_contactos(usuario);
+                ventana.dispose();
             }  
         });
         
@@ -315,4 +508,22 @@ public class Vista_contactos {
 		
 	}
 
+}
+
+@SuppressWarnings("serial")
+class EditableTableModel extends DefaultTableModel {
+    private boolean editable = false;  // Controla si las celdas son editables.
+
+    public EditableTableModel(Object[][] data, Object[] columnNames) {
+        super(data, columnNames);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return editable;  // Devuelve el estado actual de la capacidad de edición.
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
 }
