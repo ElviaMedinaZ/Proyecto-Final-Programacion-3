@@ -2,7 +2,6 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -15,15 +14,11 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import javax.swing.AbstractCellEditor;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -38,8 +33,6 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableModel;
 
 import com.toedter.calendar.JDateChooser;
@@ -336,7 +329,15 @@ public class Vista_agenda {
                      date = (Date) spinnerModel.getValue();
                      hora = new Time(date.getTime());
                      
-
+                     try {
+						sistema.agregarContacto(usuario, evento, fecha, hora);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                    
                  	
                 } else if (response == JOptionPane.NO_OPTION) {
@@ -381,7 +382,12 @@ public class Vista_agenda {
                         try {
                             // Llamar al método para borrar el contacto de la base de datos
                             if (sistema.borrarEventoPorId(id)) {
+                            	
                                 JOptionPane.showMessageDialog(null, "Evento eliminado exitosamente.");
+                                
+                                Controlador_persona sistema = new Controlador_persona();
+                                sistema.vista_agenda(usuario);
+                                ventana.dispose();
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error al eliminar el evento.");
                             }
@@ -464,6 +470,9 @@ public class Vista_agenda {
                         try {
                             if (sistema.actualizarEvento(id, evento, fecha, hora)) {
                                 JOptionPane.showMessageDialog(null, "Evento actualizado exitosamente.");
+                                Controlador_persona sistema = new Controlador_persona();
+                                sistema.vista_agenda(usuario);
+                                ventana.dispose();
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error al actualizar el evento.");
                             }

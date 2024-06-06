@@ -10,27 +10,41 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.PDFRenderer;
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
 import controlador.Controlador_entretenimiento;
 import controlador.Controlador_persona;
+import modelo.Modelo_certificado;
+import modelo.Modelo_pdf;
 
 public class Vista_certificado {
 	
 	public JFrame ventana;
 	public JPanel Panel_Principal;
 	private Vista_utilidades utilidades;
+	private Modelo_certificado sistema;
 
 	public Vista_certificado() {
 		// TODO Auto-generated constructor stub
+		sistema = new Modelo_certificado();
 		utilidades = new Vista_utilidades();
 		ventana = new JFrame();
 		ventana.setBounds(10, 10, 1280, 720);
@@ -154,35 +168,283 @@ public class Vista_certificado {
 		panel_regresar.add(btnRegresar, gbc);
 		panel_cerrar_sesion.add(btnCerrar_sesion,gbc);
 		
-		panel_central(usuario);
+		if(sistema.archivoExiste(usuario)) {
+			panel_pre(usuario);
+		}
+		else {
+			panel_central(usuario);
+		}
 	}
 	
+	private void panel_pre(String usuario) {
+		
+		JPanel panel_contacto = new JPanel();
+		panel_contacto.setBackground(Color.decode("#F1F1F1"));
+		panel_contacto.setLayout(null);
+		
+		JLabel lbl_titulo = new JLabel("CERTIFICADO");
+		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
+		
+		
+		
+        JButton btn_Descargar = new JButton("DESCARGAR");
+        btn_Descargar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+            	Modelo_pdf pdfData = sistema.obtenerPDFYNombrePorUsuario(usuario);
+
+            	if (pdfData != null) {
+            	    InputStream pdfStream = pdfData.getArchivoStream();
+            	    String nombreArchivo = pdfData.getNombre();
+            	    File outputFile = new File(System.getProperty("user.home") + "/Downloads/" + nombreArchivo);
+            	    try (FileOutputStream fos = new FileOutputStream(outputFile)) {
+            	        byte[] buffer = new byte[1024];
+            	        int bytesRead;
+            	        while ((bytesRead = pdfStream.read(buffer)) != -1) {
+            	            fos.write(buffer, 0, bytesRead);
+            	        }
+            	    } catch (IOException e1) {
+            	        System.out.println("Error al guardar el archivo: " + e1.getMessage());
+            	    }
+            	} else {
+            	    System.out.println("No se encontró el archivo PDF para el usuario especificado.");
+            	} 
+            }
+        });
+        btn_Descargar.setFocusable(false);
+        btn_Descargar.setBackground(Color.decode("#00758E"));
+        btn_Descargar.setForeground(Color.decode("#FFFFFF"));
+        btn_Descargar.setFont(new Font("Tahoma", Font.BOLD, 20));
+        
+        JButton btn_Eliminar = new JButton("ELIMINAR");
+        btn_Eliminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            
+            	 int confirm = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar el archivo?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+                 if (confirm == JOptionPane.YES_OPTION) {
+                     boolean success = sistema.eliminarArchivoPorUsuario(usuario);
+                     if (success) {
+                        JOptionPane.showMessageDialog(null, "Archivo eliminado exitosamente.");
+                 		Controlador_persona sistema = new Controlador_persona();
+                 		sistema.vista_certificado(usuario);
+                 		ventana.dispose();
+                     } else {
+                         JOptionPane.showMessageDialog(null, "No se pudo eliminar el archivo.");
+                     }
+                 }
+
+            }
+        });
+        btn_Eliminar.setFocusable(false);
+        btn_Eliminar.setBackground(Color.decode("#9E0000"));
+        btn_Eliminar.setForeground(Color.decode("#FFFFFF"));
+        btn_Eliminar.setFont(new Font("Tahoma", Font.BOLD, 20));
+		
+        InputStream pdfStream = sistema.obtenerPDFPorUsuario(usuario);
+        
+        JPanel pdf = getPDFPanel(pdfStream,390,450);
+        
+
+
+
+		ventana.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentShown(ComponentEvent e) {
+		    	
+		    	int tamBtn_ancho = 190;
+		    	//conseguimos las dimensiones con las que terminara el panel
+		       
+		    	Dimension panelSize = panel_contacto.getSize();
+		       
+		        //guardamos posiciones
+		        int panel_ancho = panelSize.width;
+		        int panel_alto = panelSize.height;     
+		        
+		        //logramos posicionar en el centro usando el tamaño de los botones ya definidos y las medidas conseguidas 
+		        int x = (panel_ancho - tamBtn_ancho) / 2;
+		        int y = panel_alto/2;
+		        
+
+
+		        pdf.setBounds(x/4, y/2, tamBtn_ancho+200, 450);
+				lbl_titulo.setBounds(x-60, y-310 , tamBtn_ancho+120, 120);
+				btn_Descargar.setBounds(x+250, y-150, tamBtn_ancho, 50);
+				btn_Eliminar.setBounds(x+250, y-70,tamBtn_ancho , 50);
+				
+			
+				// Establecer un tamaño preferido para el panel_2
+				panel_contacto.setPreferredSize(new Dimension(0, panel_ancho + y)); 
+				panel_contacto.revalidate();
+		      
+		    }
+		});
+		
+		panel_contacto.add(pdf);
+		panel_contacto.add(btn_Eliminar);
+		panel_contacto.add(btn_Descargar);
+		panel_contacto.add(lbl_titulo);
+		
+		
+		
+		Panel_Principal.add(panel_contacto, BorderLayout.CENTER);
+		ventana.setVisible(true);
+		ventana.repaint();
+		ventana.revalidate();
+		
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void panel_central(String usuario) {
 		
-		JPanel panelCertificado = new JPanel();
+		JPanel panel_contacto = new JPanel();
+		panel_contacto.setBackground(Color.decode("#F1F1F1"));
+		panel_contacto.setLayout(null);
+		
+		JLabel lbl_titulo = new JLabel("SUBIR ARCHIVO");
+		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
+		
+		JLabel ibl_img = new JLabel();
+		ibl_img.setIcon(new ImageIcon("imagenes/imagenes_acceso/subir_archivo.png"));
+		
+        JButton btn_crear = new JButton("Seleccionar un archivo");
+        btn_crear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+            	// Crear un objeto JFileChooser
+                JFileChooser fileChooser = new JFileChooser();
+                // Limitar la selección a archivos PDF
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos PDF", "pdf");
+                fileChooser.setFileFilter(filter);
+                
+                // Mostrar el diálogo para seleccionar un archivo
+                int result = fileChooser.showOpenDialog(null);
+                
+               
+                if (result == JFileChooser.APPROVE_OPTION) {
+             
+                    File selectedFile = fileChooser.getSelectedFile();
+                    // Verificar si es un archivo PDF
+                    if (selectedFile.getName().toLowerCase().endsWith(".pdf")) {
+                    	
+                    	//preguntamos para verificar si quiere registrarse 
+                    	int response =JOptionPane.showConfirmDialog(
+                                null, 
+                                "¿Deseas confirmar la operación?", 
+                                "", 
+                                JOptionPane.YES_NO_OPTION, 
+                                JOptionPane.WARNING_MESSAGE
+                        );
 
-		Panel_Principal.add(panelCertificado, BorderLayout.CENTER);
-	
-		panelCertificado.setLayout(new BorderLayout(0, 0));
+                        if (response == JOptionPane.YES_OPTION) {
+                        	 
+                        	boolean cargar = sistema.insertarPDF(usuario, selectedFile);
+                        	
+                        	
+                        	
+                        	if(cargar) {
+                        		JOptionPane.showMessageDialog(null, "Archivo subido exitosamente.");
+                        		Controlador_persona sistema = new Controlador_persona();
+                        		sistema.vista_certificado(usuario);
+                        		ventana.dispose();
+                        		
+                        	}
+                        	else {
+                        		JOptionPane.showMessageDialog(null, "Error con el erchivo.");
+                        	}
+                        	
+
+                        } else if (response == JOptionPane.NO_OPTION) {
+                            return;
+                        } else {
+                            return;
+                        }
+                    	
+                    } else {
+                        // Si no es un archivo PDF, mostrar un mensaje de error
+                        JOptionPane.showMessageDialog(null, "Por favor, selecciona un archivo PDF válido.");
+                    }
+                }
+
+            }
+        });
+        btn_crear.setFocusable(false);
+        btn_crear.setBackground(Color.decode("#C3C3C3"));
+        btn_crear.setForeground(Color.decode("#000000"));
+        btn_crear.setFont(new Font("Tahoma", Font.BOLD, 20));
+        
+       
 		
-		JLabel lblCertificado = new JLabel("Certificado");
-		lblCertificado.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblCertificado.setHorizontalAlignment(SwingConstants.CENTER);
-		panelCertificado.add(lblCertificado, BorderLayout.NORTH);
+       
+
+		ventana.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentShown(ComponentEvent e) {
+		    	
+		    	int tamBtn_ancho = 190;
+		    	//conseguimos las dimensiones con las que terminara el panel
+		       
+		    	Dimension panelSize = panel_contacto.getSize();
+		       
+		        //guardamos posiciones
+		        int panel_ancho = panelSize.width;
+		        int panel_alto = panelSize.height;     
+		        
+		        //logramos posicionar en el centro usando el tamaño de los botones ya definidos y las medidas conseguidas 
+		        int x = (panel_ancho - tamBtn_ancho) / 2;
+		        int y = panel_alto/2;
+		        
+
+
+		   
+				lbl_titulo.setBounds(x-80, y-310 , tamBtn_ancho+190, 120);
+				ibl_img.setBounds(x-50, y-250, tamBtn_ancho*2, 400);
+				btn_crear.setBounds(x-100, y+100,tamBtn_ancho+190 , 30);
+				
+			
+				// Establecer un tamaño preferido para el panel_2
+				panel_contacto.setPreferredSize(new Dimension(0, panel_ancho + y)); 
+				panel_contacto.revalidate();
+		      
+		    }
+		});
 		
-		JPanel panel = new JPanel();
-		panelCertificado.add(panel, BorderLayout.CENTER);
 		
-		JButton btnDescargar = new JButton("Descargar");
-		panel.add(btnDescargar);
+		panel_contacto.add(btn_crear);
+		panel_contacto.add(ibl_img);
+		panel_contacto.add(lbl_titulo);
 		
-		JButton btnEliminar = new JButton("Eliminar");
-		panel.add(btnEliminar);
 		
+		
+		Panel_Principal.add(panel_contacto, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();
 		
 	}
 
+	public static JPanel getPDFPanel(InputStream pdfStream, int panelWidth, int panelHeight) {
+		 JPanel panel = new JPanel();
+		    try {
+		        PDDocument document = PDDocument.load(pdfStream);
+		        PDFRenderer renderer = new PDFRenderer(document);
+		        BufferedImage image = renderer.renderImageWithDPI(0, 144); // Renderiza la primera página
+
+		        // Escala la imagen al tamaño del panel
+		        Image scaledImage = image.getScaledInstance(panelWidth, panelHeight, Image.SCALE_SMOOTH);
+		        ImageIcon icon = new ImageIcon(scaledImage);
+		        JLabel label = new JLabel(icon);
+		        
+		        // Configura el panel y añade la imagen escalada
+		        panel.setLayout(new BorderLayout());
+		        panel.add(label, BorderLayout.CENTER);
+
+		        document.close(); // Asegúrate de cerrar el documento después de usarlo
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        JOptionPane.showMessageDialog(null, "Error al cargar el PDF", "Error", JOptionPane.ERROR_MESSAGE);
+		    }
+		    return panel;
+	    }
+	
 }

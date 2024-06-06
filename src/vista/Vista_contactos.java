@@ -377,6 +377,10 @@ public class Vista_contactos {
                           btn_editar.setText("EDITAR");
                           btn_editar.setBackground(Color.decode("#686D6F"));
                           btn_eliminar.setEnabled(true); // Reactivar el botón de eliminar
+                          
+                          Controlador_persona sistema = new Controlador_persona();
+                          sistema.vista_contactos(usuario);
+                          ventana.dispose();
                       }
                   }
             }
