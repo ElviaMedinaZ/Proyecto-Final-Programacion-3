@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -253,4 +254,22 @@ public class Vista_utilidades {
 
 	}
 
+}
+
+@SuppressWarnings("serial")
+class EditableTableModel extends DefaultTableModel {
+    private boolean editable = false;  // Controla si las celdas son editables.
+
+    public EditableTableModel(Object[][] data, Object[] columnNames) {
+        super(data, columnNames);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return editable;  // Devuelve el estado actual de la capacidad de edición.
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
 }

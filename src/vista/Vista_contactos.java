@@ -510,20 +510,3 @@ public class Vista_contactos {
 
 }
 
-@SuppressWarnings("serial")
-class EditableTableModel extends DefaultTableModel {
-    private boolean editable = false;  // Controla si las celdas son editables.
-
-    public EditableTableModel(Object[][] data, Object[] columnNames) {
-        super(data, columnNames);
-    }
-
-    @Override
-    public boolean isCellEditable(int row, int column) {
-        return editable;  // Devuelve el estado actual de la capacidad de edición.
-    }
-
-    public void setEditable(boolean editable) {
-        this.editable = editable;
-    }
-}
