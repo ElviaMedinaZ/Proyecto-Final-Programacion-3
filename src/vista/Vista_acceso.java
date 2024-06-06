@@ -100,7 +100,7 @@ public class Vista_acceso {
 				if(sistema.get_validacion_acceso( text_Nombre.getText(),pass_contraseña.getText())){
 					
 					inicio = new Controlador_inicio();
-					inicio.vista_inicio();
+					inicio.vista_inicio(text_Nombre.getText());
 					ventana.dispose();
 				}
 				else {

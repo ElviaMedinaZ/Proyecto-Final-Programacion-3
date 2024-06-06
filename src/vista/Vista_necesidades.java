@@ -41,7 +41,7 @@ public class Vista_necesidades {
         ventana.setIconImage(icon.getImage());
 	}
 	
-	public void vista_necesidades() {
+	public void vista_necesidades(String usuario) {
 		Panel_Principal = new JPanel();
 		
 		Panel_Principal.setBackground(Color.decode("#00758E"));
@@ -78,7 +78,7 @@ public class Vista_necesidades {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona sistema = new Controlador_persona();
-				sistema.vista_persona();
+				sistema.vista_persona(usuario);
 				ventana.dispose();
 				
 			}
@@ -90,7 +90,7 @@ public class Vista_necesidades {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
-				sistema.vista_entretenimiento();
+				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();
 				
 			}
@@ -102,7 +102,7 @@ public class Vista_necesidades {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
-				sistema.vista_aprendizaje();
+				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
 			}
 		});
@@ -115,7 +115,7 @@ public class Vista_necesidades {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona sistema = new Controlador_persona();
-				sistema.vista_persona();
+				sistema.vista_persona(usuario);
 				ventana.dispose();
 		
 			}

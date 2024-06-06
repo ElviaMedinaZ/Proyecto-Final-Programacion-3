@@ -41,7 +41,7 @@ public class Vista_filosofia {
 	     ventana.setIconImage(icon.getImage());
 	}
 	
-	public void vista_filosofia() {
+	public void vista_filosofia(String usuario) {
 		
 		Panel_Principal = new JPanel();
 		
@@ -79,7 +79,7 @@ public class Vista_filosofia {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
-				persona.vista_persona();
+				persona.vista_persona(usuario);
 				ventana.dispose();
 			}
 		});
@@ -90,7 +90,7 @@ public class Vista_filosofia {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
-				sistema.vista_entretenimiento();
+				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();				
 			}
 		});
@@ -101,7 +101,7 @@ public class Vista_filosofia {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
-				sistema.vista_aprendizaje();
+				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
 			}
 		});
@@ -113,7 +113,7 @@ public class Vista_filosofia {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
-				sistema.vista_aprendizaje();
+				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
 			}
 		});

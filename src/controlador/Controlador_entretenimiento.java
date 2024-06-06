@@ -10,8 +10,8 @@ public class Controlador_entretenimiento {
 		persona = new Vista_entretenimiento();
 	}
 	
-	public void vista_entretenimiento() {
-		persona.vista_entretenimiento();
+	public void vista_entretenimiento(String usuario) {
+		persona.vista_entretenimiento(usuario);
 	}
 
 }

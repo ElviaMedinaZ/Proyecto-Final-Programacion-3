@@ -45,7 +45,7 @@ public class Vista_persona {
         ventana.setIconImage(icon.getImage());
 	}
 	
-	public void vista_persona() {
+	public void vista_persona(String usuario) {
 		Panel_Principal = new JPanel();
 		
 		Panel_Principal.setBackground(Color.decode("#00758E"));
@@ -91,7 +91,7 @@ public class Vista_persona {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
-				sistema.vista_entretenimiento();
+				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();
 				
 			}
@@ -103,7 +103,7 @@ public class Vista_persona {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
-				sistema.vista_aprendizaje();
+				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
 			}
 		});
@@ -116,7 +116,7 @@ public class Vista_persona {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_inicio  sistema = new Controlador_inicio();
-				sistema.vista_inicio();
+				sistema.vista_inicio(usuario);
 				ventana.dispose();
 		
 			}
@@ -159,10 +159,10 @@ public class Vista_persona {
 		panel_regresar.add(btn_regresar, gbc);
 		panel_cerrar_sesion.add(btn_cerrar_sesion,gbc);
 		
-		panel_central();		
+		panel_central(usuario);		
 	}
 	
-	public void panel_central() {
+	public void panel_central(String usuario) {
 		
 		JPanel vista =  new JPanel();
 		vista.setLayout(new BorderLayout(0, 0));
@@ -209,7 +209,7 @@ public class Vista_persona {
 		btn_necesidades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_necesidades();
+				sistema.vista_necesidades(usuario);
 				ventana.dispose();
 			}
 		});
@@ -219,7 +219,7 @@ public class Vista_persona {
 		btn_agenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_agenda();
+				sistema.vista_agenda(usuario);
 				ventana.dispose();
 			}
 		});
@@ -229,7 +229,7 @@ public class Vista_persona {
 		btn_certificado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_certificado();
+				sistema.vista_certificado(usuario);
 				ventana.dispose();
 			}
 		});
@@ -239,7 +239,7 @@ public class Vista_persona {
 		btn_contactos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_contactos();
+				sistema.vista_contactos(usuario);
 				ventana.dispose();
 			}
 		});
@@ -249,7 +249,7 @@ public class Vista_persona {
 		btn_editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_editar();
+				sistema.vista_editar(usuario);
 				ventana.dispose();
 			}
 		});
@@ -259,7 +259,7 @@ public class Vista_persona {
 		btn_dispositivos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_dispositivos();
+				sistema.vista_dispositivos(usuario);
 				ventana.dispose();
 			}
 		});

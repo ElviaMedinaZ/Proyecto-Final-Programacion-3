@@ -55,7 +55,7 @@ public class Vista_agenda {
         ventana.setIconImage(icon.getImage());
 	}
 	
-	public void vista_agenda() {
+	public void vista_agenda(String usuario) {
 		
 		Panel_Principal = new JPanel();
 		
@@ -93,7 +93,7 @@ public class Vista_agenda {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
-				persona.vista_persona();
+				persona.vista_persona(usuario);
 				ventana.dispose();
 			}
 		});
@@ -104,7 +104,7 @@ public class Vista_agenda {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
-				sistema.vista_entretenimiento();
+				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();				
 			}
 		});
@@ -115,7 +115,7 @@ public class Vista_agenda {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
-				sistema.vista_aprendizaje();
+				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
 			}
 		});
@@ -127,7 +127,7 @@ public class Vista_agenda {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
-				persona.vista_persona();
+				persona.vista_persona(usuario);
 				ventana.dispose();
 			}
 		});
@@ -168,11 +168,11 @@ public class Vista_agenda {
 		panel_regresar.add(btnRegresar, gbc);
 		panel_cerrar_sesion.add(btnCerrar_sesion,gbc);
 		
-		panel_central();
+		panel_central(usuario);
 	}
 
 	@SuppressWarnings("static-access")
-	public void panel_central() {
+	public void panel_central(String usuario) {
 		
 		JPanel panel_contacto = new JPanel();
 		panel_contacto.setBackground(Color.decode("#F1F1F1"));

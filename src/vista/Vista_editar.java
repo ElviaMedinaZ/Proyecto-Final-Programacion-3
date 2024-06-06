@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -28,15 +29,18 @@ import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
 import controlador.Controlador_entretenimiento;
 import controlador.Controlador_persona;
+import modelo.Modelo_editar;
+import modelo.Modelo_usuario;
 
 public class Vista_editar {
 	
 	public JFrame ventana;
 	public JPanel Panel_Principal;
 	private Vista_utilidades utilidades;
-
+	private  Modelo_editar modelo ;
 	public Vista_editar() {
 		// TODO Auto-generated constructor stub
+		modelo = new Modelo_editar();
 		utilidades = new Vista_utilidades();
 		ventana = new JFrame();
 		ventana.setBounds(10, 10, 1280, 720);
@@ -47,7 +51,7 @@ public class Vista_editar {
         ventana.setIconImage(icon.getImage());
 	}
 	
-	public void vista_editar() {
+	public void vista_editar(String usuario) {
 		
 		Panel_Principal = new JPanel();
 		
@@ -85,7 +89,7 @@ public class Vista_editar {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
-				persona.vista_persona();
+				persona.vista_persona(usuario);
 				ventana.dispose();
 			}
 		});
@@ -96,7 +100,7 @@ public class Vista_editar {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
-				sistema.vista_entretenimiento();
+				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();				
 			}
 		});
@@ -107,7 +111,7 @@ public class Vista_editar {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
-				sistema.vista_aprendizaje();
+				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
 			}
 		});
@@ -119,7 +123,7 @@ public class Vista_editar {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
-				persona.vista_persona();
+				persona.vista_persona(usuario);
 				ventana.dispose();
 			}
 		});
@@ -160,10 +164,10 @@ public class Vista_editar {
 		panel_regresar.add(btnRegresar, gbc);
 		panel_cerrar_sesion.add(btnCerrar_sesion,gbc);
 		
-		panel_central();
+		panel_central(usuario);
 	}
 	
-	public void panel_central() {
+	public void panel_central(String usuario) {
 		
 		JPanel panel_editar = new JPanel();
 		panel_editar.setBackground(Color.decode("#F1F1F1"));
@@ -232,6 +236,31 @@ public class Vista_editar {
 		utilidades.limitTextFieldLength(text_correo, 40);
 		text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
+	
+
+        
+		Modelo_usuario datosUsuario;
+		try {
+			datosUsuario = modelo.obtenerDatosUsuario(usuario);
+
+	        if (datosUsuario != null) {
+	            text_nombre.setText(datosUsuario.getNombre());
+	            text_apellidos.setText(datosUsuario.getApellidos());
+	            calendario.setDate(datosUsuario.getFechaNacimiento());
+	            text_discapacidad.setText(datosUsuario.getDiscapacidad());
+	            text_correo.setText(datosUsuario.getCorreo());
+
+	            if (datosUsuario.getSexo().equalsIgnoreCase("masculino")) {
+	                btnRad_masculino.setSelected(true);
+	            } else if (datosUsuario.getSexo().equalsIgnoreCase("femenino")) {
+	                btnRad_femenino.setSelected(true);
+	            }
+	        }
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
         JButton btn_cancelar = new JButton("CANCELAR");
         btn_cancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -247,7 +276,7 @@ public class Vista_editar {
         btn_cancelar.setForeground(Color.decode("#FFFFFF"));
         btn_cancelar.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
-        JButton btn_guardar = new JButton("REGISTRAR");
+        JButton btn_guardar = new JButton("GUARDAR");
         
         btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

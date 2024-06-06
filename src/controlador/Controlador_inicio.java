@@ -13,9 +13,9 @@ public class Controlador_inicio {
 		
 	}
 	
-	public void vista_inicio()
+	public void vista_inicio(String usuario)
 	{
-		inicio.vista_inicio();
+		inicio.vista_inicio(usuario);
 	}
 
 }

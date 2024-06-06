@@ -42,7 +42,7 @@ public class Vista_inicio {
         ventana.setIconImage(icon.getImage());
 	}
 	
-	public void vista_inicio() {
+	public void vista_inicio(String usuario) {
 		JPanel Panel_Principal = new JPanel();
 		
 		Panel_Principal.setBackground(Color.decode("#00758E"));//cambiar de color el panel
@@ -79,7 +79,7 @@ public class Vista_inicio {
 			public void actionPerformed(ActionEvent e) {
 				Controlador_persona persona = new Controlador_persona();
 				utilidades.playSound("sonidos/btn_generico.wav");
-				persona.vista_persona();
+				persona.vista_persona(usuario);
 				ventana.dispose();
 			}
 		});
@@ -90,7 +90,7 @@ public class Vista_inicio {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
-				sistema.vista_entretenimiento();
+				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();
 				
 			}
@@ -102,7 +102,7 @@ public class Vista_inicio {
 			public void actionPerformed(ActionEvent e) {	
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
-				sistema.vista_aprendizaje();
+				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();		
 			}
 		});

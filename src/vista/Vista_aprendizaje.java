@@ -43,7 +43,7 @@ public class Vista_aprendizaje {
         ventana.setIconImage(icon.getImage());
 	}
 	
-	public void vista_aprendizaje() {
+	public void vista_aprendizaje(String usuario) {
 		Panel_Principal = new JPanel();
 		
 		Panel_Principal.setBackground(Color.decode("#00758E"));
@@ -80,7 +80,7 @@ public class Vista_aprendizaje {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_persona sistema = new Controlador_persona();
-				sistema.vista_persona();
+				sistema.vista_persona(usuario);
 				ventana.dispose();
 			}
 		});
@@ -91,7 +91,7 @@ public class Vista_aprendizaje {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
-				sistema.vista_entretenimiento();
+				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();
 				
 			}
@@ -103,7 +103,7 @@ public class Vista_aprendizaje {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
-				sistema.vista_aprendizaje();
+				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
 			}
 		});
@@ -116,7 +116,7 @@ public class Vista_aprendizaje {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
 				Controlador_inicio  sistema = new Controlador_inicio();
-				sistema.vista_inicio();
+				sistema.vista_inicio(usuario);
 				ventana.dispose();
 		
 			}
@@ -159,10 +159,10 @@ public class Vista_aprendizaje {
 		panel_regresar.add(btnRegresar, gbc);
 		panel_cerrar_sesion.add(btnCerrar_sesion,gbc);
 		
-		panel_central();		
+		panel_central(usuario);		
 	}
 	
-	public void panel_central() {
+	public void panel_central(String usuario) {
 		
 		JPanel vista =  new JPanel();
 		vista.setLayout(new BorderLayout(0, 0));
@@ -208,7 +208,7 @@ public class Vista_aprendizaje {
 		btn_espanol.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_espanol();
+				sistema.vista_espanol(usuario);
 				ventana.dispose();
 			}
 		});
@@ -218,7 +218,7 @@ public class Vista_aprendizaje {
 		btn_matematicas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_matematicas();
+				sistema.vista_matematicas(usuario);
 				ventana.dispose();
 			}
 		});
@@ -228,7 +228,7 @@ public class Vista_aprendizaje {
 		btn_geografia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_geografia();
+				sistema.vista_geografia(usuario);
 				ventana.dispose();
 			}
 		});
@@ -238,7 +238,7 @@ public class Vista_aprendizaje {
 		btn_historia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_historia();
+				sistema.vista_historia(usuario);
 				ventana.dispose();
 			}
 		});
@@ -248,7 +248,7 @@ public class Vista_aprendizaje {
 		btn_ciencias_naturales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_naturales();
+				sistema.vista_naturales(usuario);
 				ventana.dispose();
 			}
 		});
@@ -258,7 +258,7 @@ public class Vista_aprendizaje {
 		btn_filosofia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("sonidos/btn_generico.wav");
-				sistema.vista_filosofia();;
+				sistema.vista_filosofia(usuario);;
 				ventana.dispose();
 			}
 		});
