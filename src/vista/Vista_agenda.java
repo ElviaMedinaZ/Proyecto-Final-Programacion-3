@@ -310,6 +310,17 @@ public class Vista_agenda {
         btn_crear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
+            	String evento = text_evento.getText();
+                Date fecha = calendario.getDate();
+                Date date = (Date) spinnerModel.getValue();
+                Time hora = new Time(date.getTime());
+                
+                
+                
+                if (!validarCampos(evento, fecha, hora) || !validarFechaHora(fecha, hora)) {
+                    return;
+                }
+            	
             	int response =JOptionPane.showConfirmDialog(
                         null, 
                         "¿Deseas confirmar la operación?", 
@@ -320,27 +331,13 @@ public class Vista_agenda {
 
                 if (response == JOptionPane.YES_OPTION) {
                 	 
-                	 String evento = text_evento.getText();
-                     Date fecha = calendario.getDate();
-                     Date date = (Date) spinnerModel.getValue();
-                     Time hora = new Time(date.getTime());
+                	 evento = text_evento.getText();
+                     fecha = calendario.getDate();
+                     date = (Date) spinnerModel.getValue();
+                     hora = new Time(date.getTime());
+                     
 
-                     try {
-                         // Llamar al método para agregar el contacto a la base de datos
-                         if (sistema.eventoExiste(usuario, evento, fecha,hora )) {
-                             JOptionPane.showMessageDialog(null, "El contacto ya existe.");
-                             return ;
-                         } else if (sistema.agregarContacto(usuario, evento, fecha,hora )) {
-                             JOptionPane.showMessageDialog(null, "Contacto agregado exitosamente.");
-                             
-                         } else {
-                             JOptionPane.showMessageDialog(null, "Error al agregar el contacto.");
-                             return;
-                         }
-                     } catch (ClassNotFoundException | SQLException ex) {
-                         ex.printStackTrace();
-                         JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
-                     }
+                   
                  	
                 } else if (response == JOptionPane.NO_OPTION) {
                     return;
@@ -559,12 +556,35 @@ public class Vista_agenda {
 		
 	}
 	
+	
+	public boolean validarCampos(String evento, Date fecha, Date hora) {
+	    if (evento == null || evento.trim().isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "El campo Evento no puede quedar vacio");
+	        return false;
+	    }
+	    if (fecha == null) {
+	        JOptionPane.showMessageDialog(null, "El campo  fecha  no puede quedar vacio.");
+	        return false;
+	    }
+	    if (hora == null) {
+	        JOptionPane.showMessageDialog(null, "El campo  hora no puede estar vacio");
+	        return false;
+	    }
+	    return true;
+	}
+	
+
+	public boolean validarFechaHora(Date fecha, Date hora) {
+	    Date actual = new Date();
+	    if (fecha.after(actual)) {
+	        JOptionPane.showMessageDialog(null, "La fecha no puede ser menor a la actual");
+	        return false;
+	    }
+	    if (fecha.equals(actual) && hora.after(actual)) {
+	        JOptionPane.showMessageDialog(null, "La hora no puede ser anterior a la hora actual");
+	        return false;
+	    }
+	    return true;
+	}
 
 }
-
-
-
-
-
-
-
