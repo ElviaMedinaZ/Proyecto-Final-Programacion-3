@@ -14,6 +14,10 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Pattern;
+
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -21,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -280,6 +285,128 @@ public class Vista_editar {
         
         btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
+            	if (text_nombre.getText().isEmpty() || text_apellidos.getText().isEmpty() || calendario.getDate() == null 
+                		|| text_correo.getText().isEmpty() ) {
+                		
+                	     //validacion para no tener campos vacios
+                		
+                	     JOptionPane.showMessageDialog(null, "Favor de llenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+                	     
+                	     if (text_nombre.getText().isEmpty()) {
+                	    	 text_nombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                	    }else {
+                	    	text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                	    }
+                	    
+                	     if (text_apellidos.getText().isEmpty()) {
+                	    	 text_apellidos.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                	     }else {
+                	    	 text_apellidos.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                 	    }
+                	    
+                	     if (calendario.getDate() == null) {
+                	    	 calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                	     }else {
+                	    	 calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                 	    }
+                	     
+                	    if (text_correo.getText().isEmpty()) {
+                	    	text_correo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                	    }else {
+                	    	 text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                	    }
+                	   
+                	    if (text_discapacidad.getText().isEmpty()){
+                	    	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                	    }else {
+                	    	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                	    }
+                	    
+                	            return; // No permite el siguiente  si falta algun campo
+                	 }
+                	
+                	text_discapacidad.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                	text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                	text_apellidos.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                	text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                  
+                    
+                    // Obtiene la fecha de nacimiento que se selecciono
+                    Date fecha_nacimiento = calendario.getDate();
+                    Calendar fecha_min = Calendar.getInstance();
+                    Calendar fecha_max = Calendar.getInstance();
+                    
+                    if (fecha_nacimiento != null) {
+                       
+                        fecha_min.add(Calendar.YEAR, -7);
+                        fecha_max.add(Calendar.YEAR, -90);
+
+                        if (fecha_nacimiento.after(fecha_min.getTime())) {
+                            JOptionPane.showMessageDialog(null, "Rango de edad no permitido,(menor a 7 años)", "Error", JOptionPane.ERROR_MESSAGE);
+                            calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                            return;
+                        } else if (fecha_nacimiento.before(fecha_max.getTime())) {
+                            JOptionPane.showMessageDialog(null, "Rango de edad no permitido", "Error", JOptionPane.ERROR_MESSAGE);
+                            calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                            return;
+                        }
+                    }
+                    
+                    calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                    
+                    //Validacion para el correo electronico
+                    String correo = text_correo.getText();
+                    String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";//Valores aceptados para un correo e
+                    
+                    if (!Pattern.matches(emailPattern, correo)) {
+                        JOptionPane.showMessageDialog(null, "Correo electronico invalido", "Error", JOptionPane.ERROR_MESSAGE);
+                        text_correo.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                        return;
+                    } else {
+                        text_correo.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+                    }
+                    //preguntamos para verificar si quiere registrarse 
+                	int response =JOptionPane.showConfirmDialog(
+                            null, 
+                            "¿Deseas confirmar la operación?", 
+                            "", 
+                            JOptionPane.YES_NO_OPTION, 
+                            JOptionPane.WARNING_MESSAGE
+                    );
+
+                    if (response == JOptionPane.YES_OPTION) {
+                    	 
+                    	boolean cambioExitoso;
+						try {
+							cambioExitoso = modelo.actualizarDatosUsuario(usuario, text_nombre.getText(), text_apellidos.getText(), calendario.getDate(),
+							         btnRad_masculino.isSelected() ? "Masculino" : "Femenino",
+							         text_discapacidad.getText(), text_correo.getText());
+							
+							if (cambioExitoso) {
+	                            JOptionPane.showMessageDialog(null, "Datos editados con exito..", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	                            ventana.repaint();
+	                            ventana.revalidate();
+	                        } else {
+	                            JOptionPane.showMessageDialog(null, "Error al realizar los cambios", "Error", JOptionPane.ERROR_MESSAGE);
+	               
+	                        }
+						} catch (ClassNotFoundException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
+                        
+                        
+                    	
+
+                    } else if (response == JOptionPane.NO_OPTION) {
+                        return;
+                    } else {
+                        return;
+                    }
+                   
+                    	
                 
             }  
         });

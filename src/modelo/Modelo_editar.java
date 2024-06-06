@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class Modelo_editar {
 	
@@ -46,6 +47,39 @@ public class Modelo_editar {
         }
         
         return datosUsuario;//devolvemos el objeto de usuario con los datos obtenidos de la base de datos
+    }
+	
+	public boolean actualizarDatosUsuario(String usuario, String nombre, String apellidos, Date fechaNacimiento, String sexo, String discapacidad, String correo) throws ClassNotFoundException, SQLException {
+        boolean isUpdated = false;
+        @SuppressWarnings("static-access")
+		Connection con = sistema.getConexion();
+
+        try {
+            String query = "UPDATE usuarios SET nombre = ?, apellidos = ?, fecha_nacimiento = ?, sexo = ?, discapacidad = ?, correo = ? WHERE usuario = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, nombre);
+            ps.setString(2, apellidos);
+            ps.setDate(3, new java.sql.Date(fechaNacimiento.getTime()));
+            ps.setString(4, sexo);
+            ps.setString(5, discapacidad);
+            ps.setString(6, correo);
+            ps.setString(7, usuario);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                isUpdated = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (con != null) try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return isUpdated;
     }
 
 }
