@@ -14,12 +14,15 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.util.regex.Pattern;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -32,6 +35,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 
 public class Vista_utilidades {
+	
+	private Clip sonido_actual;
 	
     public Vista_utilidades() {
     }
@@ -223,22 +228,27 @@ public class Vista_utilidades {
 		return btn;
 	}
 	
-	 //este metodo es para el uso de sonidos 
-    public void playSound(String soundName)
-	 {
-	   try 
-	   {
-	    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-	    Clip clip = AudioSystem.getClip();
-	    clip.open(audioInputStream);
-	    clip.start();
-	   }
-	   catch(Exception ex)
-	   {
-	     System.out.println("Error with playing sound.");
-	     ex.printStackTrace( );
-	   }
-	 }   
+
+    
+    
+    public void playSound(String soundFile) {
+        try {
+            
+            if (sonido_actual != null && sonido_actual.isRunning()) { // Detener el sonido actual si se presiona un nuevo boton
+            	sonido_actual.stop();
+            	sonido_actual.close();
+            }
+
+            // Configuracion del nuevo sonido
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundFile).getAbsoluteFile());
+            sonido_actual = AudioSystem.getClip();
+            sonido_actual.open(audioInputStream);
+            sonido_actual.start();
+            
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            ex.printStackTrace();
+        }
+    }
 	
     //este metodo es para poder abrir direcciones url
 	public void openWebPage(String url) {
