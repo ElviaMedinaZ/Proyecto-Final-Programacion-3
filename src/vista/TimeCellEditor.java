@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import java.sql.Time;
 
+@SuppressWarnings("serial")
 public class TimeCellEditor extends AbstractCellEditor implements TableCellEditor {
     private JSpinner timeSpinner;
     private SpinnerDateModel spinnerModel;

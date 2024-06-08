@@ -102,7 +102,8 @@ public class Modelo_certificado {
 	 
 	 public boolean eliminarArchivoPorUsuario(String usuario) {
 	        String sql = "DELETE FROM archivos_pdf WHERE usuario = ?";
-	        try (Connection conn = sistema.getConexion(); 
+	        try (@SuppressWarnings("static-access")
+			Connection conn = sistema.getConexion(); 
 	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 	            pstmt.setString(1, usuario);
 	            int affectedRows = pstmt.executeUpdate();
@@ -119,7 +120,8 @@ public class Modelo_certificado {
 	 
 	 public Modelo_pdf obtenerPDFYNombrePorUsuario(String usuario) {
 		    String sql = "SELECT nombre, archivo FROM archivos_pdf WHERE usuario = ?";
-		    try (Connection conn = sistema.getConexion();
+		    try (@SuppressWarnings("static-access")
+			Connection conn = sistema.getConexion();
 		         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 		        pstmt.setString(1, usuario);
 		        ResultSet rs = pstmt.executeQuery();

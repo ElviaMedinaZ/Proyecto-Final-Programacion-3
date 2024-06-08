@@ -31,7 +31,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
@@ -180,7 +179,7 @@ public class Vista_agenda {
 		panel_central(usuario);
 	}
 
-	@SuppressWarnings("static-access")
+
 	public void panel_central(String usuario) {
 		
 		JPanel panel_contacto = new JPanel();
@@ -435,9 +434,6 @@ public class Vista_agenda {
             }
         });
         
-      
-        
-        
         btn_editar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	int selectedRow = table.getSelectedRow(); // Obtener la fila seleccionada en la tabla
@@ -462,7 +458,7 @@ public class Vista_agenda {
                         String evento = (String) table.getValueAt(selectedRow, 1);
                         Date fecha = (Date) table.getValueAt(selectedRow, 2);
                         Time hora = (Time) table.getValueAt(selectedRow, 3);
-                        String newhora = hora.toGMTString();
+                   
 
                         if(evento.length()<=0 || fecha==null || hora == null || hora.toString().trim().isEmpty())
                         {	

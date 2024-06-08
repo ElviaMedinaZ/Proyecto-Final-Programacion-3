@@ -109,7 +109,7 @@ public class Modelo_contactos {
 	        return resultado; // Devuelve true si se insertó exitosamente, false en caso contrario
 	    }
 	    
-	    @SuppressWarnings("unused")
+	   
 		public boolean contactoExiste(String usuario, String nombre, String numero, String relacion) throws ClassNotFoundException, SQLException {
 	        @SuppressWarnings("static-access")
 	        Connection con = sistema.getConexion();
