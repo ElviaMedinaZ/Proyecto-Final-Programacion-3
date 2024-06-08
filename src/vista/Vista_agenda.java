@@ -31,6 +31,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+import javax.swing.event.ChangeEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
@@ -308,8 +309,6 @@ public class Vista_agenda {
                 Date date = (Date) spinnerModel.getValue();
                 Time hora = new Time(date.getTime());
                 
-                
-                
                 if (!validarCampos(evento, fecha, hora) || !validarFechaHora(fecha, hora)) {
                     return;
                 }
@@ -451,41 +450,58 @@ public class Vista_agenda {
                         table.getEditorComponent().requestFocusInWindow();
                         btn_editar.setText("GUARDAR");
                         btn_eliminar.setEnabled(false); // Desactivar el botón de eliminar mientras se edita
-                    } else if (btn_editar.getText().equals("GUARDAR")) {
+                    } else if (btn_editar.getText().equals("GUARDAR")) 
+                    {
+                    	    	
                         // Finalizar la edición y actualizar el modelo
                     	 if (table.isEditing() && table.getCellEditor() != null) {
                              table.getCellEditor().stopCellEditing();
                          }
                         model.setEditable(false);
-
                         // Obtener los nuevos valores de los campos editados
                         String evento = (String) table.getValueAt(selectedRow, 1);
                         Date fecha = (Date) table.getValueAt(selectedRow, 2);
                         Time hora = (Time) table.getValueAt(selectedRow, 3);
+                        String newhora = hora.toGMTString();
 
-                        // Obtener el ID del evento seleccionado en la tabla
-                        int id = (int) prueva.getValueAt(selectedRow, 0);
-
-                        // Actualizar el evento en la base de datos
-                        try {
-                            if (sistema.actualizarEvento(id, evento, fecha, hora)) {
-                                JOptionPane.showMessageDialog(null, "Evento actualizado exitosamente.");
-                                Controlador_persona sistema = new Controlador_persona();
-                                sistema.vista_agenda(usuario);
-                                ventana.dispose();
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Error al actualizar el evento.");
-                            }
-                        } catch (ClassNotFoundException | SQLException ex) {
-                            ex.printStackTrace();
-                            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
+                        if(evento.length()<=0 || fecha==null || hora == null || hora.toString().trim().isEmpty())
+                        {	
+	                        JOptionPane.showMessageDialog(null, "los campos no pueden quedar vacios.");
+	                        model.setEditable(true);
+	                        table.editCellAt(selectedRow, 1);
+	                        table.getEditorComponent().requestFocusInWindow();
+	                       // table.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+	                        return;
+                        }
+                        else
+                        {
+	                        // Obtener el ID del evento seleccionado en la tabla
+	                        int id = (int) prueva.getValueAt(selectedRow, 0);
+	                        
+		                        // Actualizar el evento en la base de datos
+		                        try {
+		                            if (sistema.actualizarEvento(id, evento, fecha, hora)) {
+		                                JOptionPane.showMessageDialog(null, "Evento actualizado exitosamente.");
+		                                Controlador_persona sistema = new Controlador_persona();
+		                                sistema.vista_agenda(usuario);
+		                                ventana.dispose();
+		                            } else {
+		                                JOptionPane.showMessageDialog(null, "Error al actualizar el evento.");
+		                            }
+		                        } catch (ClassNotFoundException | SQLException ex) {
+		                            ex.printStackTrace();
+		                            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
+		                        }
+                        
                         }
 
                         // Restaurar el botón "EDITAR" a su estado original
                         btn_editar.setText("EDITAR");
                         btn_editar.setBackground(Color.decode("#686D6F"));
                         btn_eliminar.setEnabled(true); // Reactivar el botón de eliminar
-                    }
+                	}
+                    
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Selecciona un evento de la tabla para editarlo.");
                 }

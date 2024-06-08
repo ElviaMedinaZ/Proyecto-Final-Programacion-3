@@ -203,7 +203,7 @@ public class Vista_dispositivos {
 		JButton btn_asistente = utilidades.crearBotones("Asistente", "imagenes/img_necesidades/dispositivos/asistente.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_asistente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 	
 			}
 		});
@@ -230,7 +230,7 @@ public class Vista_dispositivos {
 		JButton btn_tv=   utilidades.crearBotones("Televisión", "imagenes/img_necesidades/dispositivos/tv.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_tv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				utilidades.playSound("sonidos/btn_generico.wav");
 		
 			}
 		});
