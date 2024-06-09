@@ -38,7 +38,7 @@ public class Vista_geografia {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/logo App.png"));
         ventana.setIconImage(icon.getImage());
 	}
 	
@@ -76,10 +76,10 @@ public class Vista_geografia {
 		
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "/imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona(usuario);
 				ventana.dispose();
@@ -87,10 +87,10 @@ public class Vista_geografia {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "/imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();				
@@ -98,10 +98,10 @@ public class Vista_geografia {
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "/imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
@@ -109,11 +109,11 @@ public class Vista_geografia {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "/imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
@@ -121,10 +121,10 @@ public class Vista_geografia {
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "/imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -203,56 +203,56 @@ public class Vista_geografia {
 		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
 		int fontSize = 19;
 		                         //usando el utilidades le pasamos los parametros texto y todo
-		JButton btn_paises= utilidades.crearBotones("Canción de los paises", "imagenes/img_aprendizaje/geografia/icono paises.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_paises= utilidades.crearBotones("Canción de los paises", "/imagenes/img_aprendizaje/geografia/icono paises.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_paises.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://youtu.be/FEw-0KmzhZ4?si=ciRIayE-JLldMY6a");
 			}
 		});
 		btn_paises.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Continentes =   utilidades.crearBotones("Continentes", "imagenes/img_aprendizaje/geografia/icono continentes.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Continentes =   utilidades.crearBotones("Continentes", "/imagenes/img_aprendizaje/geografia/icono continentes.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Continentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.openWebPage("https://youtu.be/8kUWWEhLZQg?si=-BPK0deFUpoQZ79t");
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 			}
 		});
 		btn_Continentes.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_placas = utilidades.crearBotones("Placas tectónicas", "imagenes/img_aprendizaje/geografia/icono placas.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_placas = utilidades.crearBotones("Placas tectónicas", "/imagenes/img_aprendizaje/geografia/icono placas.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_placas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://www.significados.com/placas-tectonicas/");
 			}
 		});
 		btn_placas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_terrestres=   utilidades.crearBotones("Capas terrestres", "imagenes/img_aprendizaje/geografia/icono capas terrestres.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_terrestres=   utilidades.crearBotones("Capas terrestres", "/imagenes/img_aprendizaje/geografia/icono capas terrestres.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_terrestres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://humanidades.com/capas-de-la-tierra/");
 			}
 		});
 		btn_terrestres.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Invernadero = utilidades.crearBotones("Efecto Invernadero", "imagenes/img_aprendizaje/geografia/efecto invernadero.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Invernadero = utilidades.crearBotones("Efecto Invernadero", "/imagenes/img_aprendizaje/geografia/efecto invernadero.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Invernadero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://humanidades.com/efecto-invernadero/");
 			}
 		});
 		btn_Invernadero.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/geografia/icono cuestionario geo.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "/imagenes/img_aprendizaje/geografia/icono cuestionario geo.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://wordwall.net/play/63666/553/408");
 			}
 		});

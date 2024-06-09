@@ -38,7 +38,7 @@ public class Vista_espanol {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/logo App.png"));
         ventana.setIconImage(icon.getImage());
 	}
 	
@@ -74,10 +74,10 @@ public class Vista_espanol {
 		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "/imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona(usuario);
 				ventana.dispose();
@@ -85,10 +85,10 @@ public class Vista_espanol {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "/imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();				
@@ -96,10 +96,10 @@ public class Vista_espanol {
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "/imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
@@ -107,11 +107,11 @@ public class Vista_espanol {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "/imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
@@ -119,10 +119,10 @@ public class Vista_espanol {
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnCerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "/imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -201,59 +201,59 @@ public class Vista_espanol {
 		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
 		int fontSize = 19;
 		                         //usando el utilidades le pasamos los parametros texto y todo
-		JButton btn_fabula = utilidades.crearBotones("Fabula", "imagenes/img_aprendizaje/espanol/icono fabula.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_fabula = utilidades.crearBotones("Fabula", "/imagenes/img_aprendizaje/espanol/icono fabula.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_fabula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://www.youtube.com/watch?v=RxhqtuOo2pw");
 			}
 		});
 		btn_fabula.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Cuento =   utilidades.crearBotones("Cuento", "imagenes/img_aprendizaje/espanol/icono cuento.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Cuento =   utilidades.crearBotones("Cuento", "/imagenes/img_aprendizaje/espanol/icono cuento.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Cuento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://youtu.be/50LpU-ZgxMg?si=JYzKY33O11J1G6X");
 			}
 		});
 		btn_Cuento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Noticia = utilidades.crearBotones("Noticia", "imagenes/img_aprendizaje/espanol/icono noticia.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Noticia = utilidades.crearBotones("Noticia", "/imagenes/img_aprendizaje/espanol/icono noticia.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Noticia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://humanidades.com/noticia/");
 			}
 		});
 		btn_Noticia.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Leyenda=   utilidades.crearBotones("Leyenda", "imagenes/img_aprendizaje/espanol/icono leyenda.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Leyenda=   utilidades.crearBotones("Leyenda", "/imagenes/img_aprendizaje/espanol/icono leyenda.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Leyenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://humanidades.com/leyenda/");
 			}
 		});
 		btn_Leyenda.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Novela = utilidades.crearBotones("Novela", "imagenes/img_aprendizaje/espanol/icono novela.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Novela = utilidades.crearBotones("Novela", "/imagenes/img_aprendizaje/espanol/icono novela.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Novela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://www.youtube.com/watch?v=EyQBDISVCDo");
 
 			}
 		});
 		btn_Novela.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/espanol/icono cuestionario espanol.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "/imagenes/img_aprendizaje/espanol/icono cuestionario espanol.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://wordwall.net/play/73314/383/282");
 			}
 		});

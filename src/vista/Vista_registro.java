@@ -12,8 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -56,7 +56,7 @@ public class Vista_registro {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/logo App.png"));
         ventana.setIconImage(icon.getImage());
 
     }
@@ -433,7 +433,7 @@ public class Vista_registro {
 		Component horizontal_este = Box.createHorizontalStrut(20);
 		panel_centro.add(horizontal_este, BorderLayout.EAST);
 		
-		JPanel panel_imagen =new ImganenFondo("imagenes/imagenes_acceso/fondo_registro.png");
+		JPanel panel_imagen =new ImganenFondo("/imagenes/imagenes_acceso/fondo_registro.png");
 		panel_centro.add(panel_imagen, BorderLayout.CENTER);
 		
 		ventana.getContentPane().add(panel_acceso);
@@ -442,32 +442,32 @@ public class Vista_registro {
 		ventana.revalidate(); 
 		
 	}
-	
 	@SuppressWarnings("serial")
-	public class ImganenFondo extends JPanel {
+	public class ImganenFondo extends JPanel {//mostramos la imagen al fondo del jpanel
 
-		private BufferedImage imagen;
+		
+		private BufferedImage image;
 
-		    public  ImganenFondo(String imagePath) {//constructor que carga la imagen
-		        try {
-		            imagen = ImageIO.read(new File(imagePath));
-		        } catch (IOException ex) {
-		            ex.printStackTrace();
-		        }
-		    }
+			public ImganenFondo(String imagePath) { // constructor que carga la imagen
+            try (InputStream is = getClass().getResourceAsStream(imagePath)) {
+                image = ImageIO.read(is);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+			}
 
 		    @Override
 		    protected void paintComponent(Graphics g) {
 		        super.paintComponent(g);
-		        if (imagen != null) {
-		            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+		        if (image != null) {
+		            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 		        }
 		    }
 
 		    @Override
 		    public Dimension getPreferredSize() {
-		        if (imagen != null) {
-		            return new Dimension(imagen.getWidth(), imagen.getHeight());
+		        if (image != null) {
+		            return new Dimension(image.getWidth(), image.getHeight());
 		        }
 		        return super.getPreferredSize();
 		    }

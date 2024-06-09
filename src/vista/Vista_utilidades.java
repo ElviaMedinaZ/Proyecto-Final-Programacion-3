@@ -115,7 +115,7 @@ public class Vista_utilidades {
         btn.setLayout(new BorderLayout());
 
         // Cargar la imagen y redimensionarla al tamaño deseado
-        ImageIcon originalIcon = new ImageIcon(imagen);
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource(imagen));
         Image originalImage = originalIcon.getImage();
 
         // Ajustar la imagen a ambas dimensiones del botón
@@ -181,7 +181,7 @@ public class Vista_utilidades {
 		btn.setBackground(Color.decode("#90C3D3"));
 
 
-	    ImageIcon originalIcon = new ImageIcon(imagen);
+	    ImageIcon originalIcon = new ImageIcon(getClass().getResource(imagen));
 	    Image originalImage = originalIcon.getImage();
 
 	    // Calcular el factor de escala para ajustar la imagen al tamaño máximo sin estirarla
@@ -240,7 +240,7 @@ public class Vista_utilidades {
             }
 
             // Configuracion del nuevo sonido
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundFile).getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(soundFile));
             sonido_actual = AudioSystem.getClip();
             sonido_actual.open(audioInputStream);
             sonido_actual.start();

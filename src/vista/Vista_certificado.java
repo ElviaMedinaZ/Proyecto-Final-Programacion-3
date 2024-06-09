@@ -51,7 +51,7 @@ public class Vista_certificado {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/logo App.png"));
         ventana.setIconImage(icon.getImage());
 	}
 	
@@ -88,10 +88,10 @@ public class Vista_certificado {
 		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "/imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona(usuario);
 				ventana.dispose();
@@ -99,10 +99,10 @@ public class Vista_certificado {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnEntretenimento = utilidades.crearBotonesLaterales("Entretenimiento", "/imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();				
@@ -110,10 +110,10 @@ public class Vista_certificado {
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		 
-		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnAprendizaje =utilidades.crearBotonesLaterales("Aprendizaje", "/imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
@@ -121,11 +121,11 @@ public class Vista_certificado {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar =utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnRegresar =utilidades.crearBotonesLaterales("Regresar", "/imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona(usuario);
 				ventana.dispose();
@@ -133,10 +133,10 @@ public class Vista_certificado {
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "/imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -305,7 +305,7 @@ public class Vista_certificado {
 		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
 		
 		JLabel ibl_img = new JLabel();
-		ibl_img.setIcon(new ImageIcon("imagenes/imagenes_acceso/subir_archivo.png"));
+		ibl_img.setIcon(new ImageIcon("src/imagenes/imagenes_acceso/subir_archivo.png"));
 		
         JButton btn_crear = new JButton("Seleccionar un archivo");
         btn_crear.addActionListener(new ActionListener() {

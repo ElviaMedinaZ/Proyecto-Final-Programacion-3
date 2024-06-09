@@ -14,8 +14,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -52,7 +52,8 @@ public class Vista_acceso {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+     // Cargar el icono desde los recursos
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/logo App.png"));
         ventana.setIconImage(icon.getImage());
 
 
@@ -142,10 +143,11 @@ public class Vista_acceso {
         lblContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));//tipo y tamaño de letra
         
 		JLabel lbl_icono_perfil = new JLabel("");
-		lbl_icono_perfil.setIcon(new ImageIcon("imagenes/imagenes_acceso/img_perfil.png"));
+		 lbl_icono_perfil.setIcon(new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/img_perfil.png")));
+
 		
 		JLabel lbl_icono_contraseña = new JLabel("");
-		lbl_icono_contraseña.setIcon(new ImageIcon("imagenes/imagenes_acceso/img_contraseña.png"));
+		  lbl_icono_contraseña.setIcon(new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/img_contraseña.png")));
 		
 
 		ventana.addComponentListener(new ComponentAdapter() {
@@ -219,7 +221,7 @@ public class Vista_acceso {
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		panel_1.add(horizontalStrut, BorderLayout.EAST);
 		
-		JPanel panel_3 =new ImganenFondo("imagenes/imagenes_acceso/fondo_acceso.png");
+        JPanel panel_3 = new ImganenFondo("/imagenes/imagenes_acceso/fondo_acceso.png");
 		panel_1.add(panel_3, BorderLayout.CENTER);
 		
 		ventana.getContentPane().add(panel_acceso);
@@ -235,13 +237,13 @@ public class Vista_acceso {
 		
 		private BufferedImage image;
 
-		    public  ImganenFondo(String imagePath) {//constructor que carga la imagen
-		        try {
-		            image = ImageIO.read(new File(imagePath));
-		        } catch (IOException ex) {
-		            ex.printStackTrace();
-		        }
-		    }
+			public ImganenFondo(String imagePath) { // constructor que carga la imagen
+            try (InputStream is = getClass().getResourceAsStream(imagePath)) {
+                image = ImageIO.read(is);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+			}
 
 		    @Override
 		    protected void paintComponent(Graphics g) {

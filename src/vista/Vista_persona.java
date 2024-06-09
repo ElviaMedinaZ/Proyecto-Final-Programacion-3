@@ -41,7 +41,7 @@ public class Vista_persona {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/logo App.png"));
         ventana.setIconImage(icon.getImage());
 	}
 	
@@ -77,7 +77,7 @@ public class Vista_persona {
 		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnPersonal = utilidades.crearBotonesLaterales("Personal", "/imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
@@ -86,10 +86,10 @@ public class Vista_persona {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);;
+		JButton btnEntretenimento =  utilidades.crearBotonesLaterales("Entretenimiento", "/imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);;
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();
@@ -98,10 +98,10 @@ public class Vista_persona {
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btn_aprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btn_aprendizaje =  utilidades.crearBotonesLaterales("Aprendizaje", "/imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btn_aprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
@@ -109,12 +109,12 @@ public class Vista_persona {
 		});
 		btn_aprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btn_regresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btn_regresar = utilidades.crearBotonesLaterales("Regresar", "/imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btn_regresar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_inicio  sistema = new Controlador_inicio();
 				sistema.vista_inicio(usuario);
 				ventana.dispose();
@@ -123,10 +123,10 @@ public class Vista_persona {
 		});
 		btn_regresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btn_cerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btn_cerrar_sesion =  utilidades.crearBotonesLaterales("Cerrar sesíon", "/imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btn_cerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -205,60 +205,60 @@ public class Vista_persona {
 		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
 		int fontSize = 19;
 		                         //usando el utilidades le pasamos los parametros texto y todo
-		JButton btn_necesidades = utilidades.crearBotones("Necesidades", "imagenes/img_necesidades/necesidades/icono necesidades.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_necesidades = utilidades.crearBotones("Necesidades", "/imagenes/img_necesidades/necesidades/icono necesidades.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_necesidades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				sistema.vista_necesidades(usuario);
 				ventana.dispose();
 			}
 		});
 		btn_necesidades.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_agenda =   utilidades.crearBotones("Agenda", "imagenes/img_necesidades/icono agenda.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_agenda =   utilidades.crearBotones("Agenda", "/imagenes/img_necesidades/icono agenda.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_agenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				sistema.vista_agenda(usuario);
 				ventana.dispose();
 			}
 		});
 		btn_agenda.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_certificado=   utilidades.crearBotones("Certificado", "imagenes/img_necesidades/icono certificado.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_certificado=   utilidades.crearBotones("Certificado", "/imagenes/img_necesidades/icono certificado.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_certificado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				sistema.vista_certificado(usuario);
 				ventana.dispose();
 			}
 		});
 		btn_certificado.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_contactos=   utilidades.crearBotones("Contactos", "imagenes/img_necesidades/icono contacto.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_contactos=   utilidades.crearBotones("Contactos", "/imagenes/img_necesidades/icono contacto.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_contactos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				sistema.vista_contactos(usuario);
 				ventana.dispose();
 			}
 		});
 		btn_contactos.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_editar =   utilidades.crearBotones("Editar perfil", "imagenes/img_necesidades/editar.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_editar =   utilidades.crearBotones("Editar perfil", "/imagenes/img_necesidades/editar.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				sistema.vista_editar(usuario);
 				ventana.dispose();
 			}
 		});
 		btn_editar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_dispositivos =  utilidades.crearBotones("Dispositivos", "imagenes/img_necesidades/dispositivos/icono dispositivos.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_dispositivos =  utilidades.crearBotones("Dispositivos", "/imagenes/img_necesidades/dispositivos/icono dispositivos.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_dispositivos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				sistema.vista_dispositivos(usuario);
 				ventana.dispose();
 			}

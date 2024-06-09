@@ -12,8 +12,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -43,7 +44,7 @@ public class Vista_cambio_contrasena {
 		ventana.setVisible(false);
 		ventana.setTitle("Headway Assist");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+		 ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/logo App.png"));
         ventana.setIconImage(icon.getImage());
 	}
 	
@@ -204,13 +205,13 @@ public class Vista_cambio_contrasena {
 
         
 		JLabel lbl_icono_perfil = new JLabel("");
-		lbl_icono_perfil.setIcon(new ImageIcon("imagenes/imagenes_acceso/img_perfil.png"));
+		lbl_icono_perfil.setIcon(new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/img_perfil.png")));
 		
 		JLabel lbl_icono_contrasena = new JLabel("");
-		lbl_icono_contrasena.setIcon(new ImageIcon("imagenes/imagenes_acceso/img_contraseña.png"));
+		lbl_icono_contrasena.setIcon(new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/img_contraseña.png")));
 		
 		JLabel lbl_icono_combiar_contrasena = new JLabel("");
-		lbl_icono_combiar_contrasena.setIcon(new ImageIcon("imagenes/imagenes_acceso/img_contraseña.png"));
+		lbl_icono_combiar_contrasena.setIcon(new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/img_contraseña.png")));
 		
 
 		
@@ -287,7 +288,7 @@ public class Vista_cambio_contrasena {
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		panel_1.add(horizontalStrut, BorderLayout.EAST);
 		
-		JPanel panel_3 =new ImganenFondo("imagenes/imagenes_acceso/fondo_cambiar_contraseña.png");
+		JPanel panel_3 =new ImganenFondo("/imagenes/imagenes_acceso/fondo_cambiar_contraseña.png");
 		panel_1.add(panel_3, BorderLayout.CENTER);
 		
 		ventana.getContentPane().add(panel_acceso);
@@ -298,18 +299,18 @@ public class Vista_cambio_contrasena {
 	}
 	
 	@SuppressWarnings("serial")
-	public class ImganenFondo extends JPanel {
+	public class ImganenFondo extends JPanel {//mostramos la imagen al fondo del jpanel
 
 		
 		private BufferedImage image;
 
-		    public  ImganenFondo(String imagePath) {//constructor que carga la imagen
-		        try {
-		            image = ImageIO.read(new File(imagePath));
-		        } catch (IOException ex) {
-		            ex.printStackTrace();
-		        }
-		    }
+			public ImganenFondo(String imagePath) { // constructor que carga la imagen
+            try (InputStream is = getClass().getResourceAsStream(imagePath)) {
+                image = ImageIO.read(is);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+			}
 
 		    @Override
 		    protected void paintComponent(Graphics g) {

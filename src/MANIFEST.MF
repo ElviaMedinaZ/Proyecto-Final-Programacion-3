@@ -1,0 +1,2 @@
+Icon-Path: src/imagenes/imagenes_acceso/logo App.png
+Icon-Size: 363x344

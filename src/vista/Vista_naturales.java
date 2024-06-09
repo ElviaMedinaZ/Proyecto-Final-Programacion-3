@@ -38,7 +38,7 @@ public class Vista_naturales {
         ventana.setVisible(false);
         ventana.setTitle("Headway Assist");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("imagenes/imagenes_acceso/logo App.png");
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/logo App.png"));
         ventana.setIconImage(icon.getImage());
 	}
 	
@@ -76,10 +76,10 @@ public class Vista_naturales {
 		int fontSize = 19;
 		
 		// Crear botones con tamaño preferido
-		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnPersonal =utilidades.crearBotonesLaterales("Personal", "/imagenes/img_principal/btn_persona.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_persona persona = new Controlador_persona();
 				persona.vista_persona(usuario);
 				ventana.dispose();
@@ -88,10 +88,10 @@ public class Vista_naturales {
 		});
 		btnPersonal.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnEntretenimento =utilidades.crearBotonesLaterales("Entretenimiento", "imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnEntretenimento =utilidades.crearBotonesLaterales("Entretenimiento", "/imagenes/img_principal/btn_entretenimento.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnEntretenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_entretenimiento sistema = new Controlador_entretenimiento();
 				sistema.vista_entretenimiento(usuario);
 				ventana.dispose();				
@@ -99,10 +99,10 @@ public class Vista_naturales {
 		});
 		btnEntretenimento.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnAprendizaje = utilidades.crearBotonesLaterales("Aprendizaje", "imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnAprendizaje = utilidades.crearBotonesLaterales("Aprendizaje", "/imagenes/img_principal/btn_aprendizaje.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnAprendizaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
@@ -110,12 +110,12 @@ public class Vista_naturales {
 		});
 		btnAprendizaje.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnRegresar = utilidades.crearBotonesLaterales("Regresar", "/imagenes/img_principal/flecha_regresar.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnRegresar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_aprendizaje sistema = new Controlador_aprendizaje();
 				sistema.vista_aprendizaje(usuario);
 				ventana.dispose();
@@ -123,10 +123,10 @@ public class Vista_naturales {
 		});
 		btnRegresar.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del boton
 		
-		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
+		JButton btnCerrar_sesion = utilidades.crearBotonesLaterales("Cerrar sesíon", "/imagenes/img_principal/btn_salir.png", iconWidth, tamHei, fontSize, iconWidth);
 		btnCerrar_sesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				Controlador_acceso sistema = new Controlador_acceso();
 				sistema.vista_acceso();
 				ventana.dispose();
@@ -206,56 +206,56 @@ public class Vista_naturales {
 		int iconWidth = (int) (tamHei * 0.6); // Aumentar un 60% el ancho del icono
 		int fontSize = 19;
 		                         //usando el utilidades le pasamos los parametros texto y todo
-		JButton btn_Evolucion = utilidades.crearBotones("Evolucion", "imagenes/img_aprendizaje/naturales/evolucion.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Evolucion = utilidades.crearBotones("Evolucion", "/imagenes/img_aprendizaje/naturales/evolucion.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Evolucion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://youtu.be/FYMo8ajD9Ow?si=SH12wK3VUbU7t3Ho");
 			}
 		});
 		btn_Evolucion.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Genetica =   utilidades.crearBotones("Genética", "imagenes/img_aprendizaje/naturales/genetica.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Genetica =   utilidades.crearBotones("Genética", "/imagenes/img_aprendizaje/naturales/genetica.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Genetica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://youtu.be/LXXK2l1pdv8?si=b8EsBuwchJlU_OlR");
 			}
 		});
 		btn_Genetica.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Biomas = utilidades.crearBotones("Biomas", "imagenes/img_aprendizaje/naturales/icono biomas.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Biomas = utilidades.crearBotones("Biomas", "/imagenes/img_aprendizaje/naturales/icono biomas.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Biomas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://humanidades.com/biomas/");
 			}
 		});
 		btn_Biomas.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Fotosintesis=   utilidades.crearBotones("Fotosíntesis", "imagenes/img_aprendizaje/naturales/fotosintesis.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Fotosintesis=   utilidades.crearBotones("Fotosíntesis", "/imagenes/img_aprendizaje/naturales/fotosintesis.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Fotosintesis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://concepto.de/fotosintesis/");
 			}
 		});
 		btn_Fotosintesis.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Humano = utilidades.crearBotones("Humano", "imagenes/img_aprendizaje/naturales/cuerpo humano.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Humano = utilidades.crearBotones("Humano", "/imagenes/img_aprendizaje/naturales/cuerpo humano.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Humano.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https: //es.khanacademy.org/science/biology/principles-of-physiology/body-structure-and-homeostasis/a/tissues-organs-organ-systems");
 
 			}
 		});
 		btn_Humano.setPreferredSize(new Dimension(tamWid, tamHei)); // Ajustar tamaño del botón
 		
-		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "imagenes/img_aprendizaje/naturales/icono cuestionario naturales.png", tamWid, tamHei,fontSize,iconWidth);
+		JButton btn_Cuestionario =  utilidades.crearBotones("Cuestionario", "/imagenes/img_aprendizaje/naturales/icono cuestionario naturales.png", tamWid, tamHei,fontSize,iconWidth);
 		btn_Cuestionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				utilidades.playSound("sonidos/btn_generico.wav");
+				utilidades.playSound("/sonidos/btn_generico.wav");
 				utilidades.openWebPage("https://wordwall.net/play/73317/384/677");
 			}
 		});
