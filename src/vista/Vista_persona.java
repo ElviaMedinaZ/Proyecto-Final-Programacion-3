@@ -276,7 +276,7 @@ public class Vista_persona {
 		
         panel_1.setOpaque(false);
         panel_2.setOpaque(false);
-        panel_3.setBackground(Color.pink);
+        panel_3.setOpaque(false);
         panel_4.setOpaque(false);
         panel_5.setOpaque(false);
         panel_6.setOpaque(false);
