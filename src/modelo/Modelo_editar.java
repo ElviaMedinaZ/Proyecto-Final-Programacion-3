@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Modelo_editar {
@@ -57,6 +58,10 @@ public class Modelo_editar {
         try {
             String query = "UPDATE usuarios SET nombre = ?, apellidos = ?, fecha_nacimiento = ?, sexo = ?, discapacidad = ?, correo = ? WHERE usuario = ?";
             PreparedStatement ps = con.prepareStatement(query);
+            // Formato de fecha
+            SimpleDateFormat formatoDatos = new SimpleDateFormat("dd-MM-yyyy");
+            // Imprimir fecha antes de la actualización
+            System.out.println("Fecha de Nacimiento Antes de Actualizar: " + formatoDatos.format(fechaNacimiento));
             ps.setString(1, nombre);
             ps.setString(2, apellidos);
             ps.setDate(3, new java.sql.Date(fechaNacimiento.getTime()));

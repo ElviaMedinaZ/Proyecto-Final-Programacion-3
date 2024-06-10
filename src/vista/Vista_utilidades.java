@@ -14,7 +14,6 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -25,11 +24,13 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -146,8 +147,18 @@ public class Vista_utilidades {
     }
     
 	public JButton crearBotones(String text,String imagen,int width,int heigth,int fontSize, int iconWidth) {
-		 @SuppressWarnings("serial")
+		
+		// Set default UI settings to avoid platform-specific styles
+		UIManager.put("Button.font", new Font("Arial", Font.BOLD, fontSize));
+		UIManager.put("Button.foreground", Color.WHITE);
+		UIManager.put("Button.background", Color.decode("#90C3D3"));
+		UIManager.put("Button.border", BorderFactory.createLineBorder(Color.BLACK));
+		 
+		 
+		@SuppressWarnings("serial")
 		JButton btn = new JButton() {
+			 
+			 
 	            @Override
 	            protected void paintComponent(Graphics g) {
 	                super.paintComponent(g);
@@ -179,8 +190,10 @@ public class Vista_utilidades {
 	        };
 		
 		
-		btn.setForeground(Color.decode("#FFFFFF"));
-		btn.setBackground(Color.decode("#90C3D3"));
+	    btn.setForeground(Color.WHITE);
+	    btn.setBackground(Color.decode("#90C3D3"));
+	    btn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	    btn.setFont(new Font("Arial", Font.BOLD, fontSize));
 
 
 	    ImageIcon originalIcon = new ImageIcon(getClass().getResource(imagen));

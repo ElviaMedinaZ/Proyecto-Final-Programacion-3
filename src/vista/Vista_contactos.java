@@ -17,8 +17,6 @@ import java.awt.event.ComponentEvent;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.regex.Pattern;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,12 +27,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.BadLocationException;
-
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
 import controlador.Controlador_entretenimiento;
@@ -177,7 +171,7 @@ public class Vista_contactos {
 		panel_central(usuario);
 	}
 	
-	@SuppressWarnings({ "static-access", "serial" })
+	@SuppressWarnings({ "static-access" })
 	public void panel_central(String usuario) {
 		
 		JPanel panel_contacto = new JPanel();

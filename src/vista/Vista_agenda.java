@@ -15,7 +15,6 @@ import java.awt.event.ComponentEvent;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -199,9 +198,28 @@ public class Vista_agenda {
 
 		
 		
-		JLabel lbl_numero = new JLabel("Fecha");
-		lbl_numero.setFont(new Font("Tahoma", Font.BOLD, 20));
+		JLabel lbl_fehca = new JLabel("Fecha");
+		lbl_fehca.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
+		
+		
+		JDateChooser calendario = new JDateChooser();
+	    SimpleDateFormat formato_datos = new SimpleDateFormat("dd-MM-yyyy");
+	    calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+	    calendario.setDateFormatString(formato_datos.toPattern());
+	    calendario.setDateFormatString("dd-MM-yyyy");
+
+	    calendario.addPropertyChangeListener("date", evt -> {
+	        if (evt.getNewValue() instanceof Date) {
+	                Date fechaSeleccionada = (Date) evt.getNewValue();
+	                System.out.println("Fecha seleccionada: " + formato_datos.format(fechaSeleccionada));
+	        }
+	    });
+
+        // Obtener el campo de texto interno del JDateChooser
+        JFormattedTextField text_calendario = (JFormattedTextField) ((JTextField) calendario.getDateEditor().getUiComponent());
+        text_calendario.setEditable(false);// evitar poder manipularlo 
+   
 		
 		
         JLabel lbl_relacion = new JLabel("Hora");
@@ -236,28 +254,15 @@ public class Vista_agenda {
         JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
         timeSpinner.setEditor(timeEditor);
 		
-		JDateChooser calendario = new JDateChooser();
-		SimpleDateFormat formato_datos = new SimpleDateFormat("dd-MM-YYYY"); 
-		calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
-		calendario.setDateFormatString(formato_datos.toPattern());
-        JFormattedTextField formattedTextField = ((JFormattedTextField) calendario.getDateEditor().getUiComponent());
-        calendario.setDateFormatString(formato_datos.toPattern());
         
-        
-
-        // Obtener el campo de texto interno del JDateChooser
-        JFormattedTextField text_calendario = (JFormattedTextField) ((JTextField) calendario.getDateEditor().getUiComponent());
-        text_calendario.setEditable(false);// evitar poder manipularlo 
-        formattedTextField.setText("DD / MM / YYYY");
-        
-        List<Object[]> contactos;
+        List<Object[]> agenda;
         Object[][] datos = null;
         try {
-			contactos = sistema.obtenerAgenda(usuario);
+        	agenda = sistema.obtenerAgenda(usuario);
 	        // Convertir la lista a un arreglo de Object[][]
-			datos = new Object[contactos.size()][4];
-	        for (int i = 0; i < contactos.size(); i++) {
-	            datos[i] = contactos.get(i);
+			datos = new Object[agenda.size()][4];
+	        for (int i = 0; i < agenda.size(); i++) {
+	            datos[i] = agenda.get(i);
 	        }
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -565,7 +570,7 @@ public class Vista_agenda {
 				lbl_evento.setBounds(x/3, y-170 , tamBtn_ancho+20, 40);
 				text_evento.setBounds(x/3, y-130, tamBtn_ancho, 30);
 				
-				lbl_numero.setBounds(x-20, y-170 , tamBtn_ancho+100, 40);
+				lbl_fehca.setBounds(x-20, y-170 , tamBtn_ancho+100, 40);
 				calendario.setBounds(x-20, y-130, tamBtn_ancho, 30);
 				
 				lbl_relacion.setBounds(x+200, y-170 , tamBtn_ancho , 40);
@@ -587,7 +592,7 @@ public class Vista_agenda {
 		});
 		
 		panel_agenda.add(lbl_relacion);
-		panel_agenda.add(lbl_numero);
+		panel_agenda.add(lbl_fehca);
 		panel_agenda.add(btn_crear);
 		panel_agenda.add(btn_eliminar);
 		panel_agenda.add(btn_editar);
@@ -630,10 +635,6 @@ public class Vista_agenda {
 
 	public boolean validarFechaHora(Date fecha, Time hora) {
 	    Date actual = new Date();
-	    if (fecha.after(actual)) {
-	        JOptionPane.showMessageDialog(null, "La fecha no puede ser posterior a la actual");
-	        return false;
-	    }
 	    if (fecha.equals(actual) && hora.after(actual)) {
 	        JOptionPane.showMessageDialog(null, "La hora no puede ser posterior a la hora actual");
 	        return false;
@@ -642,7 +643,7 @@ public class Vista_agenda {
 	}
 
 	
-
+	
 	public boolean validarFechaHora(Date fecha, Date hora) {
 	    Date actual = new Date();
 	    if (fecha.after(actual)) {
@@ -655,4 +656,5 @@ public class Vista_agenda {
 	    }
 	    return true;
 	}
+	
 }

@@ -202,17 +202,22 @@ public class Vista_editar {
 		lbl_fecha.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JDateChooser calendario = new JDateChooser();
-		SimpleDateFormat formato_datos = new SimpleDateFormat("dd-MM-YYYY"); // Ejemplo de formato
-		calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
-		calendario.setDateFormatString(formato_datos.toPattern());
-        JFormattedTextField formattedTextField = ((JFormattedTextField) calendario.getDateEditor().getUiComponent());
-        calendario.setDateFormatString(formato_datos.toPattern());
+	    SimpleDateFormat formato_datos = new SimpleDateFormat("dd-MM-yyyy");
+	    calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
+	    calendario.setDateFormatString(formato_datos.toPattern());
+	    calendario.setDateFormatString("dd-MM-yyyy");
 
+	    calendario.addPropertyChangeListener("date", evt -> {
+	        if (evt.getNewValue() instanceof Date) {
+	                Date fechaSeleccionada = (Date) evt.getNewValue();
+	                System.out.println("Fecha seleccionada: " + formato_datos.format(fechaSeleccionada));
+	        }
+	    });
+	    
         // Obtener el campo de texto interno del JDateChooser
         JFormattedTextField text_calendario = (JFormattedTextField) ((JTextField) calendario.getDateEditor().getUiComponent());
         text_calendario.setEditable(false);// evitar poder manipularlo 
-        formattedTextField.setText("DD / MM / YYYY");
-		
+	        
 		JLabel lbl_sexo = new JLabel("Sexo");
 		lbl_sexo.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
@@ -289,6 +294,8 @@ public class Vista_editar {
         btn_cancelar.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
         JButton btn_guardar = new JButton("GUARDAR");
+        
+        
         
         btn_guardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
