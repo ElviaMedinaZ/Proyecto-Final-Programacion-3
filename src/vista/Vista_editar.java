@@ -43,6 +43,7 @@ public class Vista_editar {
 	public JPanel Panel_Principal;
 	private Vista_utilidades utilidades;
 	private  Modelo_editar modelo ;
+	
 	public Vista_editar() {
 		// TODO Auto-generated constructor stub
 		modelo = new Modelo_editar();
@@ -261,21 +262,27 @@ public class Vista_editar {
 	                btnRad_femenino.setSelected(true);
 	            }
 	        }
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (ClassNotFoundException | SQLException e1) {
+		    e1.printStackTrace();
 		}
-
+		
+        
         JButton btn_cancelar = new JButton("CANCELAR");
         btn_cancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-            	Controlador_acceso sistema = new Controlador_acceso();
-            	sistema.vista_acceso();
+            	Controlador_persona sistema = new Controlador_persona();
+            	sistema.vista_persona(usuario);
             	ventana.dispose();
 
             }
         });
+        
+        
+        btn_cancelar.setFocusable(false);
+        btn_cancelar.setBackground(Color.decode("#686D6F"));
+        btn_cancelar.setForeground(Color.decode("#FFFFFF"));
+        btn_cancelar.setFont(new Font("Tahoma", Font.BOLD, 18));
         btn_cancelar.setFocusable(false);
         btn_cancelar.setBackground(Color.decode("#686D6F"));
         btn_cancelar.setForeground(Color.decode("#FFFFFF"));
@@ -332,10 +339,16 @@ public class Vista_editar {
                 	text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
                   
                     
-                    // Obtiene la fecha de nacimiento que se selecciono
+                	// Obtiene la fecha de nacimiento que se selecciono
                     Date fecha_nacimiento = calendario.getDate();
                     Calendar fecha_min = Calendar.getInstance();
                     Calendar fecha_max = Calendar.getInstance();
+      
+                 // Verificar si la fecha de nacimiento es nula
+                 if (fecha_nacimiento == null) {
+                     JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha de nacimiento", "Error", JOptionPane.ERROR_MESSAGE);
+                     return; 
+                 }
                     
                     if (fecha_nacimiento != null) {
                        
@@ -343,7 +356,7 @@ public class Vista_editar {
                         fecha_max.add(Calendar.YEAR, -90);
 
                         if (fecha_nacimiento.after(fecha_min.getTime())) {
-                            JOptionPane.showMessageDialog(null, "Rango de edad no permitido,(menor a 7 años)", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Debe tener al menos 7 años para registrarse", "Error", JOptionPane.ERROR_MESSAGE);
                             calendario.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
                             return;
                         } else if (fecha_nacimiento.before(fecha_max.getTime())) {
