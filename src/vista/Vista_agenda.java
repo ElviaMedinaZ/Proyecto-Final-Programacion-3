@@ -31,6 +31,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
@@ -192,7 +194,7 @@ public class Vista_agenda {
 		JLabel lbl_evento = new JLabel("Evento");
 		lbl_evento.setFont(new Font("Tahoma", Font.BOLD, 20));
 		JTextField text_evento = new JTextField();
-		utilidades.limitar_textfield(text_evento, 30); // NOTA: revicion completada
+		utilidades.limitar_textfield(text_evento, 30); 
 		text_evento.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 
 		
@@ -207,19 +209,41 @@ public class Vista_agenda {
 		
         // Crear un Spinner para la hora
         SpinnerDateModel spinnerModel = new SpinnerDateModel();
+        
         JSpinner timeSpinner = new JSpinner(spinnerModel);
-        JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
+       
 
+     // Agregar un ChangeListener al modelo del Spinner
+        spinnerModel.addChangeListener(new ChangeListener() {
+        	@Override
+            public void stateChanged(ChangeEvent e) {
+                // Obtener el valor actual del SpinnerDateModel
+                Date currentValue = spinnerModel.getDate();
+
+                // Obtener el valor anterior del JSpinner
+                Date previousValue = (Date) timeSpinner.getValue();
+
+                // Verificar si el cambio fue realizado  con las flechas
+                if (!currentValue.equals(previousValue)) {
+                    // Si el cambio no fue realizado con las flechas, restaura el valor anterior
+                    timeSpinner.setValue(previousValue);
+                }
+            }
+        });
+
+
+     // Establecer el editor de fecha del JSpinner
+        JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
         timeSpinner.setEditor(timeEditor);
-        timeSpinner.setValue(Calendar.getInstance().getTime());
-        timeSpinner.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		
 		JDateChooser calendario = new JDateChooser();
-		SimpleDateFormat formato_datos = new SimpleDateFormat("dd-MM-YYYY"); // Ejemplo de formato
+		SimpleDateFormat formato_datos = new SimpleDateFormat("dd-MM-YYYY"); 
 		calendario.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 		calendario.setDateFormatString(formato_datos.toPattern());
         JFormattedTextField formattedTextField = ((JFormattedTextField) calendario.getDateEditor().getUiComponent());
         calendario.setDateFormatString(formato_datos.toPattern());
+        
+        
 
         // Obtener el campo de texto interno del JDateChooser
         JFormattedTextField text_calendario = (JFormattedTextField) ((JTextField) calendario.getDateEditor().getUiComponent());
@@ -265,6 +289,8 @@ public class Vista_agenda {
         // Verificar si se encontró la columna de fecha
         if (indiceDeLaColumnaDeFecha != -1) {
             // Configurar el editor de celdas para la columna de fecha
+        	
+        	
             table.getColumnModel().getColumn(indiceDeLaColumnaDeFecha).setCellEditor(new DateCellEditor());
         } else {
             System.out.println("No se encontró la columna de fecha.");
@@ -438,23 +464,23 @@ public class Vista_agenda {
         
         btn_editar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int selectedRow = table.getSelectedRow(); // Obtener la fila seleccionada en la tabla
+                int selectedRow = table.getSelectedRow(); // Fila selec en la tabla
                 if (selectedRow != -1) {
                     if (btn_editar.getText().equals("EDITAR")) {
                         // Permitir la edición de la fila seleccionada
                         model.setEditable(true);
                         // Editar la celda seleccionada
-                        table.editCellAt(selectedRow, 1); // Ejemplo, editar la segunda columna
+                        table.editCellAt(selectedRow, 1); 
                         table.getEditorComponent().requestFocusInWindow();
                         btn_editar.setText("GUARDAR");
-                        btn_eliminar.setEnabled(false); // Desactivar el botón de eliminar mientras se edita
+                        btn_eliminar.setEnabled(false); // Desactivar el btn al editar
                     } else if (btn_editar.getText().equals("GUARDAR")) {
                         // Finalizar la edición y actualizar el modelo
                         if (table.isEditing() && table.getCellEditor() != null) {
                             table.getCellEditor().stopCellEditing();
                         }
                         model.setEditable(false);
-                        // Obtener los nuevos valores de los campos editados
+                        // obtiene  nuevos valores de los campos editados
                         String evento = (String) table.getValueAt(selectedRow, 1);
                         Date fecha = (Date) table.getValueAt(selectedRow, 2);
                         Time hora = (Time) table.getValueAt(selectedRow, 3);
@@ -477,10 +503,11 @@ public class Vista_agenda {
                             // Obtener el ID del evento seleccionado en la tabla
                             int id = (int) prueva.getValueAt(selectedRow, 0);
 
-                            // Actualizar el evento en la base de datos
+                            // actualiza evento en bdd
                             try {
                                 if (sistema.actualizarEvento(id, evento, fecha, hora)) {
                                     JOptionPane.showMessageDialog(null, "Evento actualizado exitosamente.");
+                                    
                                     Controlador_persona sistema = new Controlador_persona();
                                     sistema.vista_agenda(usuario);
                                     ventana.dispose();
@@ -496,13 +523,14 @@ public class Vista_agenda {
                         // Restaurar el botón "EDITAR" a su estado original
                         btn_editar.setText("EDITAR");
                         btn_editar.setBackground(Color.decode("#686D6F"));
-                        btn_eliminar.setEnabled(true); // Reactivar el botón de eliminar
+                        btn_eliminar.setEnabled(true); // reactiva btn eliminar
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Selecciona un evento de la tabla para editarlo.");
                 }
             }
         });
+
         
         
         btn_editar.setFocusable(false);
@@ -585,7 +613,7 @@ public class Vista_agenda {
 	        JOptionPane.showMessageDialog(null, "El campo Evento no puede quedar vacío");
 	        return false;
 	    }
-	    if (evento.matches(".*\\d.*")) {
+	    if (evento.matches(".\\d.")) {
 	        JOptionPane.showMessageDialog(null, "El campo Evento no puede contener números");
 	        return false;
 	    }
@@ -627,5 +655,4 @@ public class Vista_agenda {
 	    }
 	    return true;
 	}
-
 }

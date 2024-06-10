@@ -305,7 +305,7 @@ public class Vista_certificado {
 		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
 		
 		JLabel ibl_img = new JLabel();
-		ibl_img.setIcon(new ImageIcon("src/imagenes/imagenes_acceso/subir_archivo.png"));
+		ibl_img.setIcon(new ImageIcon(getClass().getResource("/imagenes/imagenes_acceso/subir_archivo.png")));
 		
         JButton btn_crear = new JButton("Seleccionar un archivo");
         btn_crear.addActionListener(new ActionListener() {
@@ -435,11 +435,11 @@ public class Vista_certificado {
 		        ImageIcon icon = new ImageIcon(scaledImage);
 		        JLabel label = new JLabel(icon);
 		        
-		        // Configura el panel y añade la imagen escalada
+		        // Configuracion del panel y escala
 		        panel.setLayout(new BorderLayout());
 		        panel.add(label, BorderLayout.CENTER);
 
-		        document.close(); // Asegúrate de cerrar el documento después de usarlo
+		        document.close(); // Cerrar el documento
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		        JOptionPane.showMessageDialog(null, "Error al cargar el PDF", "Error", JOptionPane.ERROR_MESSAGE);

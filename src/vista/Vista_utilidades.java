@@ -13,8 +13,10 @@ import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.regex.Pattern;
 
@@ -231,20 +233,22 @@ public class Vista_utilidades {
 
     
     
-    public void playSound(String soundFile) {
+	public void playSound(String soundFile) {
         try {
-            
-            if (sonido_actual != null && sonido_actual.isRunning()) { // Detener el sonido actual si se presiona un nuevo boton
-            	sonido_actual.stop();
-            	sonido_actual.close();
+            if (sonido_actual != null && sonido_actual.isRunning()) {
+                sonido_actual.stop();
+                sonido_actual.close();
             }
 
             // Configuracion del nuevo sonido
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(soundFile));
-            sonido_actual = AudioSystem.getClip();
-            sonido_actual.open(audioInputStream);
-            sonido_actual.start();
-            
+            try (InputStream audioSrc = getClass().getResourceAsStream(soundFile);
+                 InputStream bufferedIn = new BufferedInputStream(audioSrc);
+                 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(bufferedIn)) {
+
+                sonido_actual = AudioSystem.getClip();
+                sonido_actual.open(audioInputStream);
+                sonido_actual.start();
+            }
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             ex.printStackTrace();
         }

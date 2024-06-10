@@ -246,7 +246,7 @@ public class Vista_naturales {
 		btn_Humano.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				utilidades.playSound("/sonidos/btn_generico.wav");
-				utilidades.openWebPage("https: //es.khanacademy.org/science/biology/principles-of-physiology/body-structure-and-homeostasis/a/tissues-organs-organ-systems");
+				utilidades.openWebPage("https://es.khanacademy.org/science/high-school-biology/hs-human-body-systems/hs-body-structure-and-homeostasis/a/tissues-organs-organ-systems");
 
 			}
 		});

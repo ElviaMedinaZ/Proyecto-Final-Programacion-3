@@ -16,6 +16,8 @@ public class DateCellEditor extends AbstractCellEditor implements TableCellEdito
     public DateCellEditor() {
         dateChooser = new JDateChooser();
         dateChooser.setDateFormatString("dd/MM/yyyy");
+        dateChooser.getDateEditor().setEnabled(false); // Hacer que el campo de texto no sea editable
+        dateChooser.getColorModel();
     }
 
     @Override
