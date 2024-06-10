@@ -17,6 +17,7 @@ import java.awt.event.ComponentEvent;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -31,7 +32,8 @@ import javax.swing.JTextField;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.BadLocationException;
 
 import controlador.Controlador_acceso;
 import controlador.Controlador_aprendizaje;
@@ -175,7 +177,7 @@ public class Vista_contactos {
 		panel_central(usuario);
 	}
 	
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access", "serial" })
 	public void panel_central(String usuario) {
 		
 		JPanel panel_contacto = new JPanel();
@@ -228,25 +230,19 @@ public class Vista_contactos {
         EditableTableModel model = new EditableTableModel(datos, columnNames);
         JTable table = new JTable(model);
         
-
         // Configurar el ancho de la columna "id" a 0
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setMaxWidth(0);
         table.getColumnModel().getColumn(0).setPreferredWidth(0);
         // Crear un JScrollPane para la tabla
-    
         
         JScrollPane scrollPane = new JScrollPane(table);
-		
-		
 		
         JButton btn_crear = new JButton("CREAR");
         btn_crear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
             	if (text_nombre.getText().isEmpty() || text_numero.getText().isEmpty() || text_relacion.getText().isEmpty()) {
-            	          
-            		
             		
             		if(text_nombre.getText().isEmpty()) {
             			text_nombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
@@ -358,7 +354,43 @@ public class Vista_contactos {
                           String nombre = model.getValueAt(selectedRow, 1).toString();
                           String numero = model.getValueAt(selectedRow, 2).toString();
                           String relacion = model.getValueAt(selectedRow, 3).toString();
+                          
+                          if(nombre.length()<=0  || numero.isEmpty() || relacion.length()<=0) 
+                          {
+                        	  	JOptionPane.showMessageDialog(null, "los campos no pueden quedar vacios.");
+                        	  	model.setEditable(true);
+  	                        	table.editCellAt(selectedRow, 1);
+  	                        	table.getEditorComponent().requestFocusInWindow();
+  	                        	return;
+                          }
+                          
+                          // Validar que el nombre no contenga números
+                          if (nombre.matches(".\\d.") || relacion.matches(".\\d.")) {
+                              JOptionPane.showMessageDialog(null, "El campo no puede contener números.");
+                              model.setEditable(true);
+                              table.editCellAt(selectedRow, 1);
+                              table.getEditorComponent().requestFocusInWindow();
+                              return;
+                          }
 
+                          // Validar que el número contenga solo dígitos
+                          if (!numero.matches("\\d+")) {
+                              JOptionPane.showMessageDialog(null, "El número debe contener solo dígitos.");
+                              model.setEditable(true);
+                              table.editCellAt(selectedRow, 2);
+                              table.getEditorComponent().requestFocusInWindow();
+                              return;
+                          }
+                          
+                          int maxNumeroLength = 10;
+                          if (numero.length() > maxNumeroLength || numero.length()<10) {
+                              JOptionPane.showMessageDialog(null, "El número es invalido.");
+                              model.setEditable(true);
+                              table.editCellAt(selectedRow, 2);
+                              table.getEditorComponent().requestFocusInWindow();
+                              return;
+                          }
+                          
                           int id = (int) model.getValueAt(selectedRow, 0);
 
                           // Aquí llamarías al método para actualizar el contacto en la base de datos
@@ -512,4 +544,3 @@ public class Vista_contactos {
 	}
 
 }
-

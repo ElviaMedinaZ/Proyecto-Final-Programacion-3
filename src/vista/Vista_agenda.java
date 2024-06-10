@@ -182,9 +182,9 @@ public class Vista_agenda {
 
 	public void panel_central(String usuario) {
 		
-		JPanel panel_contacto = new JPanel();
-		panel_contacto.setBackground(Color.decode("#F1F1F1"));
-		panel_contacto.setLayout(null);
+		JPanel panel_agenda = new JPanel();
+		panel_agenda.setBackground(Color.decode("#F1F1F1"));
+		panel_agenda.setLayout(null);
 		
 		JLabel lbl_titulo = new JLabel("AGENDA");
 		lbl_titulo.setFont(new Font("Tahoma", Font.BOLD, 40));
@@ -209,6 +209,7 @@ public class Vista_agenda {
         SpinnerDateModel spinnerModel = new SpinnerDateModel();
         JSpinner timeSpinner = new JSpinner(spinnerModel);
         JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
+
         timeSpinner.setEditor(timeEditor);
         timeSpinner.setValue(Calendar.getInstance().getTime());
         timeSpinner.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
@@ -325,6 +326,7 @@ public class Vista_agenda {
                 	 evento = text_evento.getText();
                      fecha = calendario.getDate();
                      date = (Date) spinnerModel.getValue();
+                     date = (Date) spinnerModel.getValue();
                      hora = new Time(date.getTime());
                      
                      try {
@@ -436,73 +438,73 @@ public class Vista_agenda {
         
         btn_editar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	int selectedRow = table.getSelectedRow(); // Obtener la fila seleccionada en la tabla
+                int selectedRow = table.getSelectedRow(); // Obtener la fila seleccionada en la tabla
                 if (selectedRow != -1) {
                     if (btn_editar.getText().equals("EDITAR")) {
                         // Permitir la edición de la fila seleccionada
-                    	model.setEditable(true);
+                        model.setEditable(true);
                         // Editar la celda seleccionada
                         table.editCellAt(selectedRow, 1); // Ejemplo, editar la segunda columna
                         table.getEditorComponent().requestFocusInWindow();
                         btn_editar.setText("GUARDAR");
                         btn_eliminar.setEnabled(false); // Desactivar el botón de eliminar mientras se edita
-                    } else if (btn_editar.getText().equals("GUARDAR")) 
-                    {
-                    	    	
+                    } else if (btn_editar.getText().equals("GUARDAR")) {
                         // Finalizar la edición y actualizar el modelo
-                    	 if (table.isEditing() && table.getCellEditor() != null) {
-                             table.getCellEditor().stopCellEditing();
-                         }
+                        if (table.isEditing() && table.getCellEditor() != null) {
+                            table.getCellEditor().stopCellEditing();
+                        }
                         model.setEditable(false);
                         // Obtener los nuevos valores de los campos editados
                         String evento = (String) table.getValueAt(selectedRow, 1);
                         Date fecha = (Date) table.getValueAt(selectedRow, 2);
                         Time hora = (Time) table.getValueAt(selectedRow, 3);
-                   
 
-                        if(evento.length()<=0 || fecha==null || hora == null || hora.toString().trim().isEmpty())
-                        {	
-	                        JOptionPane.showMessageDialog(null, "los campos no pueden quedar vacios.");
-	                        model.setEditable(true);
-	                        table.editCellAt(selectedRow, 1);
-	                        table.getEditorComponent().requestFocusInWindow();
-	                       // table.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-	                        return;
-                        }
-                        else
-                        {
-	                        // Obtener el ID del evento seleccionado en la tabla
-	                        int id = (int) prueva.getValueAt(selectedRow, 0);
-	                        
-		                        // Actualizar el evento en la base de datos
-		                        try {
-		                            if (sistema.actualizarEvento(id, evento, fecha, hora)) {
-		                                JOptionPane.showMessageDialog(null, "Evento actualizado exitosamente.");
-		                                Controlador_persona sistema = new Controlador_persona();
-		                                sistema.vista_agenda(usuario);
-		                                ventana.dispose();
-		                            } else {
-		                                JOptionPane.showMessageDialog(null, "Error al actualizar el evento.");
-		                            }
-		                        } catch (ClassNotFoundException | SQLException ex) {
-		                            ex.printStackTrace();
-		                            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
-		                        }
-                        
+                        if (evento.length() <= 0 || fecha == null || hora == null || hora.toString().trim().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Los campos no pueden quedar vacíos.");
+                            model.setEditable(true);
+                            table.editCellAt(selectedRow, 1);
+                            table.getEditorComponent().requestFocusInWindow();
+                            return;
+                        } else {
+                            // Verificar si el evento contiene números
+                            if (evento.matches(".*\\d.*")) {
+                                JOptionPane.showMessageDialog(null, "El campo Evento no puede contener números.");
+                                model.setEditable(true);
+                                table.editCellAt(selectedRow, 1);
+                                table.getEditorComponent().requestFocusInWindow();
+                                return;
+                            }
+                            // Obtener el ID del evento seleccionado en la tabla
+                            int id = (int) prueva.getValueAt(selectedRow, 0);
+
+                            // Actualizar el evento en la base de datos
+                            try {
+                                if (sistema.actualizarEvento(id, evento, fecha, hora)) {
+                                    JOptionPane.showMessageDialog(null, "Evento actualizado exitosamente.");
+                                    Controlador_persona sistema = new Controlador_persona();
+                                    sistema.vista_agenda(usuario);
+                                    ventana.dispose();
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Error al actualizar el evento.");
+                                }
+                            } catch (ClassNotFoundException | SQLException ex) {
+                                ex.printStackTrace();
+                                JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos.");
+                            }
                         }
 
                         // Restaurar el botón "EDITAR" a su estado original
                         btn_editar.setText("EDITAR");
                         btn_editar.setBackground(Color.decode("#686D6F"));
                         btn_eliminar.setEnabled(true); // Reactivar el botón de eliminar
-                	}
-                    
-                    
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Selecciona un evento de la tabla para editarlo.");
                 }
             }
         });
+        
+        
         btn_editar.setFocusable(false);
         btn_editar.setBackground(Color.decode("#686D6F"));
         btn_editar.setForeground(Color.decode("#FFFFFF"));
@@ -515,7 +517,7 @@ public class Vista_agenda {
 		    	int tamBtn_ancho = 190;
 		    	//conseguimos las dimensiones con las que terminara el panel
 		       
-		    	Dimension panelSize = panel_contacto.getSize();
+		    	Dimension panelSize = panel_agenda.getSize();
 		       
 		        //guardamos posiciones
 		        int panel_ancho = panelSize.width;
@@ -527,8 +529,8 @@ public class Vista_agenda {
 		        
 
 		    	// Establecer un tamaño preferido para el panel_2
-		        panel_contacto.setPreferredSize(new Dimension(0, panel_alto + y)); 
-		        panel_contacto.revalidate();
+		        panel_agenda.setPreferredSize(new Dimension(0, panel_alto + y)); 
+		        panel_agenda.revalidate();
 		   
 				lbl_titulo.setBounds(x, y-310 , tamBtn_ancho+120, 120);
 				
@@ -550,27 +552,27 @@ public class Vista_agenda {
 		      
 			
 				// Establecer un tamaño preferido para el panel_2
-				panel_contacto.setPreferredSize(new Dimension(0, panel_ancho + y)); 
-				panel_contacto.revalidate();
+				panel_agenda.setPreferredSize(new Dimension(0, panel_ancho + y)); 
+				panel_agenda.revalidate();
 		      
 		    }
 		});
 		
-		panel_contacto.add(lbl_relacion);
-		panel_contacto.add(lbl_numero);
-		panel_contacto.add(btn_crear);
-		panel_contacto.add(btn_eliminar);
-		panel_contacto.add(btn_editar);
-		panel_contacto.add(timeSpinner);
-		panel_contacto.add(text_evento);
-		panel_contacto.add(lbl_evento);
-		panel_contacto.add(lbl_titulo);
-		panel_contacto.add(scrollPane);
-		panel_contacto.add(calendario);
+		panel_agenda.add(lbl_relacion);
+		panel_agenda.add(lbl_numero);
+		panel_agenda.add(btn_crear);
+		panel_agenda.add(btn_eliminar);
+		panel_agenda.add(btn_editar);
+		panel_agenda.add(timeSpinner);
+		panel_agenda.add(text_evento);
+		panel_agenda.add(lbl_evento);
+		panel_agenda.add(lbl_titulo);
+		panel_agenda.add(scrollPane);
+		panel_agenda.add(calendario);
 
 		
 		
-		Panel_Principal.add(panel_contacto, BorderLayout.CENTER);
+		Panel_Principal.add(panel_agenda, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
 		ventana.revalidate();
@@ -578,21 +580,39 @@ public class Vista_agenda {
 	}
 	
 	
-	public boolean validarCampos(String evento, Date fecha, Date hora) {
+	public boolean validarCampos(String evento, Date fecha, Time hora) {
 	    if (evento == null || evento.trim().isEmpty()) {
-	        JOptionPane.showMessageDialog(null, "El campo Evento no puede quedar vacio");
+	        JOptionPane.showMessageDialog(null, "El campo Evento no puede quedar vacío");
+	        return false;
+	    }
+	    if (evento.matches(".*\\d.*")) {
+	        JOptionPane.showMessageDialog(null, "El campo Evento no puede contener números");
 	        return false;
 	    }
 	    if (fecha == null) {
-	        JOptionPane.showMessageDialog(null, "El campo  fecha  no puede quedar vacio.");
+	        JOptionPane.showMessageDialog(null, "El campo Fecha no puede quedar vacío");
 	        return false;
 	    }
 	    if (hora == null) {
-	        JOptionPane.showMessageDialog(null, "El campo  hora no puede estar vacio");
+	        JOptionPane.showMessageDialog(null, "El campo Hora no puede quedar vacío");
 	        return false;
 	    }
 	    return true;
 	}
+
+	public boolean validarFechaHora(Date fecha, Time hora) {
+	    Date actual = new Date();
+	    if (fecha.after(actual)) {
+	        JOptionPane.showMessageDialog(null, "La fecha no puede ser posterior a la actual");
+	        return false;
+	    }
+	    if (fecha.equals(actual) && hora.after(actual)) {
+	        JOptionPane.showMessageDialog(null, "La hora no puede ser posterior a la hora actual");
+	        return false;
+	    }
+	    return true;
+	}
+
 	
 
 	public boolean validarFechaHora(Date fecha, Date hora) {
