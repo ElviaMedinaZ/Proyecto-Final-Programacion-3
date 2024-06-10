@@ -112,10 +112,9 @@ public class Vista_utilidades {
     }
     
     public JButton crearBotonesLaterales(String text, String imagen, int width, int height, int fontSize, int iconWidth) {
-        JButton btn = new JButton();
-
+        JButton btn1 = new JButton();
         // Configurar el layout del botón
-        btn.setLayout(new BorderLayout());
+        btn1.setLayout(new BorderLayout());
 
         // Cargar la imagen y redimensionarla al tamaño deseado
         ImageIcon originalIcon = new ImageIcon(getClass().getResource(imagen));
@@ -137,23 +136,18 @@ public class Vista_utilidades {
         textLabel.setFont(textLabel.getFont().deriveFont(Font.BOLD, fontSize));
 
         // Añadir los componentes al botón
-        btn.add(imageLabel, BorderLayout.WEST);
-        btn.add(textLabel, BorderLayout.CENTER);
+        btn1.add(imageLabel, BorderLayout.WEST);
+        btn1.add(textLabel, BorderLayout.CENTER);
 
         // Establecer el tamaño preferido del botón
-        btn.setPreferredSize(new Dimension(width, height));
+        btn1.setPreferredSize(new Dimension(width, height));
 
-        return btn;
+        return btn1;
     }
     
 	public JButton crearBotones(String text,String imagen,int width,int heigth,int fontSize, int iconWidth) {
 		
-		// Set default UI settings to avoid platform-specific styles
-		UIManager.put("Button.font", new Font("Arial", Font.BOLD, fontSize));
-		UIManager.put("Button.foreground", Color.WHITE);
-		UIManager.put("Button.background", Color.decode("#90C3D3"));
-		UIManager.put("Button.border", BorderFactory.createLineBorder(Color.BLACK));
-		 
+	
 		 
 		@SuppressWarnings("serial")
 		JButton btn = new JButton() {
@@ -189,11 +183,8 @@ public class Vista_utilidades {
 	            }
 	        };
 		
-		
-	    btn.setForeground(Color.WHITE);
-	    btn.setBackground(Color.decode("#90C3D3"));
-	    btn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-	    btn.setFont(new Font("Arial", Font.BOLD, fontSize));
+	        aplicarEstiloBase(btn, fontSize);
+
 
 
 	    ImageIcon originalIcon = new ImageIcon(getClass().getResource(imagen));
@@ -246,6 +237,16 @@ public class Vista_utilidades {
 
     
     
+	private void aplicarEstiloBase(JButton btn, int fontSize) {
+		
+		
+		btn.setForeground(Color.WHITE);
+		btn.setBackground(Color.decode("#90C3D3"));
+		btn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		btn.setFont(new Font("Arial", Font.BOLD, fontSize));
+		
+	}
+
 	public void playSound(String soundFile) {
         try {
             if (sonido_actual != null && sonido_actual.isRunning()) {
