@@ -193,14 +193,11 @@ public class Vista_contactos {
 		utilidades.limitar_textfield(text_nombre, 30); // NOTA: revicion completada
 		text_nombre.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
 
-		
-		
 		JLabel lbl_numero = new JLabel("Número");
 		lbl_numero.setFont(new Font("Tahoma", Font.BOLD, 20));
 		JTextField text_numero = new JTextField();
 		utilidades.limitar_numeros(text_numero, 10);
 		text_numero.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
-		
 		
         JLabel lbl_relacion = new JLabel("Relacion");
         lbl_relacion.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -224,7 +221,6 @@ public class Vista_contactos {
 		}
 		// Nombre de las columnas
         
-     
         String[] columnNames = {"id","nombre", "numero", "relacion"};
         // Crear el modelo de la tabla con los datos y nombres de las columnas
         EditableTableModel model = new EditableTableModel(datos, columnNames);
@@ -263,8 +259,7 @@ public class Vista_contactos {
             			text_relacion.setBorder(BorderFactory.createLineBorder(Color.decode("#00758E"), 2));
             		}
             		
-            		return ;
-            		
+            		return ;	
             	}
             	                
                	int response =JOptionPane.showConfirmDialog(
@@ -355,7 +350,7 @@ public class Vista_contactos {
                           String numero = model.getValueAt(selectedRow, 2).toString();
                           String relacion = model.getValueAt(selectedRow, 3).toString();
                           
-                          if(nombre.length()<=0  || numero.isEmpty() || relacion.length()<=0) 
+                          if(nombre.length()<=0  || numero.length()<=0 || relacion.length()<=0) 
                           {
                         	  	JOptionPane.showMessageDialog(null, "los campos no pueden quedar vacios.");
                         	  	model.setEditable(true);
@@ -364,8 +359,8 @@ public class Vista_contactos {
   	                        	return;
                           }
                           
-                          // Validar que el nombre no contenga números
-                          if (nombre.matches(".\\d.") || relacion.matches(".\\d.")) {
+                          // Validar que el nombre y relacion no contenga números
+                          if (nombre.matches(".*\\d.*") || relacion.matches(".*\\d.*")) {
                               JOptionPane.showMessageDialog(null, "El campo no puede contener números.");
                               model.setEditable(true);
                               table.editCellAt(selectedRow, 1);
@@ -454,7 +449,6 @@ public class Vista_contactos {
                         JOptionPane.showMessageDialog(null, "Selecciona un contacto para eliminar.");
                     }
                 	
-
                 } else if (response == JOptionPane.NO_OPTION) {
                     return;
                 } else {
@@ -466,7 +460,6 @@ public class Vista_contactos {
                 ventana.dispose();
             }  
         });
-        
         
         btn_eliminar.setFocusable(false);
         btn_eliminar.setBackground(Color.decode("#9E0000"));
@@ -490,7 +483,6 @@ public class Vista_contactos {
 		        int x = (panel_ancho - tamBtn_ancho) / 2;
 		        int y = panel_alto/2;
 		        
-
 		    	// Establecer un tamaño preferido para el panel_2
 		        panel_contacto.setPreferredSize(new Dimension(0, panel_alto + y)); 
 		        panel_contacto.revalidate();
@@ -507,8 +499,7 @@ public class Vista_contactos {
 				text_relacion.setBounds(x+200,y-130, tamBtn_ancho, 30);
 			
 				scrollPane.setBounds(x/3, y-70, tamBtn_ancho+450, 180);
-				
-				
+
 				btn_crear.setBounds(x/3, y+250,tamBtn_ancho-40 , 50);
 				btn_editar.setBounds(x-10, y+250,tamBtn_ancho-40 , 50);
 				btn_eliminar.setBounds(x+220, y+250,tamBtn_ancho-40 , 50);
@@ -533,14 +524,10 @@ public class Vista_contactos {
 		panel_contacto.add(lbl_titulo);
 		panel_contacto.add(scrollPane);
 
-		
-		
 		Panel_Principal.add(panel_contacto, BorderLayout.CENTER);
 		ventana.setVisible(true);
 		ventana.repaint();
-		ventana.revalidate();
-
-		
+		ventana.revalidate();	
 	}
 
 }
